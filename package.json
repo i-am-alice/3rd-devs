@@ -1,0 +1,28 @@
+{
+  "name": "aidevs3",
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/node": "^22.3.0",
+    "@types/express": "^4.17.21",
+    "@types/uuid": "^10.0.0",
+    "tsx": "^4.17.0"
+  },
+  "scripts": {
+    "chain": "bun run chain/app.ts",
+    "completion": "bun run completion/app.ts",
+    "sdk": "bun run sdk/app.ts",
+    "streaming": "bun run streaming/app.ts"
+  },
+  "peerDependencies": {
+    "typescript": "^5.5.4"
+  },
+  "dependencies": {
+    "@ai-sdk/openai": "^0.0.46",
+    "ai": "^3.3.7",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "openai": "^4.55.7",
+    "uuid": "^10.0.0",
+    "zod": "^3.23.8"
+  }
+}

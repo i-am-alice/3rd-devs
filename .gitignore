@@ -1,0 +1,5 @@
+.DS_Store
+.env
+evaluation_basics/.env
+.idea/
+node_modules/
