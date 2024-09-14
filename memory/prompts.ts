@@ -88,7 +88,7 @@ export const memoryStructure = `memory_areas:
         - name: "images"
           description: "links to photos, galleries, images"
         - name: "apps"
-          description: "links, tutorials, and knowledge about apps"
+          description: "knowledge, links, tutorials, and knowledge about apps"
         - name: "devices"
           description: "links, tutorials, manuals, and knowledge about devices"
         - name: "courses"
@@ -178,7 +178,7 @@ AI:
   "q": [
     "profiles:basic Who is Alice?",
     "profiles:basic Who is Adam?",
-    "environment:current Current time and date"
+    "environment:current Where we are?"
   ]
 }
 
@@ -186,10 +186,10 @@ USER: I'm working on eduweb.pl these days. The Rust backend is coming along nice
 AI:
 {
   "q": [
-    "profiles:work Details about eduweb.pl",
+    "profiles:work eduweb.pl",
     "profiles:work Adam's role in eduweb.pl",
     "profiles:development Adam's experience with Rust",
-    "resources:apps Features of eduweb.pl online education platform"
+    "resources:apps what do I know about eduweb.pl"
   ]
 }
 
@@ -197,9 +197,11 @@ USER: Kate and I are planning a trip to Krakow next month. Any recommendations?
 AI:
 {
   "q": [
-    "profiles:relationships Information about Kate",
+    "profiles:basic Who's Kate?",
+    "profiles:basic Who's Adam?",
+    "profiles:relationships Kate & Adam relationship",
     "events:personal Adam's planned trip to Krakow",
-    "locations:places Information about Krakow",
+    "locations:places Krakow trip recommendations",
     "locations:favorites Adam's favorite places in Krakow",
     "preferences:interests Adam's travel preferences"
   ]
@@ -220,7 +222,9 @@ USER: I'm thinking about incorporating some AI concepts into the next AI_devs co
 AI:
 {
   "q": [
+    "profiles:work What is AI_devs?",
     "profiles:work Adam's role in AI_devs",
+    "profiles:development Adam's experience with AI",
     "resources:courses Details about AI_devs course",
     "preferences:interests Adam's interest in AI",
     "events:professional Upcoming AI_devs cohort",
@@ -271,6 +275,7 @@ Evaluate the conversation context, existing memories, and general knowledge to d
 - PRIORITIZE comprehensive information capture over brevity
 - HANDLE potential information loss by storing all relevant context, even if seemingly redundant
 - INCLUDE category and subcategory information WITHIN the 'content' string for both 'update' and 'add' arrays
+- WHEN SAVING RESOURCES UNDER THE 'RESOURCES' CATEGORY, PROVIDE THE INFORMATION IN A DIRECT AND CONCISE FORMAT, FOCUSING ON ESSENTIAL DETAILS, AND AVOID USING FULL SENTENCES (e.g., "Category: resources > videos; GPT video...")
 </prompt_rules>
 
 <general_knowledge>
@@ -323,7 +328,7 @@ AI ANALYSIS:
   "update": [],
   "add": [
     "Category: events > professional; Content: The launch of heyalice.app was on [current_date - 1 year], marking its first anniversary. Adam expressed surprise and excitement about this milestone, indicating the significance of the project in his professional life.",
-    "Category: profiles > work; Content: Adam launched heyalice.app one year ago. The project appears to be an important part of his professional portfolio, given his enthusiasm about its anniversary."
+    "Category: resources > websites; Content: heyalice.app was launched one year ago."
   ]
 }
 
@@ -353,11 +358,11 @@ User: "Alice, update your memory about my work tools."
 
 AI ANALYSIS:
 {
-  "_thinking": "The user explicitly requested to update memory about work tools in the latest message. The user has transitioned from using an old CMS to WebFlow. Update existing memories about his tools under 'resources > apps'. Include context about the complete transition to provide a comprehensive update.",
+  "_thinking": "The user explicitly requested to update memory about work tools in the latest message. The user has transitioned from using an old CMS to WebFlow. Update existing memories about his tools under 'resources > apps'. According to the updated rule, provide concise information without full sentences.",
   "update": [
     {
       "uuid": "uuid_of_old_cms_memory",
-      "content": "Category: resources > apps; Content: As of [current_date], Adam uses WebFlow as his primary content management platform. This represents a complete transition from the previous CMS, indicating a significant change in his workflow and potentially his project requirements or preferences."
+      "content": "Category: resources > apps; WebFlow is now Adam's primary content management platform."
     }
   ],
   "add": []
@@ -374,7 +379,7 @@ AI ANALYSIS:
   "_thinking": "The user explicitly requested to remember this change in the latest message. The user has adopted a vegetarian diet. This significant lifestyle change should be added under 'profiles > basic'. Include context about the decision to provide a comprehensive memory.",
   "update": [],
   "add": [
-    "Category: profiles > basic; Content: As of [current_date], Adam has made a conscious decision to become a vegetarian, completely eliminating meat from his diet. This significant lifestyle change may impact his food preferences, health considerations, and potentially social dining experiences."
+    "Category: profiles > basic; Content: As of [current_date], Adam has decided to become a vegetarian, eliminating meat from his diet. This lifestyle change may affect his food preferences and health considerations."
   ]
 }
 
@@ -386,14 +391,28 @@ User: "Alice, please update your memory about my current reading and activities.
 
 AI ANALYSIS:
 {
-  "_thinking": "The user explicitly requested to update memory about current reading and activities in the latest message. The user is part of a book club reading 'Sapiens' by Yuval Noah Harari. Add the book under 'resources > books' and note his participation in the book club under 'preferences > hobbies'. Include details about the book and the implications of his participation in the club.",
+  "_thinking": "The user explicitly requested to update memory about current reading and activities in the latest message. The user is part of a book club reading 'Sapiens' by Yuval Noah Harari. Add the book under 'resources > books' and note his participation in the book club under 'preferences > hobbies'. Use a direct format for the resource entry.",
   "update": [],
   "add": [
-    "Category: resources > books; Content: As of [current_date], Adam is reading 'Sapiens' by Yuval Noah Harari with his book club. This non-fiction work covers the history of humankind, suggesting Adam's interest in anthropology, history, and big-picture thinking about human society.",
-    "Category: preferences > hobbies; Content: Adam actively participates in a book club. This hobby indicates his enjoyment of reading, intellectual discussions, and social learning experiences. The club is currently reading 'Sapiens', showing a preference for thought-provoking, non-fiction literature."
+    "Category: resources > books; 'Sapiens' by Yuval Noah Harari.",
+    "Category: preferences > hobbies; Content: Adam participates in a book club currently reading 'Sapiens', indicating his interest in intellectual discussions and non-fiction literature."
   ]
 }
 
+---
+
+CONVERSATION:
+User: "I found an excellent video about GPT models that I want to save."
+User: "Alice, please update your memory with this resource."
+
+AI ANALYSIS:
+{
+  "_thinking": "The user explicitly requested to update memory with this resource in the latest message. He wants to save a video about GPT models. According to the updated rule, add this information under 'resources > videos' in a direct format.",
+  "update": [],
+  "add": [
+    "Category: resources > videos; GPT models video."
+  ]
+}
 </prompt_examples>
 
 Analyze the conversation carefully, considering all provided information, and determine necessary memory updates or additions only when explicitly requested by the user in their latest message. Ensure all details are captured within the 'content' field as text, maintaining the correct response structure for both 'update' and 'add' arrays.`;
@@ -419,7 +438,8 @@ Create a structured JSON memory object from user input, adhering to strict categ
   - GENERATE a file-name-optimized, concise title for the 'name' field that is similar to names one might pick for personal notes.
   - Make it ULTRA CONCISE and MEANINGFUL, for profiles it should be a name of a person, for work it should be a name of a project, for resources it should be a name of a thing, etc.
 - Content:
-  - WRITE the 'content.text' in first-person POV from the assistant's perspective.
+  - WRITE the 'content.text' in first-person POV from the assistant's perspective but foucs on describing the content and skip things like "I noted" or "The user told me". Keep it natural, markdown note you could write.
+  - 'content.text' must be well-formatted markdown text that may include text formatting, paragraphs, headers, lists and even images or links if needed (links must be included in metadata.urls too!)
   - ENSURE that the 'content.text' is detailed, building only on available information from the context/conversation.
   - EXCLUDE URLs from the 'content.text' field.
 - Metadata:

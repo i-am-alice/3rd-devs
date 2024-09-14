@@ -40,7 +40,7 @@ export class VectorStore {
     }
   }
 
-  async search(vector: number[], k: number): Promise<string[]> {
+  async search(vector: number[], k: number): Promise<Array<{ id: string; similarity: number }>> {
     try {
       const normalizedVector = this.normalizeVector(vector);
       const totalVectors = this.index.ntotal();
@@ -48,8 +48,26 @@ export class VectorStore {
         return [];
       }
       const actualK = Math.min(k, totalVectors);
-      const { labels } = this.index.search(normalizedVector, actualK);
-      return labels.map(label => this.metadata.get(label) || '');
+      const { distances, labels } = this.index.search(normalizedVector, actualK);
+      
+      const results = labels.map((label, index) => ({
+        id: this.metadata.get(label) || '',
+        similarity: distances[index]
+      }));
+
+
+      console.log(`Total results: ${results.length}`);
+
+      // Calculate average similarity
+      const avgSimilarity = results.reduce((sum, r) => sum + r.similarity, 0) / results.length;
+
+      // Filter results with at least 80% of average similarity
+      const threshold = avgSimilarity * 0.8;
+      const filteredResults = results.filter(r => r.similarity >= threshold);
+
+      console.log(`Filtered results: ${filteredResults.length}`);
+
+      return filteredResults;
     } catch (error) {
       console.error('Error searching vectors:', error);
       return [];
@@ -80,13 +98,18 @@ export class VectorStore {
     }
   }
 
-
   update(embedding: number[], id: string): void {
-    const index = this.ids.indexOf(id);
-    if (index !== -1) {
-      this.embeddings[index] = embedding;
+    const normalizedEmbedding = this.normalizeVector(embedding);
+    const existingIndex = Array.from(this.metadata.entries()).find(([_, value]) => value === id)?.[0];
+    if (existingIndex !== undefined) {
+      // Remove the existing vector
+      this.index.removeIds([existingIndex]); // Changed from remove_ids to removeIds
+      // Add the new vector
+      this.index.add(normalizedEmbedding);
+      // Update the metadata
+      this.metadata.set(this.index.ntotal() - 1, id);
     } else {
-      this.add(embedding, id);
+      this.add(normalizedEmbedding, id);
     }
   }
 }

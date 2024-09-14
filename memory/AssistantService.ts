@@ -34,6 +34,7 @@ export class AssistantService {
 
     async extractQueries(messages: ChatCompletionMessageParam[], trace: LangfuseTraceClient): Promise<string[]> {
         const generation = this.langfuseService.createGeneration(trace, "Extract queries", messages);
+        
         try {
             const thread: ChatCompletionMessageParam[] = [
                 { role: "system", content: extractSearchQueriesPrompt({memoryStructure, knowledge: defaultKnowledge}) },
@@ -287,7 +288,11 @@ export class AssistantService {
                 messages: messagesWithSystem
             }) as ChatCompletion;
 
-            this.langfuseService.finalizeGeneration(generation, completion.choices[0].message, completion.model, completion.usage);
+            this.langfuseService.finalizeGeneration(generation, completion.choices[0].message, completion.model, {
+                promptTokens: completion.usage?.prompt_tokens,
+                completionTokens: completion.usage?.completion_tokens,
+                totalTokens: completion.usage?.total_tokens
+            });
             return completion;
         } catch (error) {
             this.langfuseService.finalizeGeneration(generation, { error: error instanceof Error ? error.message : String(error) }, "unknown");

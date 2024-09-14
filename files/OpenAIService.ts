@@ -52,7 +52,6 @@ export class OpenAIService {
    * @throws Error if there's an issue creating the embedding.
    */
   async createEmbedding(input: string | string[]): Promise<number[]> {
-    console.log(input)
     try {
       const embedding = await this.openai.embeddings.create({
         model: "text-embedding-3-large",

@@ -27,7 +27,7 @@ app.post('/api/chat', async (req, res) => {
     if (!latestUserMessage) {
       return res.status(400).json({ error: 'No user message provided' });
     }
-    
+    console.log(latestUserMessage);
     // Create embedding for the latest user message
     const latestMessageEmbedding = await openaiService.createEmbedding(latestUserMessage.content);
     

@@ -7,6 +7,7 @@ import type { OpenAIService } from './OpenAIService';
 import { VectorStore } from './VectorStore';
 import { LangfuseService } from './LangfuseService';
 import { LangfuseTraceClient } from 'langfuse';
+import { execSync } from 'child_process';
 
 export interface Memory {
   uuid: string;
@@ -95,7 +96,7 @@ export class MemoryService {
     // Add hashtags at the end of the file
     if (frontmatterData.metadata?.tags && frontmatterData.metadata.tags.length > 0) {
       markdownContent += '\n\n';
-      markdownContent += frontmatterData.metadata.tags.map(tag => `#${tag}`).join(' ');
+      markdownContent += frontmatterData.metadata.tags.map(tag => `#${tag.replace(/\s/g, '_')}`).join(' ');
     }
 
     return markdownContent;
@@ -111,7 +112,7 @@ export class MemoryService {
 
     // Ensure tags in metadata match those at the end of the file
     if (hashtags) {
-      const tagsFromContent = hashtags.split(' ').map(tag => tag.replace('#', ''));
+      const tagsFromContent = hashtags.split(' ').map(tag => tag.replace('#', '').replace(/_/g, ' '));
       data.metadata.tags = [...new Set([...(data.metadata.tags || []), ...tagsFromContent])];
     }
 
@@ -230,15 +231,19 @@ export class MemoryService {
     );
   }
 
-  async searchSimilarMemories(query: string, k: number = 15): Promise<Memory[]> {
+  async searchSimilarMemories(query: string, k: number = 15): Promise<Array<Memory & { similarity: number }>> {
     const queryEmbedding = await this.openaiService.createEmbedding(query);
-    const similarIds = await this.vectorStore.search(queryEmbedding, k);
-    if (similarIds.length === 0) {
+    const similarResults = await this.vectorStore.search(queryEmbedding, k);
+    if (similarResults.length === 0) {
       console.log('No similar memories found.');
       return [];
     }
-    const memories = await Promise.all(similarIds.map(id => this.getMemory(id)));
-    return memories.filter((m): m is Memory => m !== null);
+    const memories = await Promise.all(similarResults.map(result => this.getMemory(result.id)));
+    return memories.filter((m): m is Memory => m !== null)
+      .map((memory, index) => ({
+        ...memory,
+        similarity: similarResults[index].similarity
+      }));
   }
 
   async deleteMemory(uuid: string): Promise<boolean> {
@@ -308,5 +313,76 @@ export class MemoryService {
   private formatMemory(memory: Memory): string {
     const urls = memory.metadata?.urls && memory.metadata.urls.length > 0 ? `\nURLs: ${memory.metadata.urls.join(', ')}` : '';
     return `<memory uuid="${memory.uuid}" name="${memory.name}" category="${memory.category}" subcategory="${memory.subcategory}" lastmodified="${memory.updated_at}">${memory.content.text}${urls}</memory>`;
+  }
+
+  async syncMemories(trace: LangfuseTraceClient): Promise<{ added: string[], modified: string[], deleted: string[] }> {
+    const gitDiff = this.getGitDiff();
+    const changes = this.parseGitDiff(gitDiff);
+
+    console.log(changes);
+    const added: string[] = [];
+    const modified: string[] = [];
+    const deleted: string[] = [];
+
+    for (const file of changes.added) {
+      const memory = await this.addMemoryFromFile(file);
+      if (memory) added.push(memory.uuid);
+    }
+
+    for (const file of changes.modified) {
+        console.log('Updating file', file)
+      const memory = await this.updateMemoryFromFile(file);
+      if (memory) modified.push(memory.uuid);
+    }
+
+    for (const file of changes.deleted) {
+      const success = await this.deleteMemoryByFile(file);
+      if (success) deleted.push(file);
+    }
+
+    this.langfuseService.createEvent(trace, "SyncMemories", { added, modified, deleted });
+    return { added, modified, deleted };
+  }
+
+  private getGitDiff(): string {
+    const command = 'git diff --name-status HEAD';
+    return execSync(command, { cwd: path.join(this.baseDir) }).toString();
+  }
+
+  private parseGitDiff(diff: string): { added: string[], modified: string[], deleted: string[] } {
+    const lines = diff.split('\n');
+    const changes = { added: [], modified: [], deleted: [] };
+
+    for (const line of lines) {
+      const [status, file] = line.split('\t');
+      if (!file || !file.endsWith('.md')) continue;
+
+      if (status === 'A') changes.added.push(file);
+      else if (status === 'M') changes.modified.push(file);
+      else if (status === 'D') changes.deleted.push(file);
+    }
+
+    return changes;
+  }
+
+  private async addMemoryFromFile(file: string): Promise<Memory | null> {
+    const filePath = path.join(this.baseDir, 'memories', file);
+    const content = await fs.readFile(filePath, 'utf-8');
+    const memory = this.markdownToJson(content);
+    return this.createMemory(memory, {} as LangfuseTraceClient); // Note: We need to handle the trace properly here
+  }
+
+  private async updateMemoryFromFile(file: string): Promise<Memory | null> {
+    const filePath = path.join(this.baseDir, 'memories', file);
+    const content = await fs.readFile(filePath, 'utf-8');
+    const updatedMemory = this.markdownToJson(content);
+    return this.updateMemory(updatedMemory, {} as LangfuseTraceClient); // Note: We need to handle the trace properly here
+  }
+
+  private async deleteMemoryByFile(file: string): Promise<boolean> {
+    const filePath = path.join(this.baseDir, 'memories', file);
+    const content = await fs.readFile(filePath, 'utf-8');
+    const memory = this.markdownToJson(content);
+    return this.deleteMemory(memory.uuid);
   }
 }

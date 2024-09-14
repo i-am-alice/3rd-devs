@@ -6,6 +6,8 @@ import { AssistantService } from './AssistantService';
 import { defaultKnowledge as knowledge } from './prompts';
 import { LangfuseService } from './LangfuseService';
 import type { ChatCompletionMessageParam } from "openai/resources/chat/completions";
+import { execSync } from 'child_process';
+import path from 'path';
 
 const app = express();
 const port = 3000;
@@ -36,6 +38,21 @@ app.post('/api/chat', async (req, res) => {
     await langfuseService.finalizeTrace(trace, req.body, { error: 'An error occurred while processing your request' });
     console.error('Error in chat processing:', error);
     res.status(500).json({ error: 'An error occurred while processing your request' });
+  }
+});
+
+app.post('/api/sync', async (req, res) => {
+  const trace = langfuseService.createTrace({ id: uuidv4(), name: 'Sync Memories', sessionId: uuidv4() });
+
+  try {
+    const changes = await memoryService.syncMemories(trace);
+    await langfuseService.finalizeTrace(trace, {}, changes);
+    await langfuseService.flushAsync();
+    return res.json(changes);
+  } catch (error) {
+    await langfuseService.finalizeTrace(trace, {}, { error: 'An error occurred while syncing memories' });
+    console.error('Error in memory synchronization:', error);
+    res.status(500).json({ error: 'An error occurred while syncing memories' });
   }
 });
 

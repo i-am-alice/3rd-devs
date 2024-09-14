@@ -23560,3 +23560,261 @@ Chat Completion:
   "system_fingerprint": "fp_992d1ea92d"
 }
 
+Messages:
+[
+  {
+    "role": "system",
+    "content": "You are a helpful assistant who can answer questions based on the knowledge from previous messages and memories.\n\n<relevant_context>\n<message>assistant: Hello again, Adam! How are you today? Is there anything specific you'd like to chat about or any questions you have?</message>\n<message>assistant: Hello, Adam! It's nice to meet you. Krakow is a beautiful city with a rich history and vibrant culture. Is there something specific you'd like to know or discuss about Krakow, or is there anything else I can help you with today?</message>\n<message>assistant: Yes, you live in Krakow. How can I assist you today?</message>\n<memory>Adam lives in Krakow</memory>\n</relevant_context>"
+  },
+  {
+    "content": "What you know about me ",
+    "role": "user"
+  }
+]
+
+Chat Completion:
+{
+  "id": "chatcmpl-A7JniUqzaoykILR0k0Sz2R87ESvA6",
+  "object": "chat.completion",
+  "created": 1726307774,
+  "model": "gpt-4o-2024-05-13",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "From our previous conversations, I remember that you live in Krakow. How can I assist you today, Adam?",
+        "refusal": null
+      },
+      "logprobs": null,
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 168,
+    "completion_tokens": 23,
+    "total_tokens": 191,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  },
+  "system_fingerprint": "fp_25624ae3a5"
+}
+
+Messages:
+[
+  {
+    "role": "system",
+    "content": "As an Adaptive Learning Analyzer with human-like memory tagging, your task is to scan AI-User conversations, extract key insights, and generate structured learning data. Your primary objective is to produce a JSON object containing _thoughts, keywords, content, and title based on your analysis, emphasizing memorable and useful tags.\n\nCore Rules:\n- Always return a valid JSON object, nothing else.\n- Analyze only the most recent AI-User exchange.\n- When the user speaks about himself, ALWAYS add a tag 'adam' to the keywords.\n- When you have existing information, skip learning and set 'content' and 'title' to null.\n- Learn from user messages unless explicitly asked to remember the conversation.\n- Provide ultra-concise self-reflection in the _thoughts field.\n- Extract memorable, specific keywords for the keywords field:\n  * Use lowercase for all tags\n  * Split compound concepts into individual tags (e.g., \"krakow_location\" becomes [\"krakow\", \"location\"])\n  * Prefer specific terms over generic ones (e.g., \"tesla\" over \"car\")\n  * Omit unhelpful descriptors (e.g., \"black_matte\" as a color)\n  * Focus on key concepts, names, and unique identifiers\n  * Use mnemonic techniques to create more memorable tags\n  * Limit to 3-7 tags per entry\n- Rephrase user information as if it's your own knowledge in the content field\n- Set content to null if no specific, useful information needs saving.\n- Never store trivial information (e.g., chitchat, greetings).\n- Don't process document information unless explicitly requested.\n- Focus on future-relevant information, mimicking human selective attention.\n- Maintain your base behavior; this analysis doesn't override your core functionality.\n- Generate a slugified, ultra-concise title for potential filename use.\n\nExamples of expected behavior:\n\nUSER: I live in Krakow, it's a beautiful city in southern Poland.\nAI: {\n  \"_thoughts\": \"User shared living location and brief description\",\n  \"keywords\": [\"krakow\", \"poland\", \"city\", \"south\"],\n  \"content\": \"The user lives in Krakow, a city in southern Poland described as beautiful\",\n  \"title\": \"place-of-living\"\n}\n\nUSER: I just bought a Tesla Model S in matte black.\nAI: {\n  \"_thoughts\": \"User mentioned recent car purchase\",\n  \"keywords\": [\"tesla\", \"model-s\", \"purchase\"],\n  \"content\": \"The user recently bought a Tesla Model S\",\n  \"title\": \"tesla-ownership\"\n}\n\nUSER: My favorite programming languages are Python and JavaScript.\nAI: {\n  \"_thoughts\": \"User expressed programming language preferences\",\n  \"keywords\": [\"python\", \"javascript\", \"coding\", \"preferences\"],\n  \"content\": \"The user's favorite programming languages are Python and JavaScript\",\n  \"title\": \"programming-languages\"\n}\n\nUSER: Hey, how's it going?\nAI: {\n  \"_thoughts\": \"Generic greeting, no significant information\",\n  \"keywords\": [],\n  \"content\": null,\n  \"title\": null\n}\n\nUSER: Remember this: The speed of light is approximately 299,792,458 meters per second.\nAI: {\n  \"_thoughts\": \"User shared scientific fact about light speed\",\n  \"keywords\": [\"light\", \"speed\", \"physics\", \"science\"],\n  \"content\": \"The speed of light is approximately 299,792,458 meters per second\",\n  \"title\": \"speed-of-light\"\n}"
+  },
+  {
+    "content": "What you know about me ",
+    "role": "user"
+  },
+  {
+    "role": "assistant",
+    "content": "From our previous conversations, I remember that you live in Krakow. How can I assist you today, Adam?"
+  }
+]
+
+Chat Completion:
+{
+  "id": "chatcmpl-A7JninkMWGNltCUlhh4iW0EQF3L2X",
+  "object": "chat.completion",
+  "created": 1726307774,
+  "model": "gpt-4o-2024-05-13",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "{\n  \"_thoughts\": \"User asked for current knowledge, no new information provided\",\n  \"keywords\": [],\n  \"content\": null,\n  \"title\": null\n}",
+        "refusal": null
+      },
+      "logprobs": null,
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 776,
+    "completion_tokens": 36,
+    "total_tokens": 812,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  },
+  "system_fingerprint": "fp_992d1ea92d"
+}
+
+Messages:
+[
+  {
+    "role": "system",
+    "content": "You are a helpful assistant who can answer questions based on the knowledge from previous messages and memories.\n\n<relevant_context>\n<message>assistant: From our previous conversations, I remember that you live in Krakow. How can I assist you today, Adam?</message>\n<message>assistant: Yes, Adam, you live in Krakow. How can I assist you today?</message>\n<message>assistant: Yes, you live in Krakow. How can I assist you today?</message>\n<memory>Adam lives in Krakow</memory>\n</relevant_context>"
+  },
+  {
+    "content": "Please remember that my family town is Lubiaszów",
+    "role": "user"
+  }
+]
+
+Chat Completion:
+{
+  "id": "chatcmpl-A7JnzJGznC5470rV78LVajLzkIdoZ",
+  "object": "chat.completion",
+  "created": 1726307791,
+  "model": "gpt-4o-2024-05-13",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "Got it, Adam! I'll remember that your family town is Lubiaszów. How can I assist you today?",
+        "refusal": null
+      },
+      "logprobs": null,
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 138,
+    "completion_tokens": 24,
+    "total_tokens": 162,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  },
+  "system_fingerprint": "fp_992d1ea92d"
+}
+
+Messages:
+[
+  {
+    "role": "system",
+    "content": "As an Adaptive Learning Analyzer with human-like memory tagging, your task is to scan AI-User conversations, extract key insights, and generate structured learning data. Your primary objective is to produce a JSON object containing _thoughts, keywords, content, and title based on your analysis, emphasizing memorable and useful tags.\n\nCore Rules:\n- Always return a valid JSON object, nothing else.\n- Analyze only the most recent AI-User exchange.\n- When the user speaks about himself, ALWAYS add a tag 'adam' to the keywords.\n- When you have existing information, skip learning and set 'content' and 'title' to null.\n- Learn from user messages unless explicitly asked to remember the conversation.\n- Provide ultra-concise self-reflection in the _thoughts field.\n- Extract memorable, specific keywords for the keywords field:\n  * Use lowercase for all tags\n  * Split compound concepts into individual tags (e.g., \"krakow_location\" becomes [\"krakow\", \"location\"])\n  * Prefer specific terms over generic ones (e.g., \"tesla\" over \"car\")\n  * Omit unhelpful descriptors (e.g., \"black_matte\" as a color)\n  * Focus on key concepts, names, and unique identifiers\n  * Use mnemonic techniques to create more memorable tags\n  * Limit to 3-7 tags per entry\n- Rephrase user information as if it's your own knowledge in the content field\n- Set content to null if no specific, useful information needs saving.\n- Never store trivial information (e.g., chitchat, greetings).\n- Don't process document information unless explicitly requested.\n- Focus on future-relevant information, mimicking human selective attention.\n- Maintain your base behavior; this analysis doesn't override your core functionality.\n- Generate a slugified, ultra-concise title for potential filename use.\n\nExamples of expected behavior:\n\nUSER: I live in Krakow, it's a beautiful city in southern Poland.\nAI: {\n  \"_thoughts\": \"User shared living location and brief description\",\n  \"keywords\": [\"krakow\", \"poland\", \"city\", \"south\"],\n  \"content\": \"The user lives in Krakow, a city in southern Poland described as beautiful\",\n  \"title\": \"place-of-living\"\n}\n\nUSER: I just bought a Tesla Model S in matte black.\nAI: {\n  \"_thoughts\": \"User mentioned recent car purchase\",\n  \"keywords\": [\"tesla\", \"model-s\", \"purchase\"],\n  \"content\": \"The user recently bought a Tesla Model S\",\n  \"title\": \"tesla-ownership\"\n}\n\nUSER: My favorite programming languages are Python and JavaScript.\nAI: {\n  \"_thoughts\": \"User expressed programming language preferences\",\n  \"keywords\": [\"python\", \"javascript\", \"coding\", \"preferences\"],\n  \"content\": \"The user's favorite programming languages are Python and JavaScript\",\n  \"title\": \"programming-languages\"\n}\n\nUSER: Hey, how's it going?\nAI: {\n  \"_thoughts\": \"Generic greeting, no significant information\",\n  \"keywords\": [],\n  \"content\": null,\n  \"title\": null\n}\n\nUSER: Remember this: The speed of light is approximately 299,792,458 meters per second.\nAI: {\n  \"_thoughts\": \"User shared scientific fact about light speed\",\n  \"keywords\": [\"light\", \"speed\", \"physics\", \"science\"],\n  \"content\": \"The speed of light is approximately 299,792,458 meters per second\",\n  \"title\": \"speed-of-light\"\n}"
+  },
+  {
+    "content": "Please remember that my family town is Lubiaszów",
+    "role": "user"
+  },
+  {
+    "role": "assistant",
+    "content": "Got it, Adam! I'll remember that your family town is Lubiaszów. How can I assist you today?"
+  }
+]
+
+Chat Completion:
+{
+  "id": "chatcmpl-A7Jo01hBD3idO1XXAzmc1ewHc0pHM",
+  "object": "chat.completion",
+  "created": 1726307792,
+  "model": "gpt-4o-2024-05-13",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "{\n  \"_thoughts\": \"User shared their family town\",\n  \"keywords\": [\"adam\", \"lubiaszow\", \"family\", \"town\"],\n  \"content\": \"The user's family town is Lubiaszów\",\n  \"title\": \"family-town\"\n}",
+        "refusal": null
+      },
+      "logprobs": null,
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 782,
+    "completion_tokens": 56,
+    "total_tokens": 838,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  },
+  "system_fingerprint": "fp_992d1ea92d"
+}
+
+Messages:
+[
+  {
+    "role": "system",
+    "content": "You are a helpful assistant who can answer questions based on the knowledge from previous messages and memories.\n\n<relevant_context>\n<message>assistant: Got it, Adam! I'll remember that your family town is Lubiaszów. How can I assist you today?</message>\n<message>assistant: From our previous conversations, I remember that you live in Krakow. How can I assist you today, Adam?</message>\n<message>assistant: Hello, Adam! It's nice to meet you. Krakow is a beautiful city with a rich history and vibrant culture. Is there something specific you'd like to know or discuss about Krakow, or is there anything else I can help you with today?</message>\n<memory>The user's family town is Lubiaszów</memory>\n<memory>Adam lives in Krakow</memory>\n</relevant_context>"
+  },
+  {
+    "content": "WHat is my family town",
+    "role": "user"
+  }
+]
+
+Chat Completion:
+{
+  "id": "chatcmpl-A7JoENh0nH8pUrYSUMtEF6I6r0wa0",
+  "object": "chat.completion",
+  "created": 1726307806,
+  "model": "gpt-4o-2024-05-13",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "Your family town is Lubiaszów. How can I assist you today, Adam?",
+        "refusal": null
+      },
+      "logprobs": null,
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 189,
+    "completion_tokens": 18,
+    "total_tokens": 207,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  },
+  "system_fingerprint": "fp_25624ae3a5"
+}
+
+Messages:
+[
+  {
+    "role": "system",
+    "content": "As an Adaptive Learning Analyzer with human-like memory tagging, your task is to scan AI-User conversations, extract key insights, and generate structured learning data. Your primary objective is to produce a JSON object containing _thoughts, keywords, content, and title based on your analysis, emphasizing memorable and useful tags.\n\nCore Rules:\n- Always return a valid JSON object, nothing else.\n- Analyze only the most recent AI-User exchange.\n- When the user speaks about himself, ALWAYS add a tag 'adam' to the keywords.\n- When you have existing information, skip learning and set 'content' and 'title' to null.\n- Learn from user messages unless explicitly asked to remember the conversation.\n- Provide ultra-concise self-reflection in the _thoughts field.\n- Extract memorable, specific keywords for the keywords field:\n  * Use lowercase for all tags\n  * Split compound concepts into individual tags (e.g., \"krakow_location\" becomes [\"krakow\", \"location\"])\n  * Prefer specific terms over generic ones (e.g., \"tesla\" over \"car\")\n  * Omit unhelpful descriptors (e.g., \"black_matte\" as a color)\n  * Focus on key concepts, names, and unique identifiers\n  * Use mnemonic techniques to create more memorable tags\n  * Limit to 3-7 tags per entry\n- Rephrase user information as if it's your own knowledge in the content field\n- Set content to null if no specific, useful information needs saving.\n- Never store trivial information (e.g., chitchat, greetings).\n- Don't process document information unless explicitly requested.\n- Focus on future-relevant information, mimicking human selective attention.\n- Maintain your base behavior; this analysis doesn't override your core functionality.\n- Generate a slugified, ultra-concise title for potential filename use.\n\nExamples of expected behavior:\n\nUSER: I live in Krakow, it's a beautiful city in southern Poland.\nAI: {\n  \"_thoughts\": \"User shared living location and brief description\",\n  \"keywords\": [\"krakow\", \"poland\", \"city\", \"south\"],\n  \"content\": \"The user lives in Krakow, a city in southern Poland described as beautiful\",\n  \"title\": \"place-of-living\"\n}\n\nUSER: I just bought a Tesla Model S in matte black.\nAI: {\n  \"_thoughts\": \"User mentioned recent car purchase\",\n  \"keywords\": [\"tesla\", \"model-s\", \"purchase\"],\n  \"content\": \"The user recently bought a Tesla Model S\",\n  \"title\": \"tesla-ownership\"\n}\n\nUSER: My favorite programming languages are Python and JavaScript.\nAI: {\n  \"_thoughts\": \"User expressed programming language preferences\",\n  \"keywords\": [\"python\", \"javascript\", \"coding\", \"preferences\"],\n  \"content\": \"The user's favorite programming languages are Python and JavaScript\",\n  \"title\": \"programming-languages\"\n}\n\nUSER: Hey, how's it going?\nAI: {\n  \"_thoughts\": \"Generic greeting, no significant information\",\n  \"keywords\": [],\n  \"content\": null,\n  \"title\": null\n}\n\nUSER: Remember this: The speed of light is approximately 299,792,458 meters per second.\nAI: {\n  \"_thoughts\": \"User shared scientific fact about light speed\",\n  \"keywords\": [\"light\", \"speed\", \"physics\", \"science\"],\n  \"content\": \"The speed of light is approximately 299,792,458 meters per second\",\n  \"title\": \"speed-of-light\"\n}"
+  },
+  {
+    "content": "WHat is my family town",
+    "role": "user"
+  },
+  {
+    "role": "assistant",
+    "content": "Your family town is Lubiaszów. How can I assist you today, Adam?"
+  }
+]
+
+Chat Completion:
+{
+  "id": "chatcmpl-A7JoFBAioOSPN3UEpQoDgW7dehQ9j",
+  "object": "chat.completion",
+  "created": 1726307807,
+  "model": "gpt-4o-2024-05-13",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "{\n  \"_thoughts\": \"User asked about family town location.\",\n  \"keywords\": [\"family\", \"town\", \"lubiaszow\", \"adam\"],\n  \"content\": null,\n  \"title\": null\n}",
+        "refusal": null
+      },
+      "logprobs": null,
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 771,
+    "completion_tokens": 46,
+    "total_tokens": 817,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  },
+  "system_fingerprint": "fp_992d1ea92d"
+}
+
