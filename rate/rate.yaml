@@ -1,0 +1,106 @@
+description: "alice:extractKeywords"
+
+prompts: [file://rate/rate.js]
+
+providers:
+  - "openai:chat:gpt-4o-2024-08-06"
+
+tests:
+  - vars:
+      query: "List Hardware mentioned on this page https://brain.overment.com/"
+      context: "Resource: https://brain.overment.com/\nTitle: brain.overment.com | brain.overment.com\nSnippet: The most important thing to me is performance of the hardware, minimalistic design and my workflow. This is possible thanks to many Apps which are available on macOS / iOS only."
+    assert:
+      - type: is-json
+      - type: javascript
+        value: |
+          const parsed = JSON.parse(output);
+          if (typeof parsed.reason !== 'string' || typeof parsed.score !== 'number') {
+            throw new Error('Output should have a string reason and a number score');
+          }
+          if (parsed.score < 0 || parsed.score > 0.5) {
+            throw new Error(`Expected score between 0 and 0.5, got ${parsed.score}`);
+          }
+          if (!parsed.reason.toLowerCase().includes('hardware')) {
+            throw new Error('Reason should mention hardware');
+          }
+          return true;
+
+  - vars:
+      query: "List Hardware mentioned on this page https://brain.overment.com/"
+      context: "Resource: https://brain.overment.com/\nTitle: Apps | brain.overment.com\nSnippet: This is the latest (Q2 2024) list of apps I use: Arc — The best web browser I know. Alice — OpenAI / Anthropic / Ollama desktop experience. iA Writer — My favorite text editor Kindle, Audible, & Goodreads — Apps for reading & listening Raycast — Advanced launcher for macOS Linear — Project management app I use for self-management."
+    assert:
+      - type: is-json
+      - type: javascript
+        value: |
+          const parsed = JSON.parse(output);
+          if (typeof parsed.reason !== 'string' || typeof parsed.score !== 'number') {
+            throw new Error('Output should have a string reason and a number score');
+          }
+          if (parsed.score < 0.1 || parsed.score > 0.4) {
+            throw new Error(`Expected low score (0.2-0.4), got ${parsed.score}`);
+          }
+          if (!parsed.reason.toLowerCase().includes('apps') || !parsed.reason.toLowerCase().includes('software')) {
+            throw new Error('Reason should mention apps or software, not hardware');
+          }
+          return true;
+          
+  - vars:
+      query: "Find me Stephen Wolfram latest TED talk on youtube"
+      context: "Resource: https://youtube.com\nTitle: How to Think Computationally About AI, the Universe and Everything | Stephen Wolfram | TED
+\nLink: https://www.youtube.com/watch?v=fLMZAHyrpyo\nSnippet: Drawing on his decades-long mission to formulate the world in computational terms, Stephen Wolfram delivers a profound vision of computation and its role in ..."
+    assert:
+      - type: is-json
+      - type: javascript
+        value: |
+          const parsed = JSON.parse(output);
+          if (typeof parsed.reason !== 'string' || typeof parsed.score !== 'number') {
+            throw new Error('Output should have a string reason and a number score');
+          }
+          if (parsed.score < 0.9 || parsed.score > 1.0) {
+            throw new Error(`Expected very high score (0.9-1.0), got ${parsed.score}`);
+          }
+          if (!parsed.reason.toLowerCase().includes('wolfram') || !parsed.reason.toLowerCase().includes('ted')) {
+            throw new Error('Reason should mention Stephen Wolfram and TED talk');
+          }
+          return true;
+
+  - vars:
+      query: "List a specific hardware mentioned on this page https://brain.overment.com/"
+      context: "Resource: https://brain.overment.com/\nTitle: My Automations | brain.overment.com\nSnippet: My Automations. Every great software developer, for example, now has an army of robots working for him at nighttime while he or she sleeps, after they've written the code, and it's cranking away. ~ Naval Ravikant. Automation to me is all about linking together multiple apps, services and hardware. In a nutshell it's about exchanging ..."
+    assert:
+      - type: is-json
+      - type: javascript
+        value: |
+          const parsed = JSON.parse(output);
+          if (typeof parsed.reason !== 'string' || typeof parsed.score !== 'number') {
+            throw new Error('Output should have a string reason and a number score');
+          }
+          if (parsed.score < 0.4 || parsed.score > 0.6) {
+            throw new Error(`Expected medium score (0.4-0.6), got ${parsed.score}`);
+          }
+          if (!parsed.reason.toLowerCase().includes('hardware')) {
+            throw new Error('Reason should mention hardware');
+          }
+          return true;
+
+  - vars:
+      query: "Find me Stephen Wolfram latest TED talk"
+      context: "Resource: https://youtube.com\nTitle: Building A Theory Of Everything | Stephen Wolfram | Escaped Sapiens #70 ...\nLink: https://music.youtube.com/watch?v=T0s_H9c2O28\nSnippet: This is a conversation with Stephen Wolfram about his proposed theory of everything. Stephen is a British-American computer scientist, mathematician, physici..."
+    assert:
+      - type: is-json
+      - type: javascript
+        value: |
+          const parsed = JSON.parse(output);
+          if (typeof parsed.reason !== 'string' || typeof parsed.score !== 'number') {
+            throw new Error('Output should have a string reason and a number score');
+          }
+          if (parsed.score < 0.1 || parsed.score > 0.5) {
+            throw new Error(`Expected medium-low score (0.1-0.5), got ${parsed.score}`);
+          }
+          if (!parsed.reason.toLowerCase().includes('wolfram')) {
+            throw new Error('Reason should mention Stephen Wolfram');
+          }
+          if (!parsed.reason.toLowerCase().includes('ted')) {
+            throw new Error('Reason should mention that this is not a TED talk');
+          }
+          return true;

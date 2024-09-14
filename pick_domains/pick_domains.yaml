@@ -1,0 +1,260 @@
+description: "alice:pickDomains"
+
+prompts: [file://pick_domains/pick_domains.js]
+
+providers:
+  - "openai:chat:gpt-4o-2024-08-06"
+
+tests:
+  - vars:
+      query: "Tell me about John Wick and his movies"
+    assert:
+      - type: is-json
+        value:
+          type: object
+          required: [queries]
+          properties:
+            queries:
+              type: array
+              items:
+                type: object
+                required: [q, url]
+                properties:
+                  q:
+                    type: string
+                  url:
+                    type: string
+      - type: contains
+        value: "wikipedia.org"
+      - type: contains
+        value: "John Wick"
+      - type: contains
+        value: "movie"
+      - type: contains
+        value: "youtube.com"
+      - type: llm-rubric
+        value: "The response should include queries about John Wick and his movies, using Wikipedia for information and YouTube for clips"
+
+  - vars:
+      query: "Find an overment videos about functional programming on YouTube"
+    assert:
+      - type: is-json
+        value:
+          type: object
+          required: [queries]
+          properties:
+            queries:
+              type: array
+              items:
+                type: object
+                required: [q, url]
+                properties:
+                  q:
+                    type: string
+                  url:
+                    type: string
+      - type: contains
+        value: "youtube.com"
+      - type: contains
+        value: "functional programming"
+      - type: regex
+        value: "[Oo]verment"
+      - type: not-contains
+        value: "wikipedia.org"
+      - type: llm-rubric
+        value: "The response should only include YouTube queries for overment videos about functional programming, without any Wikipedia or other domain searches. The term 'overment' should be present, either as 'Overment' or 'overment'."
+
+  - vars:
+      query: "How to configure Nginx on DigitalOcean and set up a PostgreSQL database for high performance"
+    assert:
+      - type: is-json
+        value:
+          type: object
+          required: [queries]
+          properties:
+            queries:
+              type: array
+              items:
+                type: object
+                required: [q, url]
+                properties:
+                  q:
+                    type: string
+                  url:
+                    type: string
+      - type: contains
+        value: "digitalocean.com"
+      - type: contains
+        value: "nginx.org"
+      - type: contains
+        value: "postgresql.org"
+      - type: contains
+        value: "Nginx"
+      - type: contains
+        value: "PostgreSQL"
+      - type: contains
+        value: "DigitalOcean"
+      - type: contains
+        value: "configuration"
+      - type: contains
+        value: "performance"
+      - type: llm-rubric
+        value: "The response should include queries for DigitalOcean Nginx configuration and PostgreSQL database setup, using official documentation sources when possible. It should cover both topics adequately and suggest resources for optimizing performance."
+
+  - vars:
+      query: "Setup Kubernetes cluster on AWS"
+    assert:
+      - type: is-json
+        value:
+          type: object
+          required: [queries]
+          properties:
+            queries:
+              type: array
+              items:
+                type: object
+                required: [q, url]
+                properties:
+                  q:
+                    type: string
+                  url:
+                    type: string
+      - type: contains
+        value: "kubernetes.io"
+      - type: contains
+        value: "aws.amazon.com"
+      - type: contains
+        value: "Kubernetes"
+      - type: contains
+        value: "AWS"
+      - type: llm-rubric
+        value: "The response should include queries for setting up a Kubernetes cluster on AWS, using official documentation from both Kubernetes and AWS."
+
+  - vars:
+      query: "Compare M1 vs M2 MacBook Pro performance"
+    assert:
+      - type: is-json
+        value:
+          type: object
+          required: [queries]
+          properties:
+            queries:
+              type: array
+              items:
+                type: object
+                required: [q, url]
+                properties:
+                  q:
+                    type: string
+                  url:
+                    type: string
+      - type: contains
+        value: "M1"
+      - type: contains
+        value: "M2"
+      - type: contains
+        value: "MacBook Pro"
+      - type: contains
+        value: "performance"
+      - type: llm-rubric
+        value: "The response should include queries comparing the performance of M1 and M2 MacBook Pro models, using Wikipedia YouTube for performance comparison videos."
+
+  - vars:
+      query: "Configure Nginx as reverse proxy for Node.js"
+    assert:
+      - type: is-json
+        value:
+          type: object
+          required: [queries]
+          properties:
+            queries:
+              type: array
+              items:
+                type: object
+                required: [q, url]
+                properties:
+                  q:
+                    type: string
+                  url:
+                    type: string
+      - type: contains
+        value: "Nginx"
+      - type: contains
+        value: "Node.js"
+      - type: contains
+        value: "reverse proxy"
+      - type: llm-rubric
+        value: "The response should include queries for configuring Nginx as a reverse proxy for Node.js, using official documentation from both Nginx and Node.js."
+
+  - vars:
+      query: "Solve React useEffect infinite loop issue"
+    assert:
+      - type: is-json
+        value:
+          type: object
+          required: [queries]
+          properties:
+            queries:
+              type: array
+              items:
+                type: object
+                required: [q, url]
+                properties:
+                  q:
+                    type: string
+                  url:
+                    type: string
+      - type: contains
+        value: "react.dev"
+      - type: contains
+        value: "React"
+      - type: contains
+        value: "useEffect"
+      - type: contains
+        value: "infinite loop"
+      - type: llm-rubric
+        value: "The response should include queries for solving the React useEffect infinite loop issue, using official React documentation and reputable React community resources."
+
+  - vars:
+      query: "Find open-source alternative to Airtable"
+    assert:
+      - type: is-json
+        value:
+          type: object
+          required: [queries]
+          properties:
+            queries:
+              type: array
+              items:
+                type: object
+                required: [q, url]
+                properties:
+                  q:
+                    type: string
+                  url:
+                    type: string
+      - type: contains
+        value: "github.com"
+      - type: contains
+        value: "open-source"
+      - type: contains
+        value: "Airtable"
+      - type: contains
+        value: "alternative"
+      - type: llm-rubric
+        value: "The response should include queries for finding open-source alternatives to Airtable, focusing on GitHub repositories and open-source project directories."
+
+  - vars:
+      query: "What is the speed of light"
+    assert:
+      - type: is-json
+        value:
+          type: object
+          required: [queries]
+          properties:
+            queries:
+              type: array
+              maxItems: 0
+      - type: llm-rubric
+        value: "The response should return an empty array of queries, as the speed of light is a well-known constant that doesn't require a web search."
+

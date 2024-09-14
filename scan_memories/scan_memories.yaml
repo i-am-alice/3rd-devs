@@ -1,0 +1,49 @@
+description: "alice:scanMemories"
+
+prompts: [file://scan_memories/scan_memories.js]
+
+providers:
+  - "openai:chat:gpt-4o-2024-08-06"
+
+tests:
+  - vars:
+      query: "how are you"
+    assert:
+      - type: contains
+        value: "profiles:basic"
+      - type: contains
+        value: "profiles:basic"
+      - type: contains
+        value: "profiles:preferences"
+      - type: contains
+        value: "environment:general"
+      - type: not-contains
+        value: "I'm doing well"
+      - type: llm-rubric
+        value: "The response should focus on loading profiles at least"
+
+  - vars:
+      query: "What's the status of our Firecrawl service?"
+    assert:
+      - type: contains
+        value: "profiles:work"
+      - type: contains
+        value: "events:general"
+      - type: contains
+        value: "resources:apps"
+      - type: llm-rubric
+        value: "The response should mention scanning resources or resources:apps at least"
+
+  - vars:
+      query: "Drop me a link to the GPT-4 technical report and a link to the WhisperX app"
+    assert:
+      - type: contains
+        value: "resources:documents"
+      - type: contains
+        value: "resources:apps"
+      - type: contains
+        value: "GPT-4"
+      - type: contains
+        value: "WhisperX"
+      - type: llm-rubric
+        value: "The response should focus on identifying memory areas for both the GPT-4 report and WhisperX app without providing direct links"

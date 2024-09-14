@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" class="bg-zinc-900">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Alice</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="min-h-screen flex flex-col items-center justify-center p-6">
+    <div class="bg-zinc-800 shadow-lg rounded-lg p-8 max-w-md w-full backdrop-filter backdrop-blur-lg bg-opacity-30 border border-zinc-700">
+      <h1 class="text-3xl font-bold mb-4 text-center text-white">Alice</h1>
+
+      <p id="timer" class="text-center font-mono text-xl mb-4 text-white">00:00:00</p>
+
+      <div class="flex justify-center space-x-4 mb-6">
+        <button id="call" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded transition duration-300">Start Call</button>
+        <button id="record" class="bg-fuchsia-600 hover:bg-fuchsia-700 text-white font-bold py-2 px-4 rounded transition duration-300 hidden">Record</button>
+        <button id="pause" class="bg-pink-600 hover:bg-pink-700 text-white font-bold py-2 px-4 rounded transition duration-300 hidden" >Pause</button>
+        <button id="restart" class="bg-violet-600 hover:bg-violet-700 text-white font-bold py-2 px-4 rounded transition duration-300">Restart Chat</button>
+      </div>
+
+      <div class="mb-4">
+        <select id="mic-select" class="w-full p-2 bg-zinc-700 text-white border border-zinc-500 rounded focus:outline-none focus:ring-2 focus:ring-fuchsia-500">
+          <option value="" hidden>Select mic</option>
+        </select>
+      </div>
+
+      <canvas id="visualizer" class="w-full h-32 bg-zinc-900 border border-fuchsia-700 rounded-lg mt-4"></canvas>
+
+      <div id="waiting-indicator" class="text-center text-white mt-4 hidden">
+        <p id="waiting-text">Alice is thinking...</p>
+      </div>
+
+      <!-- Add the chat container here -->
+      <div id="chat-container" class="mt-4 max-h-60 overflow-y-auto space-y-2"></div>
+
+      <div id="recordings" class="mt-6 space-y-2"></div>
+
+    </div>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

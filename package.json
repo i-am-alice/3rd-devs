@@ -2,8 +2,9 @@
   "name": "aidevs3",
   "devDependencies": {
     "@types/bun": "latest",
-    "@types/node": "^22.3.0",
     "@types/express": "^4.17.21",
+    "@types/js-yaml": "^4.0.9",
+    "@types/node": "^22.3.0",
     "@types/uuid": "^10.0.0",
     "tsx": "^4.17.0"
   },
@@ -11,18 +12,46 @@
     "chain": "bun run chain/app.ts",
     "completion": "bun run completion/app.ts",
     "sdk": "bun run sdk/app.ts",
-    "streaming": "bun run streaming/app.ts"
+    "streaming": "bun run streaming/app.ts",
+    "websearch": "bun run websearch/app.ts",
+    "files": "bun run files/app.ts",
+    "langfuse": "bun run langfuse/app.ts",
+    "tiktokenizer": "bun run tiktokenizer/app.ts",
+    "thread": "bun run thread/app.ts",
+    "voicechat": "bun run voicechat/app.ts",
+    "max_tokens": "bun run max_tokens/app.ts",
+    "constitution": "bun run constitution/app.ts",
+    "memory": "bun run memory/app.ts",
+    "use_search": "bun promptfoo eval -c use_search/use_search.yaml",
+    "pick_domains": "bun promptfoo eval -c pick_domains/pick_domains.yaml",
+    "extract_keywords": "bun promptfoo eval -c extract_keywords/extract_keywords.yaml",
+    "rate": "bun promptfoo eval -c rate/rate.yaml",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "voice:dev": "vite",
+    "voice:build": "vite build",
+    "voice:preview": "vite preview"
   },
   "peerDependencies": {
-    "typescript": "^5.5.4"
+    "typescript": "^5.6.2"
   },
   "dependencies": {
     "@ai-sdk/openai": "^0.0.46",
+    "@mendable/firecrawl-js": "^1.2.2",
+    "@types/multer": "^1.4.12",
     "ai": "^3.3.7",
     "dotenv": "^16.4.5",
+    "ejs": "^3.1.10",
     "express": "^4.19.2",
+    "js-yaml": "^4.1.0",
+    "multer": "^1.4.5-lts.1",
     "openai": "^4.55.7",
+    "promptfoo": "^0.82.0",
+    "slugify": "^1.6.6",
     "uuid": "^10.0.0",
+    "vite": "^5.4.4",
+    "wavesurfer.js": "^7.8.6",
     "zod": "^3.23.8"
   }
 }

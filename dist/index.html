@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Voice Chat</title>
+    <script type="module" crossorigin src="/assets/index-BPfX4c2E.js"></script>
+  </head>
+  <body>
+    <h1>Press Record to start recording 🎙️</h1>
+
+    <button id="record">Record</button>
+    <button id="pause" style="display: none;">Pause</button>
+
+    <select id="mic-select">
+      <option value="" hidden>Select mic</option>
+    </select>
+    <label style="display:inline-block;">
+      <input type="checkbox" /> Scrolling waveform
+    </label>
+    <p id="progress">00:00</p>
+
+    <div id="mic" style="border: 1px solid #ddd; border-radius: 4px; margin-top: 1rem"></div>
+
+    <div id="recordings" style="margin: 1rem 0"></div>
+
+  </body>
+</html>
