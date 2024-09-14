@@ -19,6 +19,5 @@ updated_at: '2024-09-14T12:25:32.253Z'
 
 Adam Gospodarczyk is an entrepreneur, full-stack developer specializing in JS, Node.js, and Rust, and a designer. He is based in Krakow, Poland. Adam is known for his curiosity and as a lifelong learner. He is involved in several projects including eduweb.pl, heyalice.app, easy.tools, Tech•sistence, Ahoy!, overment, AI_devs, and Zautomatyzowani.pl.
 
-Adam is 193 cm tall.
 
 #adam_gospodarcyk #entrepreneur #full-stack_developer #designer #krakow #projects
