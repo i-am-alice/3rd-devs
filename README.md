@@ -1,12 +1,16 @@
 # AI_devs 3
 
-To repozytorium zawiera przykłady z kursu AI_devs 3.
+Repozytorium zawiera przykłady z lekcji kursu AI_devs 3. 
 Więcej informacji znajdziesz na [aidevs.pl](https://aidevs.pl).
 
 ## Wymagania
 
+Wszystkie przykłady zostały napisane w JavaScript / TypeScript i większość z nich zawiera kod backendowy do którego uruchomienia potrzebny jest Node.js oraz Bun.
+
 - [Node.js](https://nodejs.org)
 - [Bun](https://bun.sh)
+
+Upewnij się, że posiadasz najnowsze wersje Node.js oraz Bun zainstalowane na swoim komputerze.
 
 ## Instalacja
 
@@ -20,29 +24,20 @@ Więcej informacji znajdziesz na [aidevs.pl](https://aidevs.pl).
    ```bash
    bun install
    ```
+3. Skopiuj plik `.env.example` do `.env` i wypełnij go kluczami API (na początek wystarczy klucz OpenAI).
 
 3. Uruchom dostępne przykłady z pliku `package.json`, według poniższej instrukcji.
 
-## Dostępne skrypty
+## S01E01
 
-Uruchom następujące skrypty za pomocą `bun [skrypt]`:
+### Thread
 
-- `completion`: `bun run completion`
-- `chain`: `bun run chain`
-- `sdk`: `bun run sdk` (serwer)
-- `streaming`: `bun run streaming` (serwer)
+Przykład przedstawia konwersację między użytkownikiem i asystentem, w której działa mechanizm podsumowania konwersacji.
 
-Przykład:
-```bash
-bun run completion
-```
+- Uruchomienie serwera: `bun run thread`
+- Interakcja: `curl http://localhost:3000/api/demo`
 
-## Przykłady działające jako serwer
+Wywołanie powyższego endpointu uruchomi trzy niezależne zapytania do OpenAI, jednak w wiadomości systemowej zostanie przekazane podsumowanie poprzedniej interakcji, dzięki czemu model będzie miał możliwość odwołać się do ich treści.
 
-Niektóre przykłady są dostępne jako serwer HTTP. Po ich uruchomieniu z pomocą:
+W przykładzie uwzględniony jest także endpoint `/api/chat` na który można przesłać obiekt { "message": "..." } zawierający treść wiadomości do modelu. Wątek zostanie zresetowany **dopiero po ponownym uruchomieniu serwera** (wciśnij CMD + C / Control + C i ponownie `bun run thread`).
 
-```bash
-bun run [skrypt]
-```
-
-Serwer domyślnie uruchamia się na `localhost:3000` a dostępne endpointy można znaleźć w kodzie źródłowym danego przykładu.

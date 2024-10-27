@@ -40,8 +40,7 @@ function createSystemPrompt(summarization: string): ChatCompletionMessageParam {
     
     Let's chat!` 
   };
-  };
-}
+};
 
 // Chat endpoint POST /api/chat
 app.post('/api/chat', async (req, res) => {
