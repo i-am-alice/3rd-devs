@@ -41,3 +41,37 @@ Wywołanie powyższego endpointu uruchomi trzy niezależne zapytania do OpenAI, 
 
 W przykładzie uwzględniony jest także endpoint `/api/chat` na który można przesłać obiekt { "message": "..." } zawierający treść wiadomości do modelu. Wątek zostanie zresetowany **dopiero po ponownym uruchomieniu serwera** (wciśnij CMD + C / Control + C i ponownie `bun run thread`).
 
+### Use Search
+
+UWAGA: przykład wymaga zainstalowania `promptfoo` w przypadku którego prawdopodobnie musisz to zrobić poleceniem `npm install promptfoo` ponieważ `bun install promptfoo` nie działa poprawnie w każdej sytuacji.
+
+- Uruchomienie skryptu: `bun use_search`
+
+Rezultatem działania skryptu jest tablica zawierająca kilkanaście przykładowych testów dla promptu decydującego o tym, czy skorzystanie z wyszukiwarki jest potrzebne. 
+
+### Pick domains
+
+- Uruchomienie skryptu: `bun pick_domains`
+
+Rezultatem działania skryptu jest tablica zawierająca kilkanaście przykładowych testów dla promptu generującego zapytania do wyszukiwarki Internetowej, wskazując także odpowiednie domeny.
+
+### Rate
+
+- Uruchomienie skryptu: `bun rate`
+
+Rezultatem działania skryptu jest tablica zawierająca kilkanaście przykładowych testów dla promptu oceniającego, czy odpowiedź modelu zawiera odpowiednie informacje.
+
+### Websearch
+
+Przykład ten korzysta z [Firecrawl](https://www.firecrawl.dev) do przeszukiwania Internetu oraz pobierania treści stron www. Konieczne jest więc uzupełnienie pliku `.env` wartości FIRECRAWL_API_KEY ustawionej na klucz API.
+(Firecrawl oferuje bezpłatny plan).
+
+- Uruchomienie serwera: `bun websearch`
+- Interakcja: 
+  ```bash
+  curl -X POST http://localhost:3000/api/chat \
+    -H "Content-Type: application/json" \
+    -d '{"messages": [{"role": "user", "content": "Search wiki for 'John Wick'"}]}'
+  ```
+
+Ważne: w pliku `websearch/app.ts` można zmienić listę domen, które są dopuszczalne do przeszukiwania i pobierania treści.
