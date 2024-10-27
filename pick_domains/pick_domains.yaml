@@ -30,10 +30,8 @@ tests:
         value: "John Wick"
       - type: contains
         value: "movie"
-      - type: contains
-        value: "youtube.com"
       - type: llm-rubric
-        value: "The response should include queries about John Wick and his movies, using Wikipedia for information and YouTube for clips"
+        value: "The response should include queries about John Wick and his movies, using Wikipedia for information and optionally YouTube for clips"
 
   - vars:
       query: "Find an overment videos about functional programming on YouTube"

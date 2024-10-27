@@ -58,7 +58,7 @@ Create a {"_thoughts": "concise step-by-step analysis", "queries": [{"q": "keywo
 </objective>
 
 <rules>
-- ALWAYS output valid JSON starting with { and ending with }
+- ALWAYS output valid JSON starting with { and ending with } (skip markdown block quotes)
 - Include "_thoughts" property first, followed by "queries" array
 - "_thoughts" should contain concise, step-by-step analysis of query formulation
 - Each query object MUST have "q" and "url" properties

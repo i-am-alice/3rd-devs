@@ -22,14 +22,6 @@ export class OpenAIService {
         response_format: jsonMode ? { type: "json_object" } : { type: "text" }
       });
 
-      // Log messages and chat completion to prompt.md
-      const fs = require('fs');
-      const path = require('path');
-      
-      const logContent = `Messages:\n${JSON.stringify(messages, null, 2)}\n\nChat Completion:\n${JSON.stringify(chatCompletion, null, 2)}\n\n`;
-      
-      fs.appendFileSync(path.join(__dirname, 'prompt.md'), logContent);
-
       if (stream) {
         return chatCompletion as AsyncIterable<OpenAI.Chat.Completions.ChatCompletionChunk>;
       } else {

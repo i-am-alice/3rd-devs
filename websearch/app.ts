@@ -15,6 +15,17 @@ interface SearchResult {
   content?: string;
 }
 
+
+const allowedDomains = [
+  { name: 'Wikipedia', url: 'en.wikipedia.org', scrappable: true },
+  { name: 'easycart', url: 'easycart.pl', scrappable: true },
+  { name: 'FS.blog', url: 'fs.blog', scrappable: true },
+  { name: 'arXiv', url: 'arxiv.org', scrappable: true },
+  { name: 'Instagram', url: 'instagram.com', scrappable: false },
+  { name: 'OpenAI', url: 'openai.com', scrappable: true },
+  { name: 'Brain overment', url: 'brain.overment.com', scrappable: true },
+];
+
 /*
 Start Express server
 */
@@ -23,10 +34,11 @@ const port = 3000;
 app.use(express.json());
 app.listen(port, () => console.log(`Server running at http://localhost:${port}. Listening for POST /api/chat requests`));
 
-const webSearchService = new WebSearchService();
+const webSearchService = new WebSearchService(allowedDomains);
 const openaiService = new OpenAIService();
 
 app.post('/api/chat', async (req, res) => {
+  console.log('Received request');
   await fs.writeFile('prompt.md', '');
   
   const { messages }: { messages: Message[] } = req.body;

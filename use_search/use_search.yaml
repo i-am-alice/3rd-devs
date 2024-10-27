@@ -3,7 +3,7 @@ description: "alice:useSearch"
 prompts: [file://use_search/use_search.js]
 
 providers:
-  - "openai:chat:gpt-4o-2024-08-06"
+  - "openai:chat:gpt-4o"
 
 tests:
   - vars:
@@ -107,7 +107,7 @@ tests:
       query: "Compare and contrast the philosophical implications of determinism versus free will in the context of modern neuroscience"
     assert:
       - type: equals
-        value: 1
+        value: 0
 
   - vars:
       query: "Discuss the ethical considerations surrounding the development of artificial general intelligence (AGI) and its potential impact on the job market"

@@ -14,17 +14,9 @@ export class WebSearchService {
   private apiKey: string;
   private firecrawlApp: FirecrawlApp;
 
-  constructor() {
+  constructor(allowedDomains: { name: string, url: string, scrappable: boolean }[]) {
     this.openaiService = new OpenAIService();
-    this.allowedDomains = [
-      { name: 'Wikipedia', url: 'wikipedia.org', scrappable: true },
-      { name: 'easycart', url: 'easycart.pl', scrappable: true },
-      { name: 'FS.blog', url: 'fs.blog', scrappable: true },
-      { name: 'arXiv', url: 'arxiv.org', scrappable: true },
-      { name: 'Instagram', url: 'instagram.com', scrappable: false },
-      { name: 'OpenAI', url: 'openai.com', scrappable: true },
-      { name: 'Brain overment', url: 'brain.overment.com', scrappable: true },
-    ];
+    this.allowedDomains = allowedDomains;
     this.apiKey = process.env.FIRECRAWL_API_KEY || '';
     this.firecrawlApp = new FirecrawlApp({ apiKey: this.apiKey });
   }
@@ -182,8 +174,8 @@ export class WebSearchService {
     );
 
     const scoredResults = await Promise.all(scoringPromises);
-    const threshold = 0.6; // Adjust this value as needed
-    const filteredResults = scoredResults.filter(item => item.score >= threshold);
+    const sortedResults = scoredResults.sort((a, b) => b.score - a.score);
+    const filteredResults = sortedResults.slice(0, 3);
 
     console.log('Output (scoreResults):', filteredResults);
     return filteredResults;
@@ -208,7 +200,7 @@ ${JSON.stringify(filteredResults.map(r => ({ url: r.url, snippet: r.description 
     console.log('userPrompt:', userPrompt);
 
     try {
-      const response = await this.openaiService.completion([systemPrompt, userPrompt], 'gpt-4o', false) as OpenAI.Chat.Completions.ChatCompletion;
+      const response = await this.openaiService.completion([systemPrompt, userPrompt], 'gpt-4o', false, true) as OpenAI.Chat.Completions.ChatCompletion;
 
       if (response.choices[0].message.content) {
         console.log('response.choices[0].message.content:', response.choices[0].message.content);
@@ -245,7 +237,7 @@ ${JSON.stringify(filteredResults.map(r => ({ url: r.url, snippet: r.description 
 
     const scrapePromises = scrappableUrls.map(async (url) => {
       try {
-        const scrapeResult = await this.firecrawlApp.scrapeUrl(url, { formats: ['markdown'] }) as ScrapeResponse;
+        const scrapeResult = await this.firecrawlApp.scrapeUrl(url, { formats: ['markdown'] });
         
         if (scrapeResult && scrapeResult.markdown) {
             console.log('scrapeResult:', scrapeResult);

@@ -6,7 +6,7 @@ Generate a JSON object with a reason and score (0-1) evaluating SERP snippet rel
 
 <snippet_rules>
 - Always write back with a JSON object with "reason" (string) and "score" (float 0-1)
-- Start your response with { and end with }
+- Start your response with { and end with } and always skip markdown block quotes for it
 - ONLY use the provided SERP snippet as context
 - Output a JSON object with "reason" (string) and "score" (float 0-1)
 - "reason": Explain, using fewest words possible, why the webpage may or may not contain relevant information and you MUST explicitly mention relevant keywords from both the query and the snippet
