@@ -3,3 +3,5 @@
 evaluation_basics/.env
 .idea/
 node_modules/
+**/*.db
+.vscode/
