@@ -35,7 +35,7 @@ Upewnij się, że posiadasz najnowsze wersje Node.js oraz Bun zainstalowane na s
 Przykład przedstawia konwersację między użytkownikiem i asystentem, w której działa mechanizm podsumowania konwersacji.
 
 - Uruchomienie serwera: `bun run thread`
-- Interakcja demo: `curl http://localhost:3000/api/demo`
+- Interakcja demo: `curl -X POST http://localhost:3000/api/demo`
 - Interakcja chat: `curl -X POST http://localhost:3000/api/chat -H "Content-Type: application/json" -d '{"message": { "role": "user", "content": "Hi"}}'`
 
 Wywołanie powyższego endpointu uruchomi trzy niezależne zapytania do OpenAI, jednak w wiadomości systemowej zostanie przekazane podsumowanie poprzedniej interakcji, dzięki czemu model będzie miał możliwość odwołać się do ich treści.
