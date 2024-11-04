@@ -16,7 +16,7 @@ Upewnij się, że posiadasz najnowsze wersje Node.js oraz Bun zainstalowane na s
 
 1. Pobierz repozytorium:
    ```bash
-   git clone https://github.com/twojnazwauzytkownika/aidevs3-examples.git
+   git clone https://github.com/i-am-alice/3rd-devs.git
    cd aidevs3-examples
    ```
 
