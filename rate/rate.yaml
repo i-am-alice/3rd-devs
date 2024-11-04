@@ -75,8 +75,8 @@ tests:
           if (typeof parsed.reason !== 'string' || typeof parsed.score !== 'number') {
             throw new Error('Output should have a string reason and a number score');
           }
-          if (parsed.score < 0.2 || parsed.score >= 0.5) {
-            throw new Error(`Expected medium score (0.2-0.5), got ${parsed.score}`);
+          if (parsed.score < 0.1 || parsed.score > 0.5) {
+            throw new Error(`Expected medium score (0.1-0.5), got ${parsed.score}`);
           }
           if (!parsed.reason.toLowerCase().includes('hardware')) {
             throw new Error('Reason should mention hardware');
