@@ -7,7 +7,6 @@ const app = express();
 const port = process.env.PORT || 3000;
 const WEBHOOK_SECRET = process.env.LINEAR_WEBHOOK_SECRET || '';
 const LINEAR_API_KEY = process.env.LINEAR_API_KEY || '';
-
 const linearService = new LinearService(LINEAR_API_KEY);
 
 // Middleware
@@ -20,6 +19,9 @@ app.use(bodyParser.json({
 // Verify webhook signature
 function verifyWebhookSignature(req: express.Request, res: express.Response, next: express.NextFunction) {
   const signature = crypto.createHmac("sha256", WEBHOOK_SECRET).update((req as any).rawBody).digest("hex");
+  console.log('signature', signature);
+  console.log('req.headers', req.headers);
+  console.log('WEBHOOK_SECRET', WEBHOOK_SECRET);
   if (signature !== req.headers['linear-signature']) {
     console.log('Invalid signature');
     return res.status(400).json({ error: 'Invalid signature' });
