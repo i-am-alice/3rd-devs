@@ -20,7 +20,7 @@ async function generateSummarization(userMessage: ChatCompletionMessageParam, as
     role: "system",
     content: `Please summarize the following conversation in a concise manner, incorporating the previous summary if available:
 <previous_summary>${previousSummarization || "No previous summary"}</previous_summary>
-<current_turn> Adam: ${userMessage.content}\nAlice: ${assistantResponse.content} </current_turn>
+<current_turn> User: ${userMessage.content}\nAssistant: ${assistantResponse.content} </current_turn>
 `};
 
   const response = await openaiService.completion([summarizationPrompt, { role: "user", content: "Please create/update our conversation summary." }], "gpt-4o-mini", false) as OpenAI.Chat.Completions.ChatCompletion;
@@ -67,7 +67,7 @@ app.post('/api/chat', async (req, res) => {
 // Demo endpoint POST /api/demo
 app.post('/api/demo', async (req, res) => {
   const demoMessages: ChatCompletionMessageParam[] = [
-    { content: "Hi! I'm Adam", role: "user" },
+    { content: "Hi! I'm Daniel", role: "user" },
     { content: "How are you?", role: "user" },
     { content: "Do you know my name?", role: "user" }
   ];
