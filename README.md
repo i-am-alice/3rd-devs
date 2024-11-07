@@ -159,3 +159,68 @@ Przykład ten przedstawia mechanizm blokowania zapytań, które nie spełniają 
     -H "Content-Type: application/json" \
     -d '{"messages": [{"role": "user", "content": "Hello!"}]}'
   ```
+
+## S01E04
+
+### Memory
+
+Ten przykład po uruchomieniu tworzy katalog memories w którym zapisywane są pliki markdown, pełniące rolę pamięci modelu.
+Nie jest to przykład nadający się na produkcję, lecz przedstawia ogólne mechaniki pamięci długoterminowej, które będziemy rozwijać w dalszych lekcjach.
+
+- Uruchomienie serwera: `bun memory`
+- Interakcja:
+ ```bash
+  curl http://localhost:3000/api/chat \
+    -H "Content-Type: application/json" \
+    -d '{"messages": [{"role": "user", "content": "Hello!"}]}'
+  ```
+
+## S01E05
+
+### External
+
+Ten przykład zawiera standardową logikę interakcji z modelem, ale wymaga podania klucza API w nagłówku `Authorization` w formacie `Bearer <klucz>`. Wartość klucza zostaje wczytana z pliku `.env` jako `PERSONAL_API_KEY`. Dodatkowo zostały dodane mechanizmy ograniczania liczby zapytań, więc po kilku próbach ponowne wywołanie zapytania zwróci błąd 429.
+
+- Uruchomienie serwera: `bun external`
+- Interakcja:
+  ```bash
+  curl http://localhost:3000/api/chat \
+    -H "Content-Type: application/json" \
+    -d '{"messages": [{"role": "user", "content": "Hello!"}]}'
+  ```
+
+### Prompts
+
+**UWAGA**: Aby uruchomić ten przykład konieczne jest nawiązanie połączenie z Langfuse poprzez uzupełnienie pliku `.env` o wartości `LANGFUSE_PUBLIC_KEY`, `LANGFUSE_SECRET_KEY` oraz `LANGFUSE_HOST`. Dodatkowo na Twoim koncie musisz utworzyć nowy prompt o nazwie `Answer`, którego wartość możesz ustawić na np. 'Odpowiadaj pisząc wyłącznie wielkimi literami', aby tylko sprawdzić działanie mechanizmu.
+
+- Uruchomienie serwera: `bun prompts`
+- Interakcja:
+  ```bash
+  curl http://localhost:3000/api/chat \
+    -H "Content-Type: application/json" \
+    -d '{"messages": [{"role": "user", "content": "Hello!"}]}'
+  ```
+
+### Database
+
+Ten przykład nie dotyczy bezpośrednio działania LLM, lecz przedstawia sposób organizacji informacji w bazie danych, takich jak konwersacje czy historia wiadomości.
+
+- Uruchomienie serwera: `bun database`
+- Interakcja:
+  ```bash
+  curl http://localhost:3000/api/chat \
+    -H "Content-Type: application/json" \
+    -d '{"messages": [{"role": "user", "content": "Hello!"}]}'
+  ```
+
+### Qdrant
+
+Przykład ten przedstawia **absolutnie podstawowe** połączenie z bazą wektorową Qdrant. Jego zadaniem jest zapisywanie historii wiadomości, a następnie wyszukiwanie i wczytywanie do kontekstu rozmowy najbardziej podobnych wiadomości. Przykład ten będziemy rozbudowywać w dalszych lekcjach, łącząc się z Qdrant w bardziej złożonych konfiguracjach.
+
+- Uruchomienie serwera: `bun qdrant`
+- Interakcja:
+  ```bash
+  curl http://localhost:3000/api/chat \
+    -H "Content-Type: application/json" \
+    -d '{"messages": [{"role": "user", "content": "Hello!"}]}'
+  ```
