@@ -117,7 +117,7 @@ Ten przykład wymaga uzupełnienia pliku `.env` o wartości `LANGFUSE_PUBLIC_KEY
 - Uruchomienie serwera: `bun langfuse`
 - Interakcja: 
   ```bash
-  curl http://localhost:3000/api/chat \
+  curl -X POST http://localhost:3000/api/chat \
     -H "Content-Type: application/json" \
     -d '{"messages": [{"role": "user", "content": "Hey there, what\'s up?"}]}'
   ```
@@ -129,7 +129,7 @@ Po wykonaniu zapytania, zostanie ono automatycznie zalogowane do Langfuse, a wyn
 - Uruchomienie serwera: `bun tiktokenizer`
 - Interakcja:
   ```bash
-  curl http://localhost:3000/api/chat \
+  curl -X POST http://localhost:3000/api/chat \
     -H "Content-Type: application/json" \
     -d '{"messages": [{"role": "user", "content": "Hey there, what\'s up?"}], "model": "gpt-4o"}'
   ```
@@ -143,7 +143,7 @@ Przykład ten pokazuje jeden mechanizm pozwalający na kontynuowanie wypowiedzi 
 - Uruchomienie serwera: `bun max_tokens`
 - Interakcja: 
   ```bash
-  curl http://localhost:3000/api/chat \
+  curl -X POST http://localhost:3000/api/chat \
     -H "Content-Type: application/json" \
     -d '{"messages": [{"role": "user", "content": "Write ten sentences about apples and put them in order."}]}'
   ```
@@ -155,7 +155,7 @@ Przykład ten przedstawia mechanizm blokowania zapytań, które nie spełniają 
 - Uruchomienie serwera: `bun constitution`
 - Interakcja:
   ```bash
-  curl http://localhost:3000/api/chat \
+  curl -X POST http://localhost:3000/api/chat \
     -H "Content-Type: application/json" \
     -d '{"messages": [{"role": "user", "content": "Hello!"}]}'
   ```
@@ -170,7 +170,7 @@ Nie jest to przykład nadający się na produkcję, lecz przedstawia ogólne mec
 - Uruchomienie serwera: `bun memory`
 - Interakcja:
  ```bash
-  curl http://localhost:3000/api/chat \
+  curl -X POST http://localhost:3000/api/chat \
     -H "Content-Type: application/json" \
     -d '{"messages": [{"role": "user", "content": "Hello!"}]}'
   ```
@@ -184,7 +184,7 @@ Ten przykład zawiera standardową logikę interakcji z modelem, ale wymaga po
 - Uruchomienie serwera: `bun external`
 - Interakcja:
   ```bash
-  curl http://localhost:3000/api/chat \
+  curl -X POST http://localhost:3000/api/chat \
     -H "Content-Type: application/json" \
     -d '{"messages": [{"role": "user", "content": "Hello!"}]}'
   ```
@@ -196,7 +196,7 @@ Ten przykład zawiera standardową logikę interakcji z modelem, ale wymaga po
 - Uruchomienie serwera: `bun prompts`
 - Interakcja:
   ```bash
-  curl http://localhost:3000/api/chat \
+  curl -X POST http://localhost:3000/api/chat \
     -H "Content-Type: application/json" \
     -d '{"messages": [{"role": "user", "content": "Hello!"}]}'
   ```
@@ -208,7 +208,7 @@ Ten przykład nie dotyczy bezpośrednio działania LLM, lecz przedstawia sposób
 - Uruchomienie serwera: `bun database`
 - Interakcja:
   ```bash
-  curl http://localhost:3000/api/chat \
+  curl -X POST http://localhost:3000/api/chat \
     -H "Content-Type: application/json" \
     -d '{"messages": [{"role": "user", "content": "Hello!"}]}'
   ```
@@ -220,7 +220,7 @@ Przykład ten przedstawia **absolutnie podstawowe** połączenie z bazą wektor
 - Uruchomienie serwera: `bun qdrant`
 - Interakcja:
   ```bash
-  curl http://localhost:3000/api/chat \
+  curl -X POST http://localhost:3000/api/chat \
     -H "Content-Type: application/json" \
     -d '{"messages": [{"role": "user", "content": "Hello!"}]}'
   ```
