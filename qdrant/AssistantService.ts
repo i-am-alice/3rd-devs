@@ -36,7 +36,7 @@ export class AssistantService {
       }, trace: LangfuseTraceClient) {
         const { messages, context,...restConfig } = config;
 
-        const prompt = await this.langfuseService.getPrompt('Answer', 2);
+        const prompt = await this.langfuseService.getPrompt('Answer', 1);
         const [systemMessage] = prompt.compile({ context });
         const thread = [systemMessage, ...messages.filter(msg => msg.role !== 'system')];
 
