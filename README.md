@@ -114,6 +114,8 @@ Wszystkie pliki zapisywane są w folderze `files/context`, a sam katalog można 
 
 Ten przykład wymaga uzupełnienia pliku `.env` o wartości `LANGFUSE_PUBLIC_KEY`, `LANGFUSE_SECRET_KEY` oraz `LANGFUSE_HOST`. Można je uzyskać zakładając bezpłatne konto na [Langfuse](https://langfuse.com/).
 
+UWAGA: Aby uruchomić ten przykład, musisz w panelu Langfuse utworzyć nowy prompt o nazwie `Answer`, którego wartość możesz ustawić na np. 'Odpowiadaj pisząc wyłącznie wielkimi literami'.
+
 - Uruchomienie serwera: `bun langfuse`
 - Interakcja: 
   ```bash
@@ -216,6 +218,8 @@ Ten przykład nie dotyczy bezpośrednio działania LLM, lecz przedstawia sposób
 ### Qdrant
 
 Przykład ten przedstawia **absolutnie podstawowe** połączenie z bazą wektorową Qdrant. Jego zadaniem jest zapisywanie historii wiadomości, a następnie wyszukiwanie i wczytywanie do kontekstu rozmowy najbardziej podobnych wiadomości. Przykład ten będziemy rozbudowywać w dalszych lekcjach, łącząc się z Qdrant w bardziej złożonych konfiguracjach.
+
+UWAGA: Aby uruchomić ten przykład, musisz w panelu Langfuse utworzyć nowy prompt o nazwie `Answer`, którego wartość możesz ustawić na np. 'Odpowiadaj pisząc wyłącznie wielkimi literami'. Powodem jest fakt, że w ten przykład został powiązany z przykładem `langfuse`.
 
 - Uruchomienie serwera: `bun qdrant`
 - Interakcja:
