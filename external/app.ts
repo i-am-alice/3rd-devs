@@ -5,7 +5,7 @@ import type { ChatCompletion } from "openai/resources/chat/completions";
 import { chatLimiter, authMiddleware, errorHandler, validationMiddleware } from './middlewares';
 
 const app = express();
-const port = 8080;
+const port = 3000;
 const openaiService = new OpenAIService();
 
 // Middleware
