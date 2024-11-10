@@ -193,7 +193,7 @@ Ten przykład zawiera standardową logikę interakcji z modelem, ale wymaga po
 
 ### Prompts
 
-**UWAGA**: Aby uruchomić ten przykład konieczne jest nawiązanie połączenie z Langfuse poprzez uzupełnienie pliku `.env` o wartości `LANGFUSE_PUBLIC_KEY`, `LANGFUSE_SECRET_KEY` oraz `LANGFUSE_HOST`. Dodatkowo na Twoim koncie musisz utworzyć nowy prompt o nazwie `Answer`, którego wartość możesz ustawić na np. 'Odpowiadaj pisząc wyłącznie wielkimi literami', aby tylko sprawdzić działanie mechanizmu.
+**UWAGA**: Aby uruchomić ten przykład konieczne jest nawiązanie połączenie z Langfuse poprzez uzupełnienie pliku `.env` o wartości `LANGFUSE_PUBLIC_KEY`, `LANGFUSE_SECRET_KEY` oraz `LANGFUSE_HOST`. Dodatkowo na Twoim koncie musisz utworzyć nowy prompt o nazwie `Answer`, którego wartość możesz ustawić na np. 'Odpowiadaj pisząc wyłącznie wielkimi literami', aby tylko sprawdzić działanie mechanizmu. Dodatkowo prompt "Answer" należy dodać w ustawieniu "Chat", a nie "Text" (tryb można zmienić z pomocą zakładek w Langfuse)
 
 - Uruchomienie serwera: `bun prompts`
 - Interakcja:
@@ -228,3 +228,15 @@ UWAGA: Aby uruchomić ten przykład, musisz w panelu Langfuse utworzyć nowy pr
     -H "Content-Type: application/json" \
     -d '{"messages": [{"role": "user", "content": "Hello!"}]}'
   ```
+
+## S02E01
+
+### Audio
+
+UWAGA: Ten przykład wymaga uruchomienia frontendu w folderze `audio-frontend` oraz backendu w folderze `audio-backend`. W związku z tym przykład **trzeba** uruchomić na własnym komputerze.
+
+- Uruchomienie frontendu: `bun audio:dev`
+- Uruchomienie backendu: `bun audio`
+- Interakcja: Otwórz w przeglądarce stronę http://localhost:5173
+
+WAŻNE: Jakość działania tego przykładu zależy głównie od jakości mikrofonu oraz dźwięków otoczenia. Upewnij się więc, że jakość nagrania jest dobra i że nie ma zakłóceń uniemożliwiających wykrywanie końca wypowiedzi.
