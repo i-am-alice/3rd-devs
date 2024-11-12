@@ -240,3 +240,19 @@ UWAGA: Ten przykład wymaga uruchomienia frontendu w folderze `audio-frontend` o
 - Interakcja: Otwórz w przeglądarce stronę http://localhost:5173
 
 WAŻNE: Jakość działania tego przykładu zależy głównie od jakości mikrofonu oraz dźwięków otoczenia. Upewnij się więc, że jakość nagrania jest dobra i że nie ma zakłóceń uniemożliwiających wykrywanie końca wypowiedzi.
+
+## S02E02
+
+### Vision
+
+- Uruchomienie kodu: `bun vision`
+
+### Recognize
+
+- Uruchomienie kodu: `bun recognize`
+
+### Recognize-Pixtral
+
+Do uruchomienia tego przykładu należy uzupełnić plik `.env` o wartość `MISTRAL_API_KEY`. Można go pobrać tutaj na [Mistral.ai](https://auth.mistral.ai/ui/login?flow=d2707d87-5325-4ff5-a7cd-25a2e21323d5)
+
+- Uruchomienie kodu: `bun recognize_pixtral`
