@@ -1,0 +1,31 @@
+- **Generatywne AI**: Możliwości w przetwarzaniu tekstu, audio i obrazu.
+- **Grafika generatywna**: Manipulacja i generowanie nowych grafik oraz zdjęć.
+- **Narzędzia graficzne AI**: Midjourney, Stable Diffusion.
+- **Picthing**: Narzędzie do usuwania tła ze zdjęć.
+  - Link: [picthing](https://pic.ping.gg/).
+- **Pieter Levels**: Projekty PhotoAI i InteriorAI.
+  - Link: [Pieter Levels](https://x.com/levelsio).
+  - Link: [PhotoAI](https://photoai.com/).
+  - Link: [InteriorAI](https://interiorai.com).
+- **Obecne możliwości**: Postęp generatywnej grafiki i jej ograniczenia (np. generacja tekstu, dłoni, zębów).
+- **API i hosting modeli**: Usługi jak Replicate, Leonardo.ai, RunPod.
+  - Link: [Replicate](tools/Replicate.md).
+  - Link: [Leonardo.ai](https://leonardo.ai/).
+  - Link: [RunPod](https://blog.runpod.io/how-to-get-stable-diffusion-set-up-with-comfyui-on-runpod/).
+- **Szablony graficzne**: Generowanie grafik dla marketingu, blogów, newsletterów.
+- **ComfyUI**: Narzędzie do generowania grafik z większą sterownością.
+  - Link: [ComfyUI](ComfyUI).
+- **Generatywna grafika przez API**: HTMLCSStoImage, Vision Language Models.
+  - Link: [htmlcsstoimage](https://htmlcsstoimage.com).
+- **Techniki projektowania promptów**: Różnice między grafiką generatywną a LLM.
+- **Eksperymentowanie z promptami**: Krótkie vs. bogate opisy, stosowanie meta promptów.
+- **Midjourney i jego ograniczenia**: Brak oficjalnego API, sterowność.
+  - Link: [Midjourney](tools/Midjourney.md).
+- **Wideo z generatywnej grafiki**: Runway, Heygen, Kling AI.
+  - Link: [Runway](https://runwayml.com/).
+  - Link: [Heygen](https://www.heygen.com/).
+  - Link: [Kling AI](https://klingai.com/).
+- **Automatyzacja grafiki**: Zaawansowane rozwiązania z HTMLCSStoImage i ComfyUI w procesach marketingowych i produktowych.
+- **Zastosowania w przemyśle**: Projektowanie, reklamy, edycja zdjęć.
+
+Overall, generatywna grafika AI przeciwstawia nowe możliwości i narzędzia do projektowania oraz automatyzacji, co wyraźnie widać w przykładach i projektach prezentowanych w artykule.
