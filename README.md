@@ -256,3 +256,47 @@ WAŻNE: Jakość działania tego przykładu zależy głównie od jakości mikrof
 Do uruchomienia tego przykładu należy uzupełnić plik `.env` o wartość `MISTRAL_API_KEY`. Można go pobrać tutaj na [Mistral.ai](https://auth.mistral.ai/ui/login?flow=d2707d87-5325-4ff5-a7cd-25a2e21323d5)
 
 - Uruchomienie kodu: `bun recognize_pixtral`
+
+## S02E02 
+
+### Vision
+
+- Uruchomienie kodu: `bun vision`
+- Interakcja: przykład wykonuje się automatycznie na pliku `vision/lessons.png`
+
+### Recognize
+
+- Uruchomienie kodu: `bun recognize`
+- Interakcja: przykład wykonuje się automatycznie na plikach z katalogu `recognize/avatars`
+
+### Recognize-Pixtral
+
+- Uruchomienie kodu: `bun recognize_pixtral`
+- Interakcja: przykład wykonuje się automatycznie na plikach z katalogu `recognize_pixtral/avatars`
+
+## S02E03
+
+--- brak przykładów ---
+
+## S02E04
+
+### Summary
+
+- Uruchomienie kodu: `bun summary`
+- Interakcja: skrypt wykonuje się automatycznie na pliku `summary/article.md`
+
+### Video
+
+Do uruchomienia tego przykładu należy uzupełnić plik `.env` o wartość `GOOGLE_AI_STUDIO_API_KEY`, który można pobrać z [Google AI Studio](https://aistudio.google.com/).
+
+- Uruchomienie kodu: `bun video`
+- Interakcja: przykład wykonuje się automatycznie na pliku `video/test.mp3`
+
+### Narration
+
+UWAGA: Ten przykład może zużywać duże ilości kredytów na ElevenLabs, więc jeśli chcesz zobaczyć rezultat jego działania, to w katalogu `narration` znajdują się dwa przykładowe pliki audio, które możesz odtworzyć bez uruchamiania kodu.
+
+Do uruchomienia tego przykładu należy uzupełnić plik `.env` o wartość `GOOGLE_AI_STUDIO_API_KEY`, który można pobrać z [Google AI Studio](https://aistudio.google.com/) oraz `ELEVEN_LABS_API_KEY`, który można pobrać z [ElevenLabs](https://elevenlabs.io/).
+
+- Uruchomienie kodu: `bun narration`
+- Interakcja: przykład wykonuje się automatycznie na treści wiadomości użytkownika przekazanej w funkcji `generateNarration` w pliku `narration/app.ts`
