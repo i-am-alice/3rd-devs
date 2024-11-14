@@ -35,6 +35,7 @@
     "segment": "bun run segment/crop.ts",
     "vision": "bun run vision/app.ts",
     "recognize": "bun run recognize/app.ts",
+    "captions": "bun run captions/app.ts",
     "recognize_pixtral": "bun run recognize_pixtral/app.ts",
     "prompts": "bun run prompts/app.ts",
     "summary": "bun run summary/app.ts",

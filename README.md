@@ -280,6 +280,11 @@ Do uruchomienia tego przykładu należy uzupełnić plik `.env` o wartość `MIS
 
 ## S02E04
 
+### Captions
+
+- Uruchomienie kodu: `bun captions`
+- Interakcja: przykład wykonuje się automatycznie na pliku `captions/article.md`
+
 ### Summary
 
 - Uruchomienie kodu: `bun summary`
