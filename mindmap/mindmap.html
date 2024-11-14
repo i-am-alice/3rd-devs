@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Markmap</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+}
+#mindmap {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.17.2/dist/style.css">
+</head>
+<body>
+<svg id="mindmap"></svg>
+<script src="https://cdn.jsdelivr.net/npm/d3@7.8.5/dist/d3.min.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-view@0.17.2/dist/browser/index.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.17.2/dist/index.js"></script><script>((r) => {
+            setTimeout(r);
+          })(() => {
+  const { markmap, mm } = window;
+  const toolbar = new markmap.Toolbar();
+  toolbar.attach(mm);
+  const el = toolbar.render();
+  el.setAttribute("style", "position:absolute;bottom:20px;right:20px");
+  document.body.append(el);
+})</script><script>((getMarkmap, getOptions, root2, jsonOptions) => {
+              const markmap = getMarkmap();
+              window.mm = markmap.Markmap.create(
+                "svg#mindmap",
+                (getOptions || markmap.deriveOptions)(jsonOptions),
+                root2
+              );
+            })(() => window.markmap,null,{"content":"AI Devs - Week 3","children":[{"content":"Long-term Memory","children":[{"content":"<strong>Document Processing</strong>","children":[{"content":"Handling long-form content","children":[{"content":"Articles","children":[],"payload":{"lines":"12,13"}},{"content":"Books","children":[],"payload":{"lines":"13,15"}}],"payload":{"lines":"11,15"}}],"payload":{"lines":"10,15"}}],"payload":{"lines":"8,9"}},{"content":"Semantic Search and Vector Databases","children":[{"content":"<strong>Semantic Search</strong>","children":[{"content":"Using vector embeddings","children":[],"payload":{"lines":"18,19"}}],"payload":{"lines":"17,19"}},{"content":"<strong>Vector Databases</strong>","children":[{"content":"Benefits","children":[],"payload":{"lines":"20,21"}},{"content":"Limitations","children":[],"payload":{"lines":"21,23"}}],"payload":{"lines":"19,23"}}],"payload":{"lines":"15,16"}},{"content":"Hybrid Search","children":[{"content":"<strong>Combining Methods</strong>","children":[{"content":"Different search techniques","children":[],"payload":{"lines":"26,27"}},{"content":"Achieving optimal results","children":[],"payload":{"lines":"27,29"}}],"payload":{"lines":"25,29"}}],"payload":{"lines":"23,24"}},{"content":"Data Integration","children":[{"content":"<strong>Model Connection</strong>","children":[{"content":"External data sources","children":[],"payload":{"lines":"32,33"}},{"content":"External applications","children":[],"payload":{"lines":"33,35"}}],"payload":{"lines":"31,35"}}],"payload":{"lines":"29,30"}},{"content":"Graph Databases","children":[{"content":"Application and usage","children":[],"payload":{"lines":"37,39"}}],"payload":{"lines":"35,36"}}],"payload":{"lines":"6,7"}},null)</script>
+</body>
+</html>
