@@ -21,6 +21,7 @@
     "langfuse": "bun run langfuse/app.ts",
     "tiktokenizer": "bun run tiktokenizer/app.ts",
     "thread": "bun run thread/app.ts",
+    "read": "bun run read/app.ts",
     "max_tokens": "bun run max_tokens/app.ts",
     "constitution": "bun run constitution/app.ts",
     "memory": "bun run memory/app.ts",
@@ -41,8 +42,7 @@
     "summary": "bun run summary/app.ts",
     "narration": "bun run narration/app.ts",
     "audio": "bun run audio/app.ts",
-    "audio-map-frontend": "bun run audio-map-frontend/app.ts",
-    "audio-map": "bun run audio/app.ts",
+    "audio-map": "bun run audio-map/app.ts",
     "text-splitter": "bun run text-splitter/app.ts",
     "video": "bun run video/app.ts",
     "dev": "vite",
@@ -50,7 +50,8 @@
     "preview": "vite preview",
     "audio:dev": "vite --config vite.config.audio.ts",
     "map:dev": "vite --config vite.config.map.ts",
-    "camera:dev": "vite --config vite.config.camera.ts"
+    "camera:dev": "vite --config vite.config.camera.ts",
+    "notes": "bun run notes/app.ts"
   },
   "peerDependencies": {
     "typescript": "^5.6.3"
