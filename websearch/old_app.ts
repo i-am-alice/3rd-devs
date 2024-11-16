@@ -3,8 +3,6 @@ import type { ChatCompletionMessageParam } from "openai/resources/chat/completio
 import { OpenAIService } from './OpenAIService';
 import { WebSearchService } from './WebSearch';
 import { answerPrompt } from './prompts';
-import fetch from 'node-fetch';
-import * as cheerio from 'cheerio';
 
 import { promises as fs } from 'fs';
 type Role = 'user' | 'assistant' | 'system';
@@ -39,113 +37,6 @@ app.listen(port, () => console.log(`Server running at http://localhost:${port}. 
 const webSearchService = new WebSearchService(allowedDomains);
 const openaiService = new OpenAIService();
 
-
-//----------------------------
-app.post('/api/1', async (req, res) => {
-  console.log('Received request');
-  // await fs.writeFile('prompt.md', '');
-  
-  const { messages }: { messages: Message[] } = req.body;
-
-  try {
-    const latestUserMessage = messages.filter(m => m.role === 'user').pop();
-    if (!latestUserMessage) {
-      throw new Error('No user message found');
-    }
-
-    const question = await getQuestionFromPage();
-    console.log('Question:', question);
-
-  //   const shouldSearch = await webSearchService.isWebSearchNeeded(latestUserMessage.content as string);
-  //   let mergedResults: SearchResult[] = []; 
-
-  //   if (shouldSearch) {
-  //     const { queries } = await webSearchService.generateQueries(latestUserMessage.content as string);
-  //     if (queries.length > 0) {
-  //       const searchResults = await webSearchService.searchWeb(queries);
-  //       const filteredResults = await webSearchService.scoreResults(searchResults, latestUserMessage.content as string);
-  //       const urlsToLoad = await webSearchService.selectResourcesToLoad(latestUserMessage.content as string, filteredResults);
-  //       const scrapedContent = await webSearchService.scrapeUrls(urlsToLoad);
-  //       mergedResults = filteredResults.map(result => {
-  //         const scrapedItem = scrapedContent.find(item => item.url === result.url);
-  //         return scrapedItem 
-  //           ? { ...result, content: scrapedItem.content }
-  //           : result;
-  //       });
-  //     }
-  //   }
-
-  //   const promptWithResults = answerPrompt(mergedResults);
-  //   const allMessages: ChatCompletionMessageParam[] = [
-  //     { role: 'system', content: promptWithResults, name: 'Alice' },
-  //     ...messages as ChatCompletionMessageParam[]
-  //   ];
-  //   const completion = await openaiService.completion(allMessages, "gpt-4o", false);
-
-  //   return res.json(completion);
-  } catch (error) {
-    console.error('Error in chat processing:', error);
-    res.status(500).json({ error: 'An error occurred while processing your request' });
-  }
-});
-
-
-//----------------------------
-async function sendLoginRequest() {
-  try {
-      const response = await fetch('https://xyz.ag3nts.org/', {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/x-www-form-urlencoded',
-          },
-          body: 'username=111&password=111&answer=111'
-      });
-
-      if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      const data = await response.json();
-      console.log('Response:', data);
-      
-  } catch (error) {
-      console.error('Error:', error);
-  }
-}
-
-
-
-
-
-//----------------------------
-async function getQuestionFromPage() {
-  try {
-      // Fetch the page content
-      const response = await fetch('https://xyz.ag3nts.org/');
-      const html = await response.text();
-
-      // Parse HTML using cheerio
-      const $ = cheerio.load(html);
-      
-      // Find the question (this selector might need adjustment based on actual HTML structure)
-      const question = $('body').text().match(/Question:\s*(.*?)\s*Login/i)?.[1]?.trim();
-      
-      if (!question) {
-          throw new Error('Question not found in the page content');
-      }
-
-      console.log('Extracted question:', question);
-      return question;
-      
-  } catch (error) {
-      console.error('Error fetching or parsing the page:', error);
-      throw error;
-  }
-}
-
-
-
-//----------------------------
 app.post('/api/chat', async (req, res) => {
   console.log('Received request');
   await fs.writeFile('prompt.md', '');
