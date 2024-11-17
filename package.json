@@ -44,6 +44,7 @@
     "audio": "bun run audio/app.ts",
     "audio-map": "bun run audio-map/app.ts",
     "text-splitter": "bun run text-splitter/app.ts",
+    "unstructured": "bun run unstructured/app.ts",
     "video": "bun run video/app.ts",
     "dev": "vite",
     "build": "vite build",
