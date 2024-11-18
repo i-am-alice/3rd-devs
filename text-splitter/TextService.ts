@@ -24,7 +24,7 @@ export class TextSplitter {
     ['<|im_sep|>', 100266],
   ]);
 
-  constructor(modelName: string = 'gpt-4') {
+  constructor(modelName: string = 'gpt-4o') {
     this.MODEL_NAME = modelName;
   }
 
