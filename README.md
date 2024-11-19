@@ -1,6 +1,6 @@
 # AI_devs 3
 
-Repozytorium zawiera przykłady z lekcji kursu AI_devs 3. 
+Repozytorium zawiera przykłady z lekcji kursu AI_devs 3.
 Więcej informacji znajdziesz na [aidevs.pl](https://aidevs.pl).
 
 ## Wymagania
@@ -15,6 +15,7 @@ Upewnij się, że posiadasz najnowsze wersje Node.js oraz Bun zainstalowane na s
 ## Instalacja
 
 1. Pobierz repozytorium:
+
    ```bash
    git clone git@github.com:i-am-alice/3rd-devs.git
    cd 3rd-devs
@@ -26,7 +27,7 @@ Upewnij się, że posiadasz najnowsze wersje Node.js oraz Bun zainstalowane na s
    ```
 3. Skopiuj plik `.env.example` do `.env` i wypełnij go kluczami API (na początek wystarczy klucz OpenAI).
 
-3. Uruchom dostępne przykłady z pliku `package.json`, według poniższej instrukcji.
+4. Uruchom dostępne przykłady z pliku `package.json`, według poniższej instrukcji.
 
 ## S01E01
 
@@ -48,7 +49,7 @@ UWAGA: przykład wymaga zainstalowania `promptfoo` w przypadku którego prawdopo
 
 - Uruchomienie skryptu: `bun use_search`
 
-Rezultatem działania skryptu jest tablica zawierająca kilkanaście przykładowych testów dla promptu decydującego o tym, czy skorzystanie z wyszukiwarki jest potrzebne. 
+Rezultatem działania skryptu jest tablica zawierająca kilkanaście przykładowych testów dla promptu decydującego o tym, czy skorzystanie z wyszukiwarki jest potrzebne.
 
 ### Pick domains
 
@@ -68,7 +69,7 @@ Przykład ten korzysta z [Firecrawl](https://www.firecrawl.dev) do przeszukiwani
 (Firecrawl oferuje bezpłatny plan).
 
 - Uruchomienie serwera: `bun websearch`
-- Interakcja: 
+- Interakcja:
   ```bash
   curl -X POST http://localhost:3000/api/chat \
     -H "Content-Type: application/json" \
@@ -84,7 +85,7 @@ Ważne: w pliku `websearch/app.ts` można zmienić listę domen, które są dop
 Uruchomienie tego przykładu wymaga uzupełnienia pliku `.env` i wartości `LINEAR_API_KEY` oraz `LINEAR_WEBHOOK_SECRET`.
 Obie wartości można znaleźć w [ustawieniach API](https://linear.app/overment/settings/api). Dodatkowo Twój localhost musi być dostępny z poza Twojej sieci lokalnej, np. za pomocą [ngrok](https://ngrok.com/). Publiczny adres URL należy także wskazać w panelu Linear w sekcji Webhooks, np.: `https://<ngrok-url>/api/linear/watch-issue` (pamiętaj o dodaniu właściwego endpointu do adresu).
 
-WAŻNE: w pliku `linear/prompts.ts` znajduje się prompt w którym zostały opisane **moje projekty** w Linear. 
+WAŻNE: w pliku `linear/prompts.ts` znajduje się prompt w którym zostały opisane **moje projekty** w Linear.
 Aby skrypt działał poprawnie, musisz zmodyfikować ten prompt, tak aby zawierał identyfikatory oraz opisy Twoich projektów.
 
 Listę projektów i ich identyfikatory możesz pobrać korzystając z endpointu `/api/linear/projects`.
@@ -96,14 +97,14 @@ Listę projektów i ich identyfikatory możesz pobrać korzystając z endpointu 
 ### Files
 
 - Uruchomienie serwera: `bun files`
-- Interakcja: 
+- Interakcja:
   ```bash
   curl -X POST http://localhost:3000/api/chat \
     -H "Content-Type: application/json" \
     -d '{"messages": [{"role": "user", "content": "Hey there, what\'s up?"}], "conversation_id": "d7582176-bc52-4ef3-980a-047b868f9f49"}'
   ```
 
-Przykład ten pokazuje mechanizm podejmowania decyzji o zapamiętywaniu informacji na podstawie kontekstu rozmowy. 
+Przykład ten pokazuje mechanizm podejmowania decyzji o zapamiętywaniu informacji na podstawie kontekstu rozmowy.
 Dodatkowo w przypadku podania `conversation_id` w obiekcie żądania, do rozmowy zostaną wczytane wszystkie wiadomości dotyczące konkretnej rozmowy.
 
 Wszystkie pliki zapisywane są w folderze `files/context`, a sam katalog można otworzyć w aplikacji [Obsidian](https://obsidian.md/) aby zobaczyć powiązania pomiędzy wspomnieniami.
@@ -117,7 +118,7 @@ Ten przykład wymaga uzupełnienia pliku `.env` o wartości `LANGFUSE_PUBLIC_KEY
 UWAGA: Aby uruchomić ten przykład, musisz w panelu Langfuse utworzyć nowy prompt o nazwie `Answer`, którego wartość możesz ustawić na np. 'Odpowiadaj pisząc wyłącznie wielkimi literami'.
 
 - Uruchomienie serwera: `bun langfuse`
-- Interakcja: 
+- Interakcja:
   ```bash
   curl -X POST http://localhost:3000/api/chat \
     -H "Content-Type: application/json" \
@@ -143,7 +144,7 @@ Przykład ten pokazuje mechanizm liczenia tokenów w zapytaniach do modeli OpenA
 Przykład ten pokazuje jeden mechanizm pozwalający na kontynuowanie wypowiedzi modelu, pomimo osiągnięcia maksymalnej liczby tokenów wyjściowych (output tokens).
 
 - Uruchomienie serwera: `bun max_tokens`
-- Interakcja: 
+- Interakcja:
   ```bash
   curl -X POST http://localhost:3000/api/chat \
     -H "Content-Type: application/json" \
@@ -171,11 +172,12 @@ Nie jest to przykład nadający się na produkcję, lecz przedstawia ogólne mec
 
 - Uruchomienie serwera: `bun memory`
 - Interakcja:
- ```bash
-  curl -X POST http://localhost:3000/api/chat \
-    -H "Content-Type: application/json" \
-    -d '{"messages": [{"role": "user", "content": "Hello!"}]}'
-  ```
+
+```bash
+ curl -X POST http://localhost:3000/api/chat \
+   -H "Content-Type: application/json" \
+   -d '{"messages": [{"role": "user", "content": "Hello!"}]}'
+```
 
 ## S01E05
 
@@ -257,7 +259,7 @@ Do uruchomienia tego przykładu należy uzupełnić plik `.env` o wartość `MIS
 
 - Uruchomienie kodu: `bun recognize_pixtral`
 
-## S02E02 
+## S02E02
 
 ### Vision
 
@@ -306,7 +308,6 @@ Do uruchomienia tego przykładu należy uzupełnić plik `.env` o wartość `GOO
 - Uruchomienie kodu: `bun narration`
 - Interakcja: przykład wykonuje się automatycznie na treści wiadomości użytkownika przekazanej w funkcji `generateNarration` w pliku `narration/app.ts`
 
-
 ## S02E05
 
 ### Read
@@ -348,10 +349,10 @@ Wartości te można znaleźć w panelu Qdrant po zalogowaniu na bezpłatne konto
 
 ![Qdrant Cloud](https://cloud.overment.com/aidevs3_cluster-1732010353.png)
 
-Natomiast klucz API można pobrać w zakładce "Data Access Control". 
+Natomiast klucz API można pobrać w zakładce "Data Access Control".
 
 - Uruchomienie kodu: `bun embedding`
-- Interakcja: przykład wykonuje się automatycznie na pliku source.md z katalogu "embedding"
+- Interakcja: przykład wykonuje się automatycznie na danych osadzonych w pliku embedding/app.ts
 
 ### Rerank
 
@@ -372,3 +373,25 @@ Natomiast klucz API można pobrać w zakładce "Data Access Control".
 
 - Uruchomienie kodu: `bun semantic`
 - Interakcja: przykład wykonuje się automatycznie na pliku source.md z katalogu "semantic"
+
+## S03E03
+
+### Sync
+
+**UWAGA**: Do uruchomienia tego przykładu konieczne jest uzupełnienie `ALGOLIA_APP_ID` oraz `ALGOLIA_API_KEY` w pliku `.env`.
+Wymagane jest bezpłatne konto na [Algolia](https://www.algolia.com/).
+
+Dodatkowo jeśli wyniki wyszukiwania nie są poprawnie zwracane, należy sprawdzić czy pole `text` zostało poprawnie ustawione w panelu Algolia jako `searchableAttributes`.
+
+![Algolia](https://cloud.overment.com/2024-11-19/aidevs3_cleanshot-3e7fd444-c.png)
+
+- Uruchomienie kodu: `bun sync`
+- Interakcja: przykład wykonuje się automatycznie na danych osadzonych w pliku sync/app.ts
+
+### Hybrid
+
+**UWAGA**: Do uruchomienia tego przykładu konieczne jest uzupełnienie `QDRANT_URL` oraz `QDRANT_API_KEY` w pliku `.env`.
+Konieczne jest także połączenie z Algolia podobnie jak w przypadku przykładu `sync`.
+
+- Uruchomienie kodu: `bun hybrid`
+- Interakcja: przykład wykonuje się automatycznie na danych osadzonych w pliku hybrid/app.ts

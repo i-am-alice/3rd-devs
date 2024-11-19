@@ -20,6 +20,8 @@
     "files": "bun run files/app.ts",
     "langfuse": "bun run langfuse/app.ts",
     "tiktokenizer": "bun run tiktokenizer/app.ts",
+    "sync": "bun run sync/app.ts",
+    "hybrid": "bun run hybrid/app.ts",
     "thread": "bun run thread/app.ts",
     "read": "bun run read/app.ts",
     "embedding": "bun run embedding/app.ts",
