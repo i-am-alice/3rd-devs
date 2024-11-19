@@ -305,3 +305,70 @@ Do uruchomienia tego przykładu należy uzupełnić plik `.env` o wartość `GOO
 
 - Uruchomienie kodu: `bun narration`
 - Interakcja: przykład wykonuje się automatycznie na treści wiadomości użytkownika przekazanej w funkcji `generateNarration` w pliku `narration/app.ts`
+
+
+## S02E05
+
+### Read
+
+- Uruchomienie kodu: `bun read`
+- Interakcja: przykład wykonuje się automatycznie na pliku `read/article.md` i generuje plik audio w folderze read/summary.wav
+
+### Mindmap
+
+Ten przykład wymaga uruchomienia frontendu w folderze `audio-map-frontend` oraz backendu w folderze `audio-map`. W związku z tym przykład **trzeba** uruchomić na własnym komputerze.
+
+- Uruchomienie frontendu: `bun map:dev`
+- Uruchomienie backendu: `bun audio-map`
+- Interakcja: Otwórz w przeglądarce stronę http://localhost:5173
+
+### Notes
+
+- Uruchomienie kodu: `bun notes`
+- Interakcja: przykład wykonuje się automatycznie na wiadomości wpisanej w treść pliku `notes/app.ts` (jest tam kilka przykładów innych wiadomości, które można podmienić).
+
+## S03E01
+
+### Text Splitter
+
+- Uruchomienie kodu: `bun text-splitter`
+- Interakcja: przykład wykonuje się automatycznie na plikach markdown z katalogu "text-splitter"
+
+### Unstructured
+
+- Uruchomienie kodu: `bun unstructured`
+- Interakcja: przykład wykonuje się automatycznie na pliku source.md z katalogu "unstructured"
+
+## S03E02
+
+### Embedding
+
+Uruchomienie tego przykładu wymaga uzupełnienia pliku `.env` o wartości "QDRANT_URL" oraz "QDRANT_API_KEY".
+Wartości te można znaleźć w panelu Qdrant po zalogowaniu na bezpłatne konto na stronie [Qdrant Cloud](https://cloud.qdrant.io/).
+
+![Qdrant Cloud](https://cloud.overment.com/aidevs3_cluster-1732010353.png)
+
+Natomiast klucz API można pobrać w zakładce "Data Access Control". 
+
+- Uruchomienie kodu: `bun embedding`
+- Interakcja: przykład wykonuje się automatycznie na pliku source.md z katalogu "embedding"
+
+### Rerank
+
+- Uruchomienie kodu: `bun rerank`
+- Interakcja: przykład wykonuje się automatycznie na danych osadzonych w pliku rerank/app.ts
+
+### Naive RAG
+
+- Uruchomienie kodu: `bun naive-rag`
+- Interakcja: przykład wykonuje się automatycznie na danych osadzonych w pliku naive-rag/app.ts
+
+### Better RAG
+
+- Uruchomienie kodu: `bun better-rag`
+- Interakcja: przykład wykonuje się automatycznie na danych osadzonych w pliku better-rag/app.ts
+
+### Semantic
+
+- Uruchomienie kodu: `bun semantic`
+- Interakcja: przykład wykonuje się automatycznie na pliku source.md z katalogu "semantic"
