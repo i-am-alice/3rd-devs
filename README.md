@@ -372,7 +372,7 @@ Natomiast klucz API można pobrać w zakładce "Data Access Control".
 ### Semantic
 
 - Uruchomienie kodu: `bun semantic`
-- Interakcja: przykład wykonuje się automatycznie na pliku source.md z katalogu "semantic"
+- Interakcja: przykład wykonuje się automatycznie na danych osadzonych w pliku semantic/app.ts
 
 ## S03E03
 
