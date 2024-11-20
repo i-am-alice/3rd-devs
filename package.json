@@ -49,6 +49,7 @@
     "summary": "bun run summary/app.ts",
     "narration": "bun run narration/app.ts",
     "audio": "bun run audio/app.ts",
+    "algolia": "bun algolia/app.ts",
     "audio-map": "bun run audio-map/app.ts",
     "text-splitter": "bun run text-splitter/app.ts",
     "unstructured": "bun run unstructured/app.ts",
