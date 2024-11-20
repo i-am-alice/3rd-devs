@@ -1,6 +1,6 @@
-import { QdrantClient } from '@qdrant/js-client-rest';
-import { v4 as uuidv4 } from 'uuid';
-import { OpenAIService } from './OpenAIService';
+import { QdrantClient } from "@qdrant/js-client-rest";
+import { v4 as uuidv4 } from "uuid";
+import { OpenAIService } from "./OpenAIService";
 
 export class VectorService {
   private client: QdrantClient;
@@ -16,9 +16,9 @@ export class VectorService {
 
   async ensureCollection(name: string) {
     const collections = await this.client.getCollections();
-    if (!collections.collections.some(c => c.name === name)) {
+    if (!collections.collections.some((c) => c.name === name)) {
       await this.client.createCollection(name, {
-        vectors: { size: 1024, distance: "Cosine" }
+        vectors: { size: 3072, distance: "Cosine" },
       });
     }
   }
@@ -34,8 +34,8 @@ export class VectorService {
     await this.ensureCollection(collectionName);
 
     const pointsToUpsert = await Promise.all(
-      points.map(async point => {
-        const embedding = await this.openAIService.createJinaEmbedding(point.text);
+      points.map(async (point) => {
+        const embedding = await this.openAIService.createEmbedding(point.text);
         return {
           id: point.id || uuidv4(),
           vector: embedding,
@@ -100,7 +100,10 @@ export class VectorService {
 
       points.push(...response.points);
 
-      if (response.next_page_offset !== null && response.next_page_offset !== undefined) {
+      if (
+        response.next_page_offset !== null &&
+        response.next_page_offset !== undefined
+      ) {
         offset = response.next_page_offset;
       } else {
         hasMore = false;
