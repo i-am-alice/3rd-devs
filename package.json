@@ -18,6 +18,8 @@
     "streaming": "bun run streaming/app.ts",
     "context": "bun run context/app.ts",
     "loader": "bun run loader/app.ts",
+    "neo4j-101": "bun run neo4j-101/app.ts",
+    "neo4j": "bun neo4j/app.ts",
     "websearch": "bun run websearch/app.ts",
     "files": "bun run files/app.ts",
     "langfuse": "bun run langfuse/app.ts",

@@ -405,3 +405,17 @@ Konieczne jest także połączenie z Algolia podobnie jak w przypadku przykładu
 
 - Uruchomienie kodu: `bun hybrid`
 - Interakcja: przykład wykonuje się automatycznie na danych osadzonych w pliku hybrid/app.ts
+
+## S03E05
+
+Do uruchomienia tego przykładu konieczne jest połączenie z bazą Neo4j. Można ją zainstalować lokalnie, a następnie uzupełnić plik `.env` o wartości `NEO4J_URI`, `NEO4J_USER` oraz `NEO4J_PASSWORD`.
+
+### Neo4j-101
+
+- Uruchomienie kodu: `bun neo4j-101`
+- Interakcja: przykład wykonuje się automatycznie na danych osadzonych w pliku neo4j-101/app.ts
+
+### Neo4j
+
+- Uruchomienie kodu: `bun neo4j`
+- Interakcja: przykład wykonuje się automatycznie na danych osadzonych w pliku neo4j/app.ts
