@@ -52,23 +52,23 @@ async function initializeData() {
 
   const docs = await dbService.getAllDocuments();
 
-  // if (docs.length === 0) {
-  //   for (const book of talebBooks) {
-  //     const document = {
-  //       uuid: uuidv4(),
-  //       name: book.title,
-  //       content: book.description,
-  //       source: "initialization",
-  //       conversation_uuid: uuidv4(),
-  //       type: "book",
-  //       description: `A book by ${book.author}`,
-  //       indexed: true,
-  //     };
+  if (docs.length === 0) {
+    for (const book of talebBooks) {
+      const document = {
+        uuid: uuidv4(),
+        name: book.title,
+        content: book.description,
+        source: "initialization",
+        conversation_uuid: uuidv4(),
+        type: "book",
+        description: `A book by ${book.author}`,
+        indexed: true,
+      };
 
-  //     // Insert into SQLite database, which will sync to Algolia and Qdrant
-  //     await dbService.insertDocument(document);
-  //   }
-  // }
+      // Insert into SQLite database, which will sync to Algolia and Qdrant
+      await dbService.insertDocument(document);
+    }
+  }
 
   await dbService.updateDocument("4248fef8-e247-4a18-b104-46a93edd915a", {
     name: "Antifragile 2",
