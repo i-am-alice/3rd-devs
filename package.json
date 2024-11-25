@@ -13,8 +13,10 @@
   "scripts": {
     "advanced_web_search": "bun advanced_web_search/app.ts",
     "chain": "bun run chain/app.ts",
+    "docs": "bun run docs/app.ts",
     "completion": "bun run completion/app.ts",
     "sdk": "bun run sdk/app.ts",
+    "todo": "bun run todo/app.ts",
     "streaming": "bun run streaming/app.ts",
     "context": "bun run context/app.ts",
     "loader": "bun run loader/app.ts",
