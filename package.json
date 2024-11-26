@@ -23,6 +23,7 @@
     "neo4j-101": "bun run neo4j-101/app.ts",
     "neo4j": "bun neo4j/app.ts",
     "websearch": "bun run websearch/app.ts",
+    "web": "bun run web/app.ts",
     "files": "bun run files/app.ts",
     "langfuse": "bun run langfuse/app.ts",
     "tiktokenizer": "bun run tiktokenizer/app.ts",
