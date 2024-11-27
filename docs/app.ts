@@ -15,7 +15,7 @@ const searchService = new SearchService(String(process.env.ALGOLIA_APP_ID), Stri
 const databaseService = new DatabaseService('docs/database.db', searchService, vectorService);
 const documentService = new DocumentService(openaiService, databaseService, textService);
 
-const { docs } = await fileService.process('https://cloud.overment.com/S04E01-1732513660.md', 4500);
+const { docs } = await fileService.process('https://cloud.overment.com/S04E03-1732688101.md', 4500);
 for (const doc of docs) {
     await databaseService.insertDocument(doc, true);
 }

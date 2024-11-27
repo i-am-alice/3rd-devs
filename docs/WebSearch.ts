@@ -2,6 +2,7 @@ import FirecrawlApp from '@mendable/firecrawl-js';
 import type OpenAI from 'openai';
 import { OpenAIService } from './OpenAIService';
 import type { ChatCompletion, ChatCompletionMessageParam } from "openai/resources/chat/completions";
+import { selectResourcesToLoadPrompt } from '../websearch/prompts';
 
 // New type definition
 type SearchNecessityResponse = {

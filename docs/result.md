@@ -1,198 +1,105 @@
-In the examples included in previous lessons, we often connected the model with external tools. These were usually simple interactions that allowed for providing external context or performing uncomplicated tasks. Moreover, the way of using these tools was only slightly the responsibility of the LLM, and we mostly described it with code, creating so-called chains.
+We already have several ready-made components that allow us to link LLM with external data in the form of files provided as URLs or paths to files saved on disk. Additionally, we discussed the `websearch` example, which allowed us a simple connection of the model with the Internet.
 
-Now we will take this to a higher level by preparing tools that will shift more responsibility onto the language model while maintaining as much control and support for the model from the code side. In other words:
+The thing is, data sources can also have a different nature. Examples include environmental information (location, apps running on the phone, current weather, or currently playing music). Some of them may be fetched in real-time, while others will be updated cyclically and loaded only when needed. We are thus talking about situations where data do not come from the user but are fetched programmatically, and our system has the right to load them when necessary.
 
-- The LLM will not only be responsible for generating input data and controlling function parameters.
-- Instead, the LLM will receive a tool (set of functions), a user manual, and a complete set of information enabling almost completely autonomous operation.
+The last example of data also includes those provided by the user or other AI agents **during interaction**. For instance, during a longer conversation, it is advisable to build the conversation context, which is not entirely delivered to the system prompt.
 
-We first presented examples of integrating language models (LLMs) with external tools in lesson S01E01. Now we will delve into this topic more comprehensively, increasing the precision of operation and resistance to potential errors.
+There is still a missing ability to **create content** and **save files**. We have seen several examples of this in previous weeks of AI_devs, but now we will combine them into tools that the model will use.
+## Logic Overview
 
-As an introduction, I will also note the presence of Function Calling (or Tool Use) - functionalities offered by OpenAI and Anthropic. Their assumption is to facilitate interaction with the model when external source information appears. However, I will deliberately limit their application because they impose a series of restrictions without offering value that justifies their choice. I will only note that the concepts we will discuss will also apply to these functionalities, so there will be no obstacles to reaching for them.
+In this lesson, we will discuss the `web` example, which combines the logic of examples like `loader`, `summary`, `translate`, `websearch`, `hybrid`, and others. This time, however, the responsibility for how to use the tools will largely fall into the hands of the model, although the available logic will still have a fairly linear character and does not provide much room for 'model creativity'.
 
-Instead, we will use techniques for conducting interactions with the model we have talked about before, supporting ourselves with JSON Mode and Structured Output. The main advantage of this approach is the flexibility that allows even switching between models of different providers. This is particularly important due to the dynamic development of the industry and the potential need for quickly transitioning between models.
+Below we see a message exchange in which I asked for downloading content from three PDF files containing invoices, loading the specified information, and delivering the result as a link to the .csv file.
 
-## Assumptions for agents' tools
+It is not difficult to guess that such commands can be automatically sent, e.g., with links to email attachments marked with a selected label. The data source could also be photos from our phone or files uploaded to Dropbox.
 
-By an AI agent's "tool," we mean a set of functions and prompts. They enable the LLM (usually) to autonomously use external services, applications, or devices. This includes both managing a task list in Linear and performing actions on Internet-connected devices. A tool can also be another generative application specialized in a specified task — in other words: another AI agent.
+However, this is not the end, as various combinations of tool selection allow sending a **long file** with a request for translation while maintaining full formatting. As you can see, the translation was performed correctly, despite exceeding the "output tokens" limit.
 
-So far, we have repeatedly found that model operation predictability is limited. We are never sure if we will get the expected result. Instead, we move within a **probability** area, aiming to increase the chance of acting according to assumptions.
+Ultimately, we also have the possibility of downloading selected web page content, which can also be performed by scripts and automations working for us in the background.
 
-This clearly suggests that **tools for agents should not perform critical processes**; their contact with the external world should be as limited as possible, and the actions taken should be reversible. On the other hand, we open up a space before us for performing processes that until now remained out of reach of code.
+The logic of the example is thus to:
 
-A tool for LLM must therefore meet the following requirements:
+- Understand the user's request and arrange a plan based on it.
+- Execute individual steps, with the ability to pass context between them. So if the first step is 'browsing the Internet', its result will be available in further stages.
+- Among the available actions, there is also the option to upload a file to a server and generate a direct link for it.
+- After completing all steps, the model generates the final response.
 
-- Its name must be obvious, concise, unique, and distinctive, so the model can certainly determine which tool to choose from the available skill list.
-- Each tool should contain a **concise description**. Such a description will not only make it easier for the model to choose the right tool but also present its capabilities and limitations.
-- The tool must also have a user manual, which can take the form of one or more prompts. The result of their operation will be a JSON/YAML object containing properties needed to launch the function.
-- The tool must have defined **input data structure**, **dependencies**, **output data structure**, and **available action list**. In other words, each of the tools must be built so that it is possible to use them **in various configurations**.
+However, the whole is not ready for every possible scenario and is intended to work for repetitive tasks such as the aforementioned document processing or cyclic information fetching from the Internet.
 
-Additionally, we must take care of aspects related to the logic of using tools, which include, among others:
+**IMPORTANT:** The `web` logic can handle the following situations:
 
-- Sets of test data and automatic tests for all prompts
-- Saving the history of actions taken, allowing for loading the query and outcome for
-- Error handling with an automatic repair option
-- An asynchronous action execution system (queue, event response, or acting according to a schedule)
+- Load `file_link` and translate from Polish to English and give me a link to the ready document.
+- Fetch AI-related entries from `https://news.ycombinator.com/newest`.
+- Summarize this document: `link`.
+- Go to `blog` and download today's articles (if there are any).
+- Go to `blog`, download today's articles (if there are any) and summarize them for me.
 
-Thus, the concept of a 'tool' takes shape as an independently operating application module that an LLM can use. Let's try to gather it all into a cohesive whole.
+So we are talking about simple messages that can include processing several sources and passing information between stages.
+## Uploading and Creating Files
 
-## Structure of the tool interface
+Language models do not have major problems with generating content for text documents. Markdown, JSON, or CSV can also be programmatically converted into binary formats such as PDF, docx, or xlsx. However, placing the file on disk and generating a link to it must have the form of a tool.
 
-Let's start by outlining the general perspective of what range of possibilities tools for agents may offer. Some examples:
+In practice, we will need two file creation methods. One will be available to the user and the other to LLM. For this reason, in the `web` example, I created the `/api/upload` endpoint. Although we will not be using it now, it is worth noting a few things:
 
-- Managing a task list, even in the context of the entire project
-- Managing calendars and communication related to them (email drafts, summaries, reports)
-- Transformation of extensive documents (e.g., translation)
-- Generating complex forms (e.g., tests, audio, images)
-- Advanced Internet searches
-- Managing schedules for cyclical tasks
-- Notification and messaging systems (Slack, Email, SMS)
-- ...and others
+- The file is **loaded as a document** and saved in the database.
+- The file's metadata includes a conversation identifier.
+- In the response, information about the file is returned, including the URL that LLM can use.
 
-These tools will be able to be launched by the model individually but also in combination. As a result, the agent will be able to receive a command like: "Every morning, visit the pages `...`, summarize their content, and send it to me via email," based on which it will establish an action plan and execute it.
+**Important:** In production implementations of such solutions, you need to ensure that:
 
-Let's try to build the first tool from the list that will comprehensively take care of our task list and do so in a manner good enough that we will want to use it daily. What's more, the developed scheme should open the way for us to build subsequent tools that will eventually cooperate with each other. For simplicity, we will use the tool [Todoist](https://todoist.com/) due to its popularity, but we will establish an interface allowing for an easy switch to another solution.
+- We check the `mimeType` of the uploaded file and reject those that do not comply with the supported formats.
+- Besides the file type, we should also check its size.
+- The link directing to the file should require authentication, e.g., an API key or an active user session.
 
-The actions of the tool for managing the to-do application include:
+This endpoint allows us to send files to the application and use them later during conversations based on `conversation_uuid`.
 
-- Fetching the list of projects
-- Fetching the task list
-- Adding, modifying, and removing tasks
-- Observing the task list
+Creating a file with LLM's help is more complex because we also need to include **writing the content**. In the `web` example, the model can save files whose content is entered by it "manually." However, it may happen that the saved file must be a **previously generated translation**. In this case, we want to **avoid rewriting the document**, especially since due to the output tokens limit, we may not have such an option. Therefore, I use here a known 'trick' with `[[uuid]]`, indicating documents in context to be replaced with the proper content.
 
-While the tool interface looks like this:
+The exact same possibility exists in responses sent to the user. In the image below, we see a fragment of the system prompt containing the `documents` section with an entry from the previous statement in the form of a list of tools.
 
-- **Input:** A list of messages from the conversation, optional context in the form of a document, meeting notes, photo description, or current location
-- **Output:** An XML list containing details of actions taken, along with their status and feedback
+So creating files in the case of LLM involves only generating the name and indicating identifiers to be loaded as content. Optionally, the model may include additional formatting of this content and its comments.
+## Planning
 
-And the individual actions as follows:
+Using tools by LLM is a combination of two elements: the programming interface and prompts. The logic can have a more linear character, which we have seen many times so far, or an agency character, capable of stepping outside the established scheme and solving "open-ended" type problems.
 
-- **Project List**
-  - Input: none
-  - Output: array of objects with ID, name, description, and number of active tasks **or error information**
-- **Task List (list):**
-  - Input: project IDs, task IDs, date range, status
-  - Output: array of objects with ID, project ID, name, description, status, start date, update date **or error information**
-- **Task (get):**
-  - Input: task ID
-  - Output: object with ID, project ID, name, description, status, start date, update date **or error information**
-- **Add Task (add):**
-  - Input: project ID, name, description, status, start date
-  - Output: object with ID, project ID, name, description, status, start date, update date **or error information**
-- **Update Task (update):**
-  - Input: task ID, at least one of the optional task fields
-  - Output: object with ID, project ID, name, description, status, start date, update date **or error information**
-- **Understand Query:**
-  - Input: original user query
-  - Output: object containing queries of type "add," "update," "delete," "list," "get."
+This time, we are interested in this "middle" scenario where the model equipped with a series of tools can use them in any order and number of steps. However, it cannot change an already established plan or return to earlier stages. Besides, the system itself is not resistant to 'unforeseen' scenarios, so user commands should be precise. For this reason, it will not work for us in this form productively but can work 'in the background' and save the effects of its work in the database or send them via email.
 
-In the case of these actions, we aim to provide **a complete set of input information** needed to take action and output data needed for the LLM to determine what to do next.
+Such a limitation creates a natural problem of **limited initial knowledge**. We cannot, therefore, generate all the parameters needed to run the necessary tools immediately. Instead, we can establish a list of steps and note or query them, which have the nature of commands the model generates 'to itself.' The only condition here is to maintain the order of actions.
 
-## Instructions for the model
+From lesson S04E01 — Interface, we know that tools must have unique names and operating instructions. Now we find that this will not always be obvious because they can have different complexity and subcategories. For example, `file_process`, responsible for document processing, currently has 5 different types. Their descriptions are not needed in the initial planning stage, but only when a given type is selected.
 
-Now we need a series of prompts for the model, along with a set of test data and automated tests, that will allow us to achieve a possibly high success rate.
+Until LLMs have greater attention retention capability (potentially with [Differential Transformer](https://www.microsoft.com/en-us/research/publication/differential-transformer/)), the process of planning and taking action must be divided into small, specialized prompts. The difficulty lies in supplying all the data needed to take further actions at a given stage without adding unnecessary 'noise.'
+## Basics of Conversation Context
 
-Let's start by defining the name and description of the tool we are building:
+The `web` example saves all content in the database as documents, which we discussed in lesson S03E01. Each entry is linked to the current conversation and can optionally be added to search engines. This allows us not only to later use these documents as context but also to flexibly use them in the current interaction.
 
-- **name:** manage_todo
-- **description**: Use this tool to access & manage Todoist tasks and projects. Available actions: **listing projects, retrieving tasks, adding, modifying, and deleting tasks, and monitoring for task updates.**
+Below, we see one of such records, whose main content is only the product price read from the invoice. In the metadata, however, there is information providing **context** about what these numbers are and where they come from.
 
-There is no room for doubts about what this tool is and what actions are available.
+Information saved in this way can be recalled at any time to the system prompt context along with information about where they come from and where we can learn more about them.
 
-The first action, "Project List," does not require any input data, so no prompt is needed. However, the result returned by it will be in the form of a JSON object, which we will map to text with `XML-like` tags.
+This is how we will save data from external sources and then load them into the conversation as "state," an object representing the model's "short-term memory." In one of my projects, the state includes:
 
-The second action, "Task List," already requires model instruction because we need to narrow the search concerning date and selected projects. The content of such a prompt is in the file `todo/prompts/list_tasks.ts`, and it was generated using the meta prompt that we discussed in lesson S00E02 — Prompt Engineering, and several iterations shaping its behavior.
+- **context** (available skills, environmental information, list of actions taken, loaded documents, conversation summaries, discussed keywords, or loaded memories),
+- **reasoning-related information** (current status, available steps, current action plan, reflection on it and active tool),
+- **conversation information**: interaction identifier (for LangFuse purposes), conversation identifier, message list, and related settings.
 
-![Image 1 with result](https://cloud.overment.com/2024-10-15/aidevs3_list_tasks-40bd7275-c.png)
+In other words, when thinking about the conversation context, we will think about combining three things: **knowledge from the current interaction**, **knowledge from long-term memory**, and **variables controlling logic on the programming side**.
 
-In addition to the instruction, the file also contains a set of sample data and a series of tests verifying the prompt's operation. The test can be run with the command `bun todo/prompts/list_tasks.ts`, which after a few/more seconds will return a result in the form of a table with PromptFoo results. The tests themselves were also generated by the LLM under my supervision (although there may be individual inaccuracies).
+The conversation context is a key element of agency systems because it allows executing more complex tasks. Even our `web` example, despite limitations resulting from its assumptions, can use a simple context allowing information to be passed between stages.
+Below we see that the user did not provide the article content in the form of a URL, but only indicated the source from which it should be retrieved.
 
-![Image 2 with output](https://cloud.overment.com/2024-10-15/aidevs3_list_tasks_test-d08b7d63-4.png)
+![](https://cloud.overment.com/2024-10-20/aidevs3_conversation_context-1f3effde-8.png)
 
-All remaining prompts are prepared more or less according to the same rules. Specifically:
+The assistant correctly broke down this task into smaller steps and used the available context appropriately, passing it between stages.
 
-- Prompt structure follows the scheme: "Role | Objective | Response Format | Rules | Examples | Call to Action."
-- Prompts contain the **minimum necessary context** to operate and focus on **one step.**
-- Prompts generate JSON objects whose first property is always "`_thinking`," to extend the model's response time.
-- Prompts contain context in the form of **a list of projects** and (some of them) **a list of tasks.** Additionally, where possible, dates in the prompt are generated **dynamically,** because LLM has the most issues with them.
-- Test data sets aim to check typical issues with prompt operation and, where possible, verify the model's response using code (JavaScript), looking for keywords.
-- Only two prompts handle original user messages. The others work on queries generated by the model to reduce the range of data that must be considered.
-
-The next prompt `get_task.ts` is quite optional because in this case, we are not working with additional task information such as comments, labels, or subtasks. However, I include it for illustrative purposes.
-
-The last prompts responsible for actions: `add_tasks` and `update_tasks` have one crucial feature — they allow **processing multiple records simultaneously**. This way, the model can decide, for example, to split the user's query into several tasks or exchange information between different records. This detail makes it more valuable for the user to send one message describing a series of tasks than to enter them manually. If the model worked on individual records, in most cases, it would be more convenient to add tasks themselves.
-
-Finally, we have a prompt that can be described as the 'brain' of our tool. It is responsible for **interpreting the conversation with the user**, creating an action plan, and generating queries for each action. The effect of its operation is visible below. It reflects on what the user said and describes the actions (in this case, updating a task that was already on the list).
-
-![Image 3 of augmented conversation](https://cloud.overment.com/2024-10-15/aidevs3_tool_plan-634e98fe-0.png)
-
-Ultimately, the structure of the entire tool looks as follows:
-
-- The user's query is received by the server
-- The model plans actions related to the user's query
-- Then, **parallel** query execution occurs, and responses are gathered (or this step is skipped if the conversation does not concern managing the task list)
-- The last step is generating a response and returning it to the user
-
-![Image 4 of tool workflow](https://cloud.overment.com/2024-10-15/aidevs3_tasks_tool-0e187ff2-a.png)
-
-Before we move on, it's worth looking at the content of the prompts themselves, the examples presented in them, and the project categories, and the task list usually does not exceed a dozen records. All these data are adjusted **to my style of work** and with a high probability, they will not work in every situation.
-Regardless of preferences, it is important here to **match this information to the model itself**, following the guidelines we discussed earlier. Even the list of projects itself contains **names and descriptions**, allowing for easy task matching.
-
-It may turn out that the above descriptions **will not be sufficient**, and it will be necessary to add **general context** containing information about us, which will also help increase matching effectiveness. Example: **Completing the AI_devs course lesson 3** is, from my perspective, a task for the "Act" category, not "Learn". On the other hand, from your perspective, it will be the opposite.
-
-Once again, we are convinced that **context matters**.
-
-## Data interface structure and error handling
-
-In classical applications, there are two main categories of errors: unforeseen (e.g., lack of access to service) and those caused by user actions (e.g., incorrect password). In such a case, the user receives information about possible next steps. This information can be quite general, but even so, the user is able to take further action, including contacting technical support.
-
-In the case of LLM, it is slightly different because, besides the error, we will usually need to also convey context describing possible further steps. Additionally, the reaction to such scenarios must be described in the code.
-
-Below we have a situation where I request changes to a task **that does not exist**. Despite this, the assistant correctly finds itself in this situation and suggests further steps.
-
-On the other hand, there are situations where our assistant does not fully find itself due to limited access to information. The following request to 'move all tasks to project X' was indeed completed correctly, but the message about its execution is incorrect. This results from the fact that **already updated tasks** are in the context, and there is no trace of actions performed on them.
-
-Already at the tool planning stage, we must consider the flow of information between prompts to avoid discrepancies between what happened and what the assistant knows. For comparison, we see that adding simple information about the "ID of the previous project" was enough for the assistant to correctly understand the situation and respond appropriately.
-
-This all leads us to the following observations and conclusions:
-
-- The tool accepts **commands in natural language** and responds in the same way.
-- Actions are planned to be able to **reject requests that do not comply with guidelines**.
-- Actions **are relatively flexible** and do not rely on specific commands or keywords.
-- The most sensitive elements of actions are **programmatically controlled**.
-- The tool can operate **independently**. This means it can be used by a person, background automation, or an AI agent.
-
-## Assistant API and proxy access to external services
-
-The `todo` example offers integration with Todoist, but the model **does not communicate directly with its API**, but uses a set of functions defined in `TaskService.ts`. This is something I mentioned earlier, but now we see it in practice.
-
-Even the aforementioned example of "moving projects" and additional context in the form of the "ID of the previous project" shows that usually, we will want to **match API interaction** to the model.
-
-I emphasize this because I have come across examples of integration connecting to the API without additional layers on the application side. It is not only limiting but also poses a challenge from a security perspective.
-
-## Dependencies and relationships between tools
-
-I mentioned at the beginning of the lesson that tools like the `todo` example can work together. Now I will present what I meant through a few examples (we will learn more about these in upcoming lessons).
-
-First and foremost, even screenshots from this lesson show that I connected the `todo` example with an interface in the form of the Alice application. However, various services, applications, and scripts can play the role of such an interface.
-
-First and foremost, using the knowledge from lesson S01E05 — Production, I configured a VPS server, thanks to which the `todo` example is available to me remotely. I can then create an automation scenario on the [make.com](https://www.make.com/) platform and, with literally just a few clicks, build a mechanism that monitors selected labels in Gmail. All emails that receive them will be added to my list, and the LLM will decide how to describe them and to which project to assign them.
-
-Analogous automations can be created for other tools: messengers, RSS feeds, or YouTube videos. This allows for connecting many sources, for which it is enough to send their content. Moreover, **besides the content, we can also send an instruction requesting a DECISION** on whether a given entry should even go on our task list or the learning list.
-
-Connecting to the `todo` example can also be done through the Siri Shortcuts application in the Apple ecosystem. The created macro can record a voice message and then send its content as task content. Depending on needs, we can also connect there with the Whisper model or a model processing a photo we took.
-
-Such integrations do not have to be exclusively in the form of "entry" but also reading. After all, nothing prevents automation from downloading tasks on our list and preparing notes that can help us complete them. For example, we add a task about fixing an error with a specific content, and the task description contains a suggestion of its solution.
+![](https://cloud.overment.com/2024-10-20/aidevs3_list_of_actions-1c008d6a-2.png)
 
 ## Summary
 
-Looking at the `todo` example, it is quite apparent that it can be an independently functioning application with which communication can be achieved through natural language. Thanks to automatic prompt tests (it would also be advisable to test the code itself), we can introduce changes in logic with relatively great freedom.
+The logic of browsing web pages in the `web` example is based on **generating a list of queries for the search engine** and **deciding which pages' content should be downloaded**. This process may alternatively be shortened to merely retrieving content from a specified URL.
 
-In this way, we can 'surround ourselves' with such modules, which ultimately will be able to communicate with each other and perform various tasks for us (or for each other).
+However, there are tools like Code Interpreter (e.g., e2b), [BrowserBase](https://www.browserbase.com/), or perhaps familiar to you [Playwright](https://playwright.dev/) or [Puppeteer](https://pptr.dev/). Specifically, we are talking about automation that involves running generated code and combining the ability to understand text and images for the purposes of making dynamic actions.
 
-And that is exactly what the concept of 'tools for AI agents' is about.
+Although there are examples online showing the possibilities of autonomous research and Internet browsing for information gathering, **it is currently hard to talk about high effectiveness without imposing limitations.** Even web scraping itself does not allow for unrestricted browsing of any page and should be configured for access to selected addresses or rely on external solutions like [apify](https://apify.com/).
 
-If you want to take away just one thing from this lesson, it will require a little more attention from you. It's about the ability to create independent tools, where refined prompts enable operation with a very low error rate or even with 100% effectiveness.
-
-The tools you create in this way do not need to be particularly developed. It is enough that they are good at doing even one little thing. Little things have the quality that their value adds up quickly.
-
-Good luck!
+The `web` example shows us that an LLM equipped with tools and the mechanics of building and using context can perform complex tasks independently without human intervention. However, the necessary condition (at least for now) is the precise specification of what is available to the model and what is not. Otherwise, problems quickly arise concerning either the model's capabilities or the barriers resulting from the technology itself (e.g., the necessity of logging into a website).
