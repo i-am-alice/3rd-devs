@@ -25,6 +25,7 @@
     "websearch": "bun run websearch/app.ts",
     "web": "bun run web/app.ts",
     "files": "bun run files/app.ts",
+    "tools": "bun run tools/app.ts",
     "langfuse": "bun run langfuse/app.ts",
     "tiktokenizer": "bun run tiktokenizer/app.ts",
     "sync": "bun run sync/app.ts",
