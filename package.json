@@ -11,6 +11,7 @@
     "tsx": "^4.19.1"
   },
   "scripts": {
+    "agent": "bun run agent/app.ts",
     "advanced_web_search": "bun advanced_web_search/app.ts",
     "chain": "bun run chain/app.ts",
     "docs": "bun run docs/app.ts",
@@ -18,6 +19,7 @@
     "sdk": "bun run sdk/app.ts",
     "todo": "bun run todo/app.ts",
     "streaming": "bun run streaming/app.ts",
+    "events": "bun run events/app.ts",
     "context": "bun run context/app.ts",
     "loader": "bun run loader/app.ts",
     "neo4j-101": "bun run neo4j-101/app.ts",
