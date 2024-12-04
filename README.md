@@ -25,7 +25,7 @@ Upewnij się, że posiadasz najnowsze wersje Node.js oraz Bun zainstalowane na s
    ```bash
    bun install
    ```
-3. Skopiuj plik `.env.example` do `.env` i wypełnij go kluczami API (na początek wystarczy klucz OpenAI).
+3. Skopiuj plik `.env-example` do `.env` i wypełnij go kluczami API (na początek wystarczy klucz OpenAI).
 
 4. Uruchom dostępne przykłady z pliku `package.json`, według poniższej instrukcji.
 
