@@ -1,0 +1,9 @@
+# Ignoruj wszystko
+*
+# Ale nie ignoruj tych katalogów
+!rate/
+!rate/**/
+# I nie ignoruj plików C#
+!*.cs
+!*.csproj
+!*.sln
