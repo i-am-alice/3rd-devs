@@ -16,7 +16,7 @@ async function processAllDocuments() {
       fileService.process('examples/example.xlsx'),
       fileService.process('examples/example.wav'),
       fileService.process('examples/example.png'),
-      fileService.process('examples/example.mp4'), 
+      // fileService.process('examples/example.mp4'), // You can process audio files too, but examples are not yet available
 
       // notion 
 
