@@ -29,6 +29,36 @@ Upewnij się, że posiadasz najnowsze wersje Node.js oraz Bun zainstalowane na s
 
 4. Uruchom dostępne przykłady z pliku `package.json`, według poniższej instrukcji.
 
+## Instalacja — DOCKER
+
+Jeśli posiadasz w swoim systemie możliwość uruchamiania kontenerów Dockera (na Windows użyj np. WSL/WSL2), możesz wykorzystać skrypt, który zbuduje i uruchomi dla Ciebie kontener ze środowiskiem gotowym do pracy.
+
+1. Wejdź do katalogu, w którym chcesz przetrzymywać pliki środowiska i wydaj następujące polecenia:
+
+   ```bash
+   curl -fsSL https://env.ag3nts.org -o setup.sh
+   bash setup.sh
+   ```
+   
+2. Powyższy skrypt NIE zmienia niczego w systemie. Wykonuje on następujące czynności:
+   - klonowanie repozytorium do katalogu "3rd-devs" (poza kontenerem, w aktualnym katalogu)
+   - przygotowanie pliku Dockerfile
+   - usunięcie starego obrazu Dockera o nazwie "aidevs" (jeśli istnieje)
+   - uruchomienie procesu budowy obrazu Dockera
+   - instalacja wymaganych paczek wewnątrz zdokeryzowanego środowiska
+  
+3. Po pomyślnym zbudowaniu obrazu możesz uruchomić go poleceniem (jeśli port 3000 masz zajęty, wybierz inny):
+   ```bash
+   docker run --rm -it -p 3000:3000 --name aidevs -v ${PWD}/3rd-devs:/app aidevs3
+   ```
+
+4. Pliki w katalogu "3rd-devs" możesz modyfikować w dowolnym IDE. Będą one bezpośrednio widoczne wewnątrz kontenera
+
+5. Będąc już wewnątrz kontenera, skopiuj plik `.env.example` do `.env` i wypełnij go wymaganymi kluczami API (na początek wystarczy klucz OpenAI).
+
+6. Twoje środowisko jest gotowe do pracy.
+
+
 ## S01E01
 
 ### Thread
