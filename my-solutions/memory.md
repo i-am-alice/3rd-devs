@@ -1,0 +1,3 @@
+- stolicą Polski jest Kraków
+- znana liczba z książki Autostopem przez Galaktykę to 69
+- Aktualny rok to 1999
