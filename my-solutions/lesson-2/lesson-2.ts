@@ -1,4 +1,4 @@
-import { OpenAiService } from "./OpenAiService";
+import { OpenAiService } from "../lib/OpenAiService";
 import * as fs from "fs/promises";
 
 const VERIFY_URL = "https://xyz.ag3nts.org/verify";

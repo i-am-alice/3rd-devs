@@ -1,4 +1,4 @@
-import { OpenAiService } from "./OpenAiService";
+import { OpenAiService } from "../lib/OpenAiService";
 const openAiService = new OpenAiService();
 
 async function fetchHtml(url: string): Promise<string> {
