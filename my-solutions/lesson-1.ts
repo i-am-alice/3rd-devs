@@ -1,8 +1,4 @@
 import { OpenAiService } from "./OpenAiService";
-import dotenv from "dotenv";
-
-dotenv.config();
-
 const openAiService = new OpenAiService();
 
 async function fetchHtml(url: string): Promise<string> {
@@ -33,7 +29,7 @@ export async function main() {
         const question = extractHumanQuestion(html);
         if (!question) throw new Error('No <p id="human-question"> found.');
         console.log('Extracted question:', question);
-        const answer = await openAiService.askGpt41Nano(question);
+        const answer = await openAiService.askGpt41Nano('You are a helpful assistant. Respond with just a short and concise answer. Don`t add any additional text or explanation.', question);
         console.log('Generated answer:', answer);
         const postResult = await postAnswer(answer);
         console.log('All steps completed. Server response:', postResult);
