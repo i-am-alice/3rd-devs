@@ -18,6 +18,10 @@ const openaiService = new OpenAIService();
 const memoryService = new MemoryService('memory/memories', openaiService, langfuseService);
 const assistantService = new AssistantService(openaiService, memoryService, langfuseService);
 
+app.get('/', (req, res) => {
+    res.send('AGI is here.');
+});
+
 app.post('/api/chat', async (req, res) => {
   let { messages, conversation_id = uuidv4() } = req.body;
 
