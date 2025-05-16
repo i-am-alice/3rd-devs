@@ -1,0 +1,19 @@
+{
+  "name": "3rd-devs-lessons",
+  "version": "1.0.0",
+  "description": "Lessons for 3rd-devs",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "start:lesson5": "ts-node my-solutions/lesson-5/lesson-5.ts"
+  },
+  "dependencies": {
+    "node-fetch": "^2.6.7"
+  },
+  "devDependencies": {
+    "@types/node": "^18.11.18",
+    "@types/node-fetch": "^2.6.2",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.9.4"
+  }
+}
