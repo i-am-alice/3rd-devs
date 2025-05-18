@@ -17,7 +17,7 @@ async function getAnswerFromGPT(question: string): Promise<string> {
             messages: [
                 {
                     role: "system",
-                    content: "You are a helpful assistant. Answer the question concisely and accurately."
+                    content: "Answer the questions with shortest possible answer."
                 },
                 {
                     role: "user",
@@ -55,6 +55,11 @@ async function scrapeSecurityQuestion(): Promise<string | null> {
     }
 }
 
+function extractFlag(content: string): string | null {
+    const flagMatch = content.match(/{{FLG:([^}]+)}}/);
+    return flagMatch ? flagMatch[1] : null;
+}
+
 async function loginAndAccessSecretPage() {
     try {
         // Get the security question
@@ -81,11 +86,19 @@ async function loginAndAccessSecretPage() {
             }
         });
 
-        console.log('Login response:', loginResponse.data);
+        // Check if login was successful and show response
+        if (loginResponse.status === 200) {
+            console.log('Login successful');
+            const flag = extractFlag(loginResponse.data);
+            if (flag) {
+                console.log('Found flag:', flag);
+            } else {
+                console.log('No flag found in response');
+            }
+        } else {
+            console.log('Login failed with status:', loginResponse.status);
+        }
 
-        // If login was successful, the response should contain the secret page URL
-        // You might need to extract the URL from the response depending on the format
-        // For now, we'll just log the response
         return loginResponse.data;
     } catch (error) {
         console.error('Error during login process:', error);
