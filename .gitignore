@@ -5,3 +5,8 @@ evaluation_basics/.env
 node_modules/
 **/*.db
 .vscode/
+bun.lockb
+package-lock.json
+bun.lockb
+package-lock.json
+bun.lockb

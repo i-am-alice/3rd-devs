@@ -1,0 +1,15 @@
+{
+  "name": "poligon",
+  "version": "1.0.0",
+  "description": "",
+  "main": "S01E01.ts",
+  "scripts": {
+    "start": "ts-node S01E01.ts"
+  },
+  "dependencies": {
+    "@mendable/firecrawl-js": "^1.0.0",
+    "dotenv": "^16.0.3",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.0"
+  }
+} 
