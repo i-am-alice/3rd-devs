@@ -26,7 +26,7 @@ app.post('/api/chat', async (req, res) => {
   let { messages, conversation_id = uuidv4() } = req.body;
 
   messages = messages.filter((msg: ChatCompletionMessageParam) => msg.role !== 'system');
-  const trace = langfuseService.createTrace({ id: uuidv4(), name: (messages.at(-1)?.content || '').slice(0, 45), sessionId: conversation_id });
+  const trace = langfuseService.createTrace({ id: uuidv4(), name: (messages.at(-1)?.content?.toString() || '').slice(0, 45), sessionId: conversation_id });
 
   try {
     const queries = await assistantService.extractQueries(messages, trace);
