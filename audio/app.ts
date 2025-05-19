@@ -38,7 +38,7 @@ app.post('/api/transcribe', upload.single('file'), async (req, res) => {
     }
     try {
         // Pass the file buffer to the transcription service
-        const transcription = await openaiService.transcribeGroq(audioFile.buffer);
+        const transcription = await openaiService.transcribe(audioFile.buffer);
         return res.json({ transcription });
     } catch (error) {
         console.error('Transcription error:', error);
