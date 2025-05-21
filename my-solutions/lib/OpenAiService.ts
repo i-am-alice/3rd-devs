@@ -90,4 +90,37 @@ export class OpenAiService {
 
     return results;
   }
+
+  /**
+   * Generate an image using OpenAI's DALL-E model.
+   * @param prompt - The text description to generate an image from
+   * @param model - The DALL-E model to use (default: "dall-e-3")
+   * @param size - Image size (default: "1024x1024")
+   * @param quality - Image quality (default: "standard")
+   * @param n - Number of images to generate (default: 1)
+   * @returns The URL to the generated image
+   */
+  async generateImage(
+    prompt: string,
+    model: string = "dall-e-3",
+    size: "1024x1024" | "1792x1024" | "1024x1792" | "1536x1024" | "1024x1536" = "1024x1024",
+    quality: "standard" | "hd" = "standard",
+    n: number = 1
+  ): Promise<string> {
+    try {
+      const response = await this.openai.images.generate({
+        model,
+        prompt,
+        n,
+        size,
+        quality,
+      });
+
+      // Return the URL of the first generated image
+      return response.data?.[0]?.url || "";
+    } catch (error) {
+      console.error("Error generating image:", error);
+      throw error;
+    }
+  }
 }
