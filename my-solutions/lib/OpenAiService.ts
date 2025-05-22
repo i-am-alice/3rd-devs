@@ -32,6 +32,45 @@ export class OpenAiService {
     return res.choices?.[0]?.message?.content?.trim() || '';
   }
 
+  async askGptO4Mini(systemPrompt: string, question: string, maxTokens: number = 256, imageBuffer?: Buffer, imageFormat: string = 'jpeg'): Promise<string> {
+    // Prepare the API request
+    const requestBody: any = {
+      model: 'gpt-4o-mini',
+      max_tokens: maxTokens,
+      messages: [
+        { role: 'system', content: systemPrompt }
+      ]
+    };
+
+    // Add user message with or without image
+    if (imageBuffer) {
+      // For multimodal input (text + image)
+      requestBody.messages.push({
+        role: 'user',
+        content: [
+          { type: 'text', text: question },
+          {
+            type: 'image_url',
+            image_url: {
+              url: `data:image/${imageFormat};base64,${imageBuffer.toString('base64')}`
+            }
+          }
+        ]
+      });
+    } else {
+      // For text-only input
+      requestBody.messages.push({
+        role: 'user',
+        content: question
+      });
+    }
+
+    // Make the API call with type assertion
+    const res = await this.openai.chat.completions.create(requestBody);
+
+    return res.choices?.[0]?.message?.content?.trim() || '';
+  }
+
   /**
    * Transcribe audio files using OpenAI's Whisper API.
    * @param inputDir - Directory containing audio files to transcribe (default: "przesluchania")
