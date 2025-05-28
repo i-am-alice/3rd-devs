@@ -6,10 +6,12 @@
     "zachodnia część",
     "teren",
     "anomalia",
-    "odchylenie",
+    "odchylenia",
     "norma",
-    "sektor bezpieczny",
+    "sektor",
+    "bezpieczeństwo",
     "kanały komunikacyjne",
-    "czystość"
-  ]
+    "punkt"
+  ],
+  "sourceFile": "2024-11-12_report-04-sektor_B2.txt"
 }

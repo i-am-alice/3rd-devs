@@ -2,7 +2,8 @@
   "content": "Godzina 00:11. Czujniki dźwięku wykryły ultradźwiękowy sygnał, pochodzenie: nadajnik ukryty w zielonych krzakach, nieopodal lasu. Przeprowadzono analizę obiektu. Analiza odcisków palców wskazuje osobę o imieniu Barbara Zawadzka, skorelowano z bazą urodzeń. Nadajnik przekazany do działu śledczego. Obszar zabezpieczony, patrol zakończony bez dalszych incydentów.\n",
   "keywords": [
     "czujniki dźwięku",
-    "ultradźwięk",
+    "ultradźwięki",
+    "sygnał",
     "nadajnik",
     "ukryty",
     "krzaki",
@@ -11,9 +12,10 @@
     "odciski palców",
     "Barbara Zawadzka",
     "baza urodzeń",
-    "śledztwo",
-    "zabezpieczenie",
+    "dział śledczy",
+    "obszar zabezpieczony",
     "patrol",
     "incydenty"
-  ]
+  ],
+  "sourceFile": "2024-11-12_report-07-sektor_C4.txt"
 }

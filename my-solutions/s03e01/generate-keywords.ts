@@ -34,7 +34,8 @@ async function processFile(openAi: OpenAiService, inputFile: string, outputDir: 
     const keywords = await generateKeywordsPolish(openAi, content);
     const output = {
         content,
-        keywords
+        keywords,
+        sourceFile: path.basename(inputFile)
     };
     const baseName = path.basename(inputFile, '.txt');
     const outputFile = path.join(outputDir, baseName + '.json');

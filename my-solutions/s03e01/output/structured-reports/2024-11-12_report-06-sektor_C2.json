@@ -2,7 +2,6 @@
   "content": "Godzina 22:50. Sektor północno-zachodni spokojny, stan obszaru stabilny. Skanery temperatury i ruchu wskazują brak wykrycia. Jednostka w pełni operacyjna, powracam do dalszego patrolu.",
   "keywords": [
     "godzina",
-    "22:50",
     "sektor",
     "północno-zachodni",
     "spokojny",
@@ -12,9 +11,11 @@
     "skanery",
     "temperatura",
     "ruch",
-    "brak wykrycia",
+    "brak",
+    "wykrycie",
     "jednostka",
     "operacyjna",
     "patrol"
-  ]
+  ],
+  "sourceFile": "2024-11-12_report-06-sektor_C2.txt"
 }

@@ -1,14 +1,16 @@
 {
   "content": "Godzina 01:30. Przebieg patroli nocnych na poziomie ściśle monitorowanym. Czujniki pozostają aktywne, a wytyczne dotyczące wykrywania życia organicznego – bez rezultatów. Stan patrolu bez zakłóceń.",
   "keywords": [
-    "godzina 01:30",
-    "przebieg patroli nocnych",
-    "monitorowanie",
+    "godzina",
+    "01:30",
+    "patroli nocnych",
+    "monitorowany",
     "czujniki",
-    "aktywność",
-    "wykrywanie życia organicznego",
-    "rezultaty",
+    "wykrywanie życia",
+    "organicznego",
+    "bez rezultatów",
     "stan patrolu",
     "zakłócenia"
-  ]
+  ],
+  "sourceFile": "2024-11-12_report-03-sektor_A3.txt"
 }
