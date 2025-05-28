@@ -1,17 +1,13 @@
 {
   "content": "Godzina 23:45. Patroluje zachodnią część terenu; brak anomalii ani odchyleń od normy. Sektor bezpieczny, wszystkie kanały komunikacyjne czyste. Przechodzę do następnego punktu.",
   "keywords": [
-    "godzina",
+    "sektor B2",
     "patrol",
-    "zachodnia część",
-    "teren",
-    "anomalia",
-    "odchylenia",
-    "norma",
-    "sektor",
+    "zachodnia część terenu",
+    "brak anomalii",
+    "brak odchyleń",
     "bezpieczeństwo",
-    "kanały komunikacyjne",
-    "punkt"
+    "kanały komunikacyjne"
   ],
   "sourceFile": "2024-11-12_report-04-sektor_B2.txt"
 }

@@ -1,14 +1,15 @@
 {
   "content": "Godzina 01:00. Monitoring obszaru patrolowego: całkowity brak ruchu. Względna cisza, czujniki nie wykazały aktywności. Kontynuuję obserwację terenu według wyznaczonych wytycznych.",
   "keywords": [
+    "sektor A1",
     "monitoring",
-    "obszar patrolowy",
+    "godzina 01:00",
+    "patrol",
     "brak ruchu",
     "cisza",
     "czujniki",
-    "brak aktywności",
+    "aktywność",
     "obserwacja",
-    "teren",
     "wytyczne"
   ],
   "sourceFile": "2024-11-12_report-08-sektor_A1.txt"

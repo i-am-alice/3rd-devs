@@ -33,15 +33,33 @@ function findRelatedKeywords(baseKeywords: string[], files: Array<{ file: string
     return Array.from(relatedKeywords);
 }
 
-function main() {
+async function main() {
     const reports = readJsonFiles(REPORTS_DIR);
     const allFiles = getAllFilesWithKeywords();
+    const answer: Record<string, string> = {};
+
     for (const { file, data } of reports) {
         if (!Array.isArray(data.keywords)) continue;
         const related = findRelatedKeywords(data.keywords, allFiles);
-        console.log(`File: ${data.sourceFile}`);
-        console.log('Combined Keywords:', related.join(', '));
-        console.log('---');
+        answer[data.sourceFile] = related.join(',');
+    }
+    if (Object.keys(answer).length > 0) {
+        const payload = {
+            answer,
+            apikey: "7bc70191-381b-4d32-bab4-ae2cdbc6c2bc",
+            task: "dokumenty"
+        };
+        try {
+            const resp = await fetch('https://centrala.ag3nts.org/report', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+            const result = await resp.text();
+            console.log('Report sent. Response:', result);
+        } catch (e) {
+            console.error('Failed to send report:', e);
+        }
     }
 }
 

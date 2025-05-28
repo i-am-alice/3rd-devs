@@ -1,15 +1,11 @@
 {
   "content": "Godzina 03:45. Patrol na peryferiach zachodnich zakończony. Czujniki nie wykazały żadnych niepokojących sygnałów. Obszar bez anomalii, kończę bieżący cykl i przechodzę do kolejnego sektora.",
   "keywords": [
-    "godzina",
+    "sektor C2",
     "patrol",
-    "peryferie",
-    "zachodnie",
     "czujniki",
-    "niepokojące sygnały",
-    "anomalia",
-    "cykl",
-    "sektor"
+    "sygnały",
+    "anomalia"
   ],
   "sourceFile": "2024-11-12_report-09-sektor_C2.txt"
 }

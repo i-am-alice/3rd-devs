@@ -23,15 +23,19 @@ async function readFileContent(filePath: string): Promise<string> {
     return fs.readFileSync(filePath, 'utf8');
 }
 
-async function generateKeywordsPolish(openAi: OpenAiService, content: string): Promise<string[]> {
-    const systemPrompt = 'Jesteś asystentem AI. Twoim zadaniem jest wygenerować listę najważniejszych słów kluczowych z podanego tekstu. Odpowiadaj tylko listą słów kluczowych w języku polskim, oddzielonych przecinkami.';
+async function generateKeywordsPolish(openAi: OpenAiService, content: string, filename: string): Promise<string[]> {
+    const systemPrompt = 'Jesteś asystentem AI. Twoim zadaniem jest wygenerować wyczerpującą listę słów kluczowych z podanego tekstu, zawierającą przede wszystkim nazwy własne. Odpowiadaj tylko listą słów kluczowych w języku polskim, oddzielonych przecinkami.\n Jednym z elementów tablicy powinno być oznaczenie sektoru, którego dotyczy raport, uzyskany na podstawie nazwy pliku. \n' +
+        'Przykład: \n' +
+        '2024-11-12_report-07-sektor_C4.txt \n' +
+        'Odpowiedź: sektor C4, ...reszta tagów \n' +
+        `Nazwa pliku do wzięcia pod uwagę: ${filename} \n`;
     const keywordsRaw = await openAi.askGpt41Nano(systemPrompt, content, 500);
     return keywordsRaw.split(',').map(k => k.trim()).filter(Boolean);
 }
 
 async function processFile(openAi: OpenAiService, inputFile: string, outputDir: string) {
     const content = await readFileContent(inputFile);
-    const keywords = await generateKeywordsPolish(openAi, content);
+    const keywords = await generateKeywordsPolish(openAi, content, path.basename(inputFile));
     const output = {
         content,
         keywords,

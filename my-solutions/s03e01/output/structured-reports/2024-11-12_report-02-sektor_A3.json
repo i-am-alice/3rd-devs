@@ -1,16 +1,14 @@
 {
   "content": "Godzina 02:15. Obszar patrolu nocnego cichy, bez wykrycia aktywności organicznej ani mechanicznej. Prowadzony monitoring peryferii obiektu. Kontynuacja zadań.",
   "keywords": [
-    "godzina",
-    "patrol nocny",
-    "cicho",
-    "brak aktywności",
-    "organiczna",
-    "mechaniczna",
+    "sektor A3",
     "monitoring",
+    "patrol nocny",
+    "aktywność organiczna",
+    "aktywność mechaniczna",
+    "obszar",
     "peryferie",
-    "obiekt",
-    "kontynuacja zadań"
+    "obiekt"
   ],
   "sourceFile": "2024-11-12_report-02-sektor_A3.txt"
 }

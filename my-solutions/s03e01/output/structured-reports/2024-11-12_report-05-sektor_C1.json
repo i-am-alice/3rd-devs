@@ -1,16 +1,13 @@
 {
   "content": "Godzina 04:02. Bez wykrycia aktywności organicznej lub technologicznej. Sensor dźwiękowy i detektory ruchu w pełnej gotowości. Bez niepokojących sygnałów w trakcie patrolu. Kontynuuję monitorowanie.",
   "keywords": [
-    "godzina",
-    "wykrycie",
-    "aktywność organiczna",
-    "aktywność technologiczna",
+    "sektor C1",
     "sensor dźwiękowy",
     "detektory ruchu",
-    "pełna gotowość",
-    "niepokojące sygnały",
+    "monitorowanie",
     "patrol",
-    "monitorowanie"
+    "brak aktywności",
+    "brak sygnałów"
   ],
   "sourceFile": "2024-11-12_report-05-sektor_C1.txt"
 }
