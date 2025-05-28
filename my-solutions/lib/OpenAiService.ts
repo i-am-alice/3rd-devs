@@ -32,7 +32,7 @@ export class OpenAiService {
     return res.choices?.[0]?.message?.content?.trim() || '';
   }
 
-  async askGptO4Mini(systemPrompt: string, question: string, maxTokens: number = 256, imageBuffer?: Buffer, imageFormat: string = 'jpeg'): Promise<string> {
+  async askGptO4Mini(systemPrompt: string, question?: string, maxTokens?: number, imageBuffer?: Buffer, imageFormat: string = 'jpeg'): Promise<string> {
     // Prepare the API request
     const requestBody: any = {
       model: 'gpt-4o-mini',
@@ -57,7 +57,7 @@ export class OpenAiService {
           }
         ]
       });
-    } else {
+    } else if (question) {
       // For text-only input
       requestBody.messages.push({
         role: 'user',
