@@ -20,7 +20,7 @@ export class OpenAiService {
   /**
    * Ask a question using the gpt-4.1-nano model. Returns a short and concise answer.
    */
-  async askGpt41Nano(systemPrompt: string, question: string, maxTokens: number = 256): Promise<string> {
+  async askGpt41Nano(systemPrompt: string, question: string, maxTokens?: number): Promise<string> {
     const res = await this.openai.chat.completions.create({
       model: 'gpt-4.1-nano',
       messages: [

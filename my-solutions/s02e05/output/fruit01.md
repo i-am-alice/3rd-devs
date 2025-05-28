@@ -1,0 +1,5 @@
+Na obrazie widoczna jest truskawka umieszczona na gładkiej, błyszczącej powierzchni, prawdopodobnie stalowej. Obraz utrzymany jest w monochromatycznej tonacji, co nadaje mu elegancki, minimalistyczny charakter. 
+
+Truskawka zajmuje centralną pozycję w kadrze. Jej kształt jest charakterystyczny dla tego owocu: pełny, okrągły na dole i zwężający się ku górze. Powierzchnia truskawki pokryta jest drobnymi, wypukłymi punktami, które są charakterystycznymi dla owocu pestkami. Na górze widoczne są zielone liście, które dodają kontrastu do czerwonego koloru truskawki. Liście są lekko rozwinięte i mają różne kształty: część z nich jest długa i spiczasta, podczas gdy inne są bardziej zaokrąglone.
+
+Tło obrazu jest rozmyte, co sprawia, że truskawka wydaje się być głównym punktem uwagi. W dalszej części tła zauważyć można niesprecyzowane elementy kuchenne, co sugeruje, że obraz został zrobiony w kuchni lub pomieszczeniu związanym z przygotowywaniem jedzenia. Całość komponuje się w harmonijną całość, podkreślając zarówno estetykę owocu, jak i jego naturalne piękno.
