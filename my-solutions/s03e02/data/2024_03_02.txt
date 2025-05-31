@@ -1,0 +1,5 @@
+Impulsowy Rozsiewacz Energii (IRE)
+
+Urządzenie wykorzystuje zaawansowaną technologię energii kinetycznej do generowania potężnych impulsów energetycznych. W testach przeprowadzonych w kontrolowanych warunkach uzyskano zasięg skuteczny do 500 metrów oraz zdolność do przełamywania standardowych pancerzy wykorzystywanych przez żołnierzy piechoty ludzkiej.
+
+Wnioski z ekspertyzy wskazują na wysoką efektywność IRE w warunkach miejskich oraz podczas walk w otwartym terenie, jednak zauważono również problemy z przegrzewaniem się urządzenia po wielokrotnym użyciu. Roboty planują dalsze prace nad chłodzeniem oraz zwiększeniem pojemności akumulatorów, co mogłoby wydłużyć czas działania broni bez konieczności przerw na ładowanie.

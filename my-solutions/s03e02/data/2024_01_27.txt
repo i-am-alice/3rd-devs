@@ -1,0 +1,5 @@
+Raport z testów wstępnych dla "Cryo-Katana"
+
+Broń została poddana serii testów mających na celu ocenę jej skuteczności w warunkach zerowych temperatur. Wyniki wykazały, że ostrze z nanomateriałów potrafi schłodzić przeciwnika do -30 stopni Celsjusza w czasie krótszym niż jedna sekunda. Zasięg działania broni wynosi 2 metry. Analiza efektów szokowych wykazała, że ofiara doświadcza nie tylko hipotermii, ale również czasowego paraliżu mięśniowego.
+
+Wnioski z testów wskazują na konieczność dalszego doskonalenia systemu chłodzenia, aby zwiększyć efektywność w trudnych warunkach atmosferycznych. Plany na przyszłość obejmują również rozwój modularności broni, aby mogła być stosowana w różnych konfiguracjach.

@@ -9,6 +9,18 @@ type AskGpt41NanoOptions = {
 };
 
 export class OpenAiService {
+  async getEmbedding(text: string, model: string = 'text-embedding-ada-002'): Promise<number[]> {
+    try {
+      const response = await this.openai.embeddings.create({
+        model,
+        input: text
+      });
+      return response.data?.[0]?.embedding || [];
+    } catch (error) {
+      console.error('Error getting embedding:', error);
+      throw error;
+    }
+  }
   private openai: OpenAI;
 
   constructor(options?: AskGpt41NanoOptions) {

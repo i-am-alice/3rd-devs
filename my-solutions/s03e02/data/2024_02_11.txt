@@ -1,0 +1,5 @@
+Plazmowy miotacz impulsowy (PMI) - nowa broń w testach
+
+Wyniki testów wykazały wysoką efektywność w niszczeniu obiektów mechanicznych, ale ograniczoną skuteczność w przypadku celu biologicznego. Ostateczne pomiary wykazały jednak, że czas ładowania urządzenia jest zbyt długi, co sprawia, że w sytuacjach bojowych, urządzenie może być podatne na kontratak.
+
+Roboty badawcze zalecają dalszą pracę nad skróceniem czasu ładowania oraz zwiększeniem mobilności broni. Istnieje również potrzeba przetestowania nowej wersji PMI z dodatkowymi modułami, które mogłyby zwiększyć jego zasięg oraz precyzję. Plany na przyszłość obejmują także badania nad możliwością zdalnego sterowania bronią, co mogłoby znacznie zwiększyć jej użyteczność na polu bitwy.

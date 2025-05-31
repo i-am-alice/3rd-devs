@@ -1,0 +1,7 @@
+Plazmowy Granatnik Ostateczności (PGO).
+
+W testach wykazano, że granatnik ma zdolność wystrzeliwania granatów wypełnionych plazmą, która po kontakcie z celem generuje efekt eksplozji o wysokiej temperaturze, zdolnej do przetopienia metalu i zniszczenia osłon. 
+
+Uzyskane wyniki wskazują na wysoką skuteczność, jednakże problemem okazuje się nadmierne nagrzewanie się jednostki po kilku strzałach, co ogranicza tempo ognia. Wnioski z testów sugerują konieczność zastosowania lepszych systemów chłodzenia oraz zmiany konstrukcji granatów w celu zwiększenia ich wytrzymałości.
+
+Na przyszłość roboty planują przeprowadzenie dalszych testów na temat zastosowania różnych materiałów dla obudowy granatnika oraz eksperymenty z alternatywnymi źródłami energii, aby poprawić wydajność broni. Celem jest również rozwinięcie opcji współpracy z innymi jednostkami w celu stworzenia zintegrowanego systemu wsparcia w walce.

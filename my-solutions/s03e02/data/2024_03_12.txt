@@ -1,0 +1,7 @@
+Impulsowy generator fal elektromagnetycznych (IGFE)
+
+Wyniki testów wykazały, że IGFE jest zdolny do zakłócania systemów elektronicznych na odległość do 500 metrów, uzyskując przy tym 90% skuteczności. W trakcie prób zidentyfikowano jednak problem z zasięgiem, ponieważ w trudnych warunkach atmosferycznych efektywność broni spadła o 30%, co może wpłynąć na jej zastosowanie w terenie.
+
+Wnioski wskazują na potrzebę dalszej optymalizacji skuteczności IGFE, w szczególności w zmiennych warunkach pogodowych oraz rozwoju technologii ochrony przed zakłóceniami dla sojuszniczych jednostek. 
+
+Plany na przyszłość obejmują przetestowanie różnych metalowych osłon dla urządzenia, które mogłyby poprawić jego stabilność i wydajność energetyczną, a także badania nad możliwościami zastosowania IGFE w połączeniu z systemami dronów.

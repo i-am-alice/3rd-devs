@@ -1,0 +1,8 @@
+Przeprowadzono badania nad bronią "Mikroskalowy Wyzwalacz Plazmowy" (MWP).
+Testy wykazały, że MWP jest zdolny do generowania plazmy o temperaturze przekraczającej 10000 stopni Celsjusza, co pozwala na skuteczne przekształcanie celu w popiół w zaledwie kilka sekund. 
+
+Wyniki doświadczeń wskazują na wysoką nieskuteczność broni na dystansie większym niż 500 metrów ze względu na rozprzestrzenianie się plazmy oraz niestabilność ładunku wybuchowego. 
+
+Konieczne jest opracowanie systemu stabilizacji dla niskoprofilowych celów oraz wzmacnianie osłony energetycznej, by broń tak często nie uszkadzała się podczas eksplozji.
+
+Roboty badawcze planują również stworzenie prototypu zmechanizowanego ładunku, który umożliwiłby dokładniejsze celowanie oraz dostosowanie parametrów plazmy do konkretnych warunków terenowych.

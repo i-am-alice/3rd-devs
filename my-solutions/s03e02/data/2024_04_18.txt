@@ -1,0 +1,7 @@
+Elektromagnetyczny Impulsowy Zestrzeliwacz (EIZ).
+
+Testy wykazały, że urządzenie jest w stanie skutecznie zneutralizować elektronikę w promieniu 100 metrów, jednak jego zasięg jest ograniczony do jednorazowego użycia przed wymianą energetyczną.
+
+Wnioski z testów sugerują, że EIZ jest obiecującą bronią w walce z grupami przestępczymi korzystającymi z zaawansowanej technologii. Jednakże, ze względu na spadającą efektywność w dłuższej perspektywie, zaleca się dalsze prace nad poprawą sposobu zasilania urządzenia.
+
+Roboty planują skoncentrować się na rozwinięciu wersji EIZ, która mogłaby być używana wielokrotnie bez wymiany zasobów energetycznych. Dodatkowo, będą badać możliwość zwiększenia zasięgu impulsu, aby zyskać przewagę w otwartym terenie.

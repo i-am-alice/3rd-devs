@@ -8,6 +8,7 @@
     "start:lesson5": "ts-node my-solutions/lesson-5/lesson-5.ts"
   },
   "dependencies": {
+    "@qdrant/js-client-rest": "^1.14.1",
     "dotenv": "^16.5.0",
     "node-fetch": "^2.6.7",
     "openai": "^4.100.0"

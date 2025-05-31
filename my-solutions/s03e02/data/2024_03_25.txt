@@ -1,0 +1,7 @@
+Plazmowy Karabin Eliminacyjny.
+
+Wyniki testów wykazały, że Plazmowy Karabin Eliminacyjny osiąga znacznie wyższe prędkości pocisku w porównaniu do tradycyjnych broni konwencjonalnych. Podczas symulacji walki, broń ta z powodzeniem przełamała pancerze testowych jednostek, a skuteczność rażenia wyniosła 95% w przypadku celów statycznych oraz 85% w przypadku ruchomych obiektów.
+
+Wnioski z testów wskazują na potrzebę dalszej optymalizacji systemu chłodzenia, aby uniknąć przegrzewania się podczas długotrwałego użytkowania. Ponadto, rozważono wprowadzenie funkcji zwiększającej celność przy szybkich strzałach, co mogłoby zredukować rozrzut pocisków.
+
+Plany na przyszłość obejmują również integrację czujników inteligentnych, zdolnych do analizy otoczenia w czasie rzeczywistym, co pozwoli na dostosowanie mocy wystrzału do różnych warunków. Roboty badawcze zamierzają rozpocząć kolejną fazę testów, koncentrując się na ergonomii i wydajności energetycznej broni.

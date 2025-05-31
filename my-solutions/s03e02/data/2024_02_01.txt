@@ -1,0 +1,7 @@
+Testy użytkowe broni "Zimowy Zgniatacz"
+
+Po przeprowadzeniu szeregu testów, Zimowy Zgniatacz wykazał zdolność do generowania ekstremalnie niskich temperatur, co umożliwia zamrażanie cel w promieniu dziesięciu metrów w zaledwie kilka sekund. Testy wykazały również, że broń ta działa na zasadzie emitowania skoncentrowanego impulsu niskotemperaturowego, skutkując spowolnieniem ruchów przeciwników oraz osłabieniem ich zdolności bojowych.
+
+Wnioski z testów sugerują, że pomimo ich potencjalnej efektywności, Zimowy Zgniatacz ma swoje ograniczenia, takie jak krótki zasięg oraz konieczność ładowania po każdym użyciu. Dodatkowo, wykazano, że niskie temperatury mogą wpływać także na sojuszników, co stwarza ryzyko przypadkowego zamrożenia własnych żołnierzy.
+
+W przyszłości planuje się opracowanie systemu zabezpieczeń, który pozwoli na zdalne uruchamianie broni oraz ograniczy kontakt z sojusznikami w trakcie jej użycia. Roboty badawcze zamierzają także przeprowadzić dalsze testy w różnych warunkach atmosferycznych, aby zoptymalizować działanie Zimowego Zgniatacza w różnorodnych środowiskach.

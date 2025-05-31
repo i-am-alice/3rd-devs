@@ -1,0 +1,5 @@
+Przeprowadzono testy broni "Irradiator XR-25".
+
+W wyniku testów stwierdzono, że emitowane promieniowanie jonizujące skutecznie neutralizuje materiały organiczne w promieniu 50 metrów. Zebrane dane wykazały, że efektywność broni znacznie wzrasta w warunkach wysokiej wilgotności, co zwiększa jej zastosowanie w zniszczonych ekosystemach.
+
+Wnioski z testów sugerują konieczność modyfikacji systemu chłodzenia, aby zapobiec przegrzewaniu się urządzenia w dłuższej eksploatacji (może to doprowadzić do wybuchu!). Plany na przyszłość obejmują stworzenie prototypu z udoskonaloną wersją rozpylacza jonów, która zminimalizuje efekty uboczne dla otoczenia.

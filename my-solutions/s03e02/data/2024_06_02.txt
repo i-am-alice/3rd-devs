@@ -1,0 +1,7 @@
+Mikrofalowy Pojmator - broń przeciwko dronom
+
+Zbadano broń o nazwie "Mikrofalowy Pojmator", która wykorzystuje wysokoczęstotliwozne fale elektromagnetyczne do paraliżowania systemów elektronicznych w zasięgu 500 metrów. Testy wykazały, że broń jest skuteczna w neutralizowaniu dronów oraz pojazdów zdalnie sterowanych, ale jej działania mogą zostać zakłócone przez silne źródła zakłóceń radiowych.
+
+Wyniki testów sugerują, że Mikrofalowy Pojmator może być skuteczny w sytuacjach, gdzie wymagana jest eliminacja technologii wroga, jednak potrzebne są dalsze badania nad jego odpornością na zakłócenia. Roboty planują wprowadzenie poprawek do systemu stabilizacji, aby zwiększyć jego niezawodność w trudnych warunkach walki.
+
+W przyszłych testach przewiduje się także możliwość integracji broni z systemami obrony obiektów, co zwiększy jej użyteczność w kontekście ochrony zasobów strategicznych. Roboty zamierzają badać także opcję zmniejszenia rozmiarów urządzenia, co uczyniłoby je bardziej mobilnym i łatwiejszym w transporcie.

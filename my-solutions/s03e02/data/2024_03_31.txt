@@ -1,0 +1,7 @@
+Broń "Dynamo-3"
+
+Badany prototyp broni, to zaawansowany wyrzutnik energetycznych pocisków plazmowych. Testy wykazały, że broń jest zdolna do niszczenia celów w zasięgu do 500 metrów z precyzją wynoszącą 95%. 
+
+Jednakże, zauważono problem z wydajnością zasilania, co skutkowało czasową awarią po dłuższym użytkowaniu. Wnioski sugerują, że konieczne jest przeprojektowanie źródła energii, aby zwiększyć stabilność działania broni. 
+
+Plany na przyszłość obejmują testowanie nowych materiałów do konstrukcji baterii oraz optymalizację algorytmów do zarządzania ciepłem, co potencjalnie zwiększy czas operacyjny broni.

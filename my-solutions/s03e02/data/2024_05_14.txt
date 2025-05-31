@@ -1,0 +1,7 @@
+Nuklearna Strzała - raport z testów.
+
+Testowano zaawansowany system o dużym zasięgu, którego głównym celem jest neutralizacja wrogich struktur za pomocą kontrolowanej reakcji jądrowej. Testy wykazały, że Nuklearna Strzała potrafi precyzyjnie wywołać lokalne eksplozje o ograniczonym promieniu, zarówno eliminując cele, jak i minimalizując szkody w otoczeniu.
+
+Z wyników testów wynika, że system działa z niebywałą skutecznością, ale istnieją obawy co do stabilności i możliwości niezamierzonego wybuchu. Dodatkowo, wykryto, że zasięg broni jest ograniczony przez warunki atmosferyczne, co może wpływać na jej efektywność w terenie.
+
+W związku z tym, roboty planują dalsze badania nad stabilizacją reakcji oraz optymalizacją algorytmu kierowania. Dalsze testy mają na celu zwiększenie zasięgu i dokładności Nuklearnej Strzały, aby uczynić ją skuteczniejszą i bardziej niezawodną w warunkach postapokaliptycznych.
