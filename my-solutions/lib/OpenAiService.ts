@@ -44,15 +44,37 @@ export class OpenAiService {
     return res.choices?.[0]?.message?.content?.trim() || '';
   }
 
-  async askGptO4Mini(systemPrompt: string, question?: string, maxTokens?: number, imageBuffer?: Buffer, imageFormat: string = 'jpeg'): Promise<string> {
+  /**
+ * Ask GPT-4o Mini a question, optionally instructing it to respond in JSON format.
+ * @param systemPrompt - The system prompt for the assistant.
+ * @param question - The user question.
+ * @param maxTokens - Optional max tokens for the response.
+ * @param imageBuffer - Optional image buffer for multimodal input.
+ * @param imageFormat - Image format (default: 'jpeg').
+ * @param responseFormat - If set to 'json', instructs the model to reply with JSON and parses the response as JSON.
+ * @returns The response as a string (default) or parsed JSON object (if responseFormat is 'json').
+ */
+async askGptO4Mini(
+  systemPrompt: string,
+  question?: string,
+  maxTokens?: number,
+  imageBuffer?: Buffer,
+  imageFormat: string = 'jpeg',
+  responseFormat: 'text' | 'json' = 'text'
+): Promise<string | object> {
     // Prepare the API request
-    const requestBody: any = {
-      model: 'gpt-4o-mini',
-      max_tokens: maxTokens,
-      messages: [
-        { role: 'system', content: systemPrompt }
-      ]
-    };
+  let effectiveSystemPrompt = systemPrompt;
+  if (responseFormat === 'json') {
+    effectiveSystemPrompt += '\n\nYou must reply ONLY with valid, minified JSON (no markdown, no explanation, no extra text).';
+  }
+
+  const requestBody: any = {
+    model: 'gpt-4o-mini',
+    max_tokens: maxTokens,
+    messages: [
+      { role: 'system', content: effectiveSystemPrompt }
+    ]
+  };
 
     // Add user message with or without image
     if (imageBuffer) {
@@ -78,10 +100,19 @@ export class OpenAiService {
     }
 
     // Make the API call with type assertion
-    const res = await this.openai.chat.completions.create(requestBody);
+  const res = await this.openai.chat.completions.create(requestBody);
+  const content = res.choices?.[0]?.message?.content?.trim() || '';
 
-    return res.choices?.[0]?.message?.content?.trim() || '';
+  if (responseFormat === 'json') {
+    try {
+      return JSON.parse(content);
+    } catch (err) {
+      throw new Error('Failed to parse model response as JSON: ' + content);
+    }
   }
+
+  return content;
+}
 
   /**
    * Transcribe audio files using OpenAI's Whisper API.
