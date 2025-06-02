@@ -1,0 +1,606 @@
+[
+    {
+        "user1_id": "1",
+        "user2_id": "5"
+    },
+    {
+        "user1_id": "1",
+        "user2_id": "20"
+    },
+    {
+        "user1_id": "1",
+        "user2_id": "54"
+    },
+    {
+        "user1_id": "2",
+        "user2_id": "14"
+    },
+    {
+        "user1_id": "2",
+        "user2_id": "45"
+    },
+    {
+        "user1_id": "3",
+        "user2_id": "6"
+    },
+    {
+        "user1_id": "3",
+        "user2_id": "31"
+    },
+    {
+        "user1_id": "3",
+        "user2_id": "77"
+    },
+    {
+        "user1_id": "4",
+        "user2_id": "2"
+    },
+    {
+        "user1_id": "4",
+        "user2_id": "34"
+    },
+    {
+        "user1_id": "4",
+        "user2_id": "83"
+    },
+    {
+        "user1_id": "6",
+        "user2_id": "95"
+    },
+    {
+        "user1_id": "7",
+        "user2_id": "51"
+    },
+    {
+        "user1_id": "8",
+        "user2_id": "17"
+    },
+    {
+        "user1_id": "8",
+        "user2_id": "20"
+    },
+    {
+        "user1_id": "8",
+        "user2_id": "79"
+    },
+    {
+        "user1_id": "9",
+        "user2_id": "29"
+    },
+    {
+        "user1_id": "11",
+        "user2_id": "21"
+    },
+    {
+        "user1_id": "11",
+        "user2_id": "78"
+    },
+    {
+        "user1_id": "13",
+        "user2_id": "5"
+    },
+    {
+        "user1_id": "13",
+        "user2_id": "24"
+    },
+    {
+        "user1_id": "13",
+        "user2_id": "40"
+    },
+    {
+        "user1_id": "13",
+        "user2_id": "75"
+    },
+    {
+        "user1_id": "13",
+        "user2_id": "76"
+    },
+    {
+        "user1_id": "14",
+        "user2_id": "26"
+    },
+    {
+        "user1_id": "14",
+        "user2_id": "67"
+    },
+    {
+        "user1_id": "17",
+        "user2_id": "21"
+    },
+    {
+        "user1_id": "17",
+        "user2_id": "30"
+    },
+    {
+        "user1_id": "17",
+        "user2_id": "42"
+    },
+    {
+        "user1_id": "18",
+        "user2_id": "83"
+    },
+    {
+        "user1_id": "18",
+        "user2_id": "95"
+    },
+    {
+        "user1_id": "19",
+        "user2_id": "87"
+    },
+    {
+        "user1_id": "20",
+        "user2_id": "40"
+    },
+    {
+        "user1_id": "20",
+        "user2_id": "86"
+    },
+    {
+        "user1_id": "22",
+        "user2_id": "22"
+    },
+    {
+        "user1_id": "22",
+        "user2_id": "28"
+    },
+    {
+        "user1_id": "22",
+        "user2_id": "92"
+    },
+    {
+        "user1_id": "24",
+        "user2_id": "2"
+    },
+    {
+        "user1_id": "25",
+        "user2_id": "15"
+    },
+    {
+        "user1_id": "25",
+        "user2_id": "31"
+    },
+    {
+        "user1_id": "27",
+        "user2_id": "75"
+    },
+    {
+        "user1_id": "28",
+        "user2_id": "3"
+    },
+    {
+        "user1_id": "28",
+        "user2_id": "6"
+    },
+    {
+        "user1_id": "28",
+        "user2_id": "17"
+    },
+    {
+        "user1_id": "28",
+        "user2_id": "83"
+    },
+    {
+        "user1_id": "28",
+        "user2_id": "84"
+    },
+    {
+        "user1_id": "29",
+        "user2_id": "87"
+    },
+    {
+        "user1_id": "31",
+        "user2_id": "3"
+    },
+    {
+        "user1_id": "31",
+        "user2_id": "7"
+    },
+    {
+        "user1_id": "31",
+        "user2_id": "66"
+    },
+    {
+        "user1_id": "32",
+        "user2_id": "97"
+    },
+    {
+        "user1_id": "33",
+        "user2_id": "8"
+    },
+    {
+        "user1_id": "34",
+        "user2_id": "51"
+    },
+    {
+        "user1_id": "34",
+        "user2_id": "63"
+    },
+    {
+        "user1_id": "36",
+        "user2_id": "59"
+    },
+    {
+        "user1_id": "37",
+        "user2_id": "31"
+    },
+    {
+        "user1_id": "37",
+        "user2_id": "68"
+    },
+    {
+        "user1_id": "37",
+        "user2_id": "80"
+    },
+    {
+        "user1_id": "38",
+        "user2_id": "27"
+    },
+    {
+        "user1_id": "38",
+        "user2_id": "78"
+    },
+    {
+        "user1_id": "39",
+        "user2_id": "46"
+    },
+    {
+        "user1_id": "40",
+        "user2_id": "14"
+    },
+    {
+        "user1_id": "40",
+        "user2_id": "39"
+    },
+    {
+        "user1_id": "40",
+        "user2_id": "47"
+    },
+    {
+        "user1_id": "40",
+        "user2_id": "52"
+    },
+    {
+        "user1_id": "40",
+        "user2_id": "80"
+    },
+    {
+        "user1_id": "40",
+        "user2_id": "82"
+    },
+    {
+        "user1_id": "41",
+        "user2_id": "75"
+    },
+    {
+        "user1_id": "42",
+        "user2_id": "11"
+    },
+    {
+        "user1_id": "42",
+        "user2_id": "20"
+    },
+    {
+        "user1_id": "42",
+        "user2_id": "30"
+    },
+    {
+        "user1_id": "42",
+        "user2_id": "72"
+    },
+    {
+        "user1_id": "43",
+        "user2_id": "92"
+    },
+    {
+        "user1_id": "44",
+        "user2_id": "6"
+    },
+    {
+        "user1_id": "44",
+        "user2_id": "95"
+    },
+    {
+        "user1_id": "45",
+        "user2_id": "18"
+    },
+    {
+        "user1_id": "45",
+        "user2_id": "54"
+    },
+    {
+        "user1_id": "45",
+        "user2_id": "62"
+    },
+    {
+        "user1_id": "46",
+        "user2_id": "36"
+    },
+    {
+        "user1_id": "47",
+        "user2_id": "95"
+    },
+    {
+        "user1_id": "48",
+        "user2_id": "52"
+    },
+    {
+        "user1_id": "49",
+        "user2_id": "16"
+    },
+    {
+        "user1_id": "49",
+        "user2_id": "18"
+    },
+    {
+        "user1_id": "49",
+        "user2_id": "65"
+    },
+    {
+        "user1_id": "50",
+        "user2_id": "34"
+    },
+    {
+        "user1_id": "51",
+        "user2_id": "9"
+    },
+    {
+        "user1_id": "51",
+        "user2_id": "53"
+    },
+    {
+        "user1_id": "51",
+        "user2_id": "70"
+    },
+    {
+        "user1_id": "52",
+        "user2_id": "63"
+    },
+    {
+        "user1_id": "54",
+        "user2_id": "20"
+    },
+    {
+        "user1_id": "56",
+        "user2_id": "19"
+    },
+    {
+        "user1_id": "56",
+        "user2_id": "21"
+    },
+    {
+        "user1_id": "57",
+        "user2_id": "43"
+    },
+    {
+        "user1_id": "57",
+        "user2_id": "62"
+    },
+    {
+        "user1_id": "58",
+        "user2_id": "15"
+    },
+    {
+        "user1_id": "59",
+        "user2_id": "25"
+    },
+    {
+        "user1_id": "59",
+        "user2_id": "37"
+    },
+    {
+        "user1_id": "59",
+        "user2_id": "70"
+    },
+    {
+        "user1_id": "60",
+        "user2_id": "5"
+    },
+    {
+        "user1_id": "62",
+        "user2_id": "54"
+    },
+    {
+        "user1_id": "63",
+        "user2_id": "29"
+    },
+    {
+        "user1_id": "63",
+        "user2_id": "80"
+    },
+    {
+        "user1_id": "64",
+        "user2_id": "73"
+    },
+    {
+        "user1_id": "65",
+        "user2_id": "89"
+    },
+    {
+        "user1_id": "68",
+        "user2_id": "55"
+    },
+    {
+        "user1_id": "68",
+        "user2_id": "91"
+    },
+    {
+        "user1_id": "71",
+        "user2_id": "3"
+    },
+    {
+        "user1_id": "72",
+        "user2_id": "6"
+    },
+    {
+        "user1_id": "72",
+        "user2_id": "74"
+    },
+    {
+        "user1_id": "72",
+        "user2_id": "84"
+    },
+    {
+        "user1_id": "73",
+        "user2_id": "3"
+    },
+    {
+        "user1_id": "73",
+        "user2_id": "14"
+    },
+    {
+        "user1_id": "75",
+        "user2_id": "8"
+    },
+    {
+        "user1_id": "75",
+        "user2_id": "28"
+    },
+    {
+        "user1_id": "76",
+        "user2_id": "27"
+    },
+    {
+        "user1_id": "76",
+        "user2_id": "28"
+    },
+    {
+        "user1_id": "76",
+        "user2_id": "75"
+    },
+    {
+        "user1_id": "77",
+        "user2_id": "39"
+    },
+    {
+        "user1_id": "77",
+        "user2_id": "73"
+    },
+    {
+        "user1_id": "78",
+        "user2_id": "71"
+    },
+    {
+        "user1_id": "79",
+        "user2_id": "11"
+    },
+    {
+        "user1_id": "79",
+        "user2_id": "62"
+    },
+    {
+        "user1_id": "80",
+        "user2_id": "10"
+    },
+    {
+        "user1_id": "81",
+        "user2_id": "51"
+    },
+    {
+        "user1_id": "82",
+        "user2_id": "26"
+    },
+    {
+        "user1_id": "82",
+        "user2_id": "33"
+    },
+    {
+        "user1_id": "82",
+        "user2_id": "47"
+    },
+    {
+        "user1_id": "83",
+        "user2_id": "2"
+    },
+    {
+        "user1_id": "83",
+        "user2_id": "12"
+    },
+    {
+        "user1_id": "83",
+        "user2_id": "82"
+    },
+    {
+        "user1_id": "84",
+        "user2_id": "18"
+    },
+    {
+        "user1_id": "84",
+        "user2_id": "74"
+    },
+    {
+        "user1_id": "85",
+        "user2_id": "29"
+    },
+    {
+        "user1_id": "86",
+        "user2_id": "93"
+    },
+    {
+        "user1_id": "88",
+        "user2_id": "32"
+    },
+    {
+        "user1_id": "88",
+        "user2_id": "71"
+    },
+    {
+        "user1_id": "89",
+        "user2_id": "85"
+    },
+    {
+        "user1_id": "91",
+        "user2_id": "57"
+    },
+    {
+        "user1_id": "91",
+        "user2_id": "65"
+    },
+    {
+        "user1_id": "91",
+        "user2_id": "82"
+    },
+    {
+        "user1_id": "92",
+        "user2_id": "51"
+    },
+    {
+        "user1_id": "93",
+        "user2_id": "27"
+    },
+    {
+        "user1_id": "93",
+        "user2_id": "56"
+    },
+    {
+        "user1_id": "94",
+        "user2_id": "37"
+    },
+    {
+        "user1_id": "95",
+        "user2_id": "17"
+    },
+    {
+        "user1_id": "95",
+        "user2_id": "21"
+    },
+    {
+        "user1_id": "95",
+        "user2_id": "40"
+    },
+    {
+        "user1_id": "96",
+        "user2_id": "4"
+    },
+    {
+        "user1_id": "96",
+        "user2_id": "85"
+    },
+    {
+        "user1_id": "97",
+        "user2_id": "84"
+    },
+    {
+        "user1_id": "98",
+        "user2_id": "12"
+    }
+]

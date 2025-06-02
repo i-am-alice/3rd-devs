@@ -10,6 +10,7 @@
   "dependencies": {
     "@qdrant/js-client-rest": "^1.14.1",
     "dotenv": "^16.5.0",
+    "neo4j-driver": "^5.28.1",
     "node-fetch": "^2.6.7",
     "openai": "^4.100.0"
   },

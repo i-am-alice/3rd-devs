@@ -17,72 +17,72 @@ const neo4jService = new Neo4jService(
 );
 
 async function main3() {
-    try {
-      // Create vector indexes
-      await neo4jService.createVectorIndex('actor_index', 'Actor', 'embedding', 3072);
-      await neo4jService.createVectorIndex('movie_index', 'Movie', 'embedding', 3072);
-      await neo4jService.waitForIndexToBeOnline('actor_index');
-      await neo4jService.waitForIndexToBeOnline('movie_index');
-      console.log("Vector indexes 'actor_index' and 'movie_index' are online and ready.");
+  try {
+    // Create vector indexes
+    await neo4jService.createVectorIndex('actor_index', 'Actor', 'embedding', 3072);
+    await neo4jService.createVectorIndex('movie_index', 'Movie', 'embedding', 3072);
+    await neo4jService.waitForIndexToBeOnline('actor_index');
+    await neo4jService.waitForIndexToBeOnline('movie_index');
+    console.log("Vector indexes 'actor_index' and 'movie_index' are online and ready.");
 
-      // Create Actor nodes
-      const actors = [
-        { name: 'Keanu Reeves', birthYear: 1964 },
-        { name: 'Carrie-Anne Moss', birthYear: 1967 },
-        { name: 'Laurence Fishburne', birthYear: 1961 },
-        { name: 'Hugo Weaving', birthYear: 1960 }
-      ];
-      for (const actor of actors) {
-        const embedding = await openAIService.createEmbedding(actor.name);
-        await neo4jService.addNode('Actor', { ...actor, embedding });
+    // Create Actor nodes
+    const actors = [
+      { name: 'Keanu Reeves', birthYear: 1964 },
+      { name: 'Carrie-Anne Moss', birthYear: 1967 },
+      { name: 'Laurence Fishburne', birthYear: 1961 },
+      { name: 'Hugo Weaving', birthYear: 1960 }
+    ];
+    for (const actor of actors) {
+      const embedding = await openAIService.createEmbedding(actor.name);
+      await neo4jService.addNode('Actor', { ...actor, embedding });
+    }
+
+    // Create Movie nodes
+    const movies = [
+      { title: 'The Matrix', releaseYear: 1999 },
+      { title: 'The Matrix Reloaded', releaseYear: 2003 },
+      { title: 'John Wick', releaseYear: 2014 },
+      { title: 'The Lord of the Rings: The Fellowship of the Ring', releaseYear: 2001 }
+    ];
+    for (const movie of movies) {
+      const embedding = await openAIService.createEmbedding(movie.title);
+      await neo4jService.addNode('Movie', { ...movie, embedding });
+    }
+
+    // Create ACTED_IN relationships
+    const actedIn = [
+      { actor: 'Keanu Reeves', movie: 'The Matrix', character: 'Neo' },
+      { actor: 'Carrie-Anne Moss', movie: 'The Matrix', character: 'Trinity' },
+      { actor: 'Laurence Fishburne', movie: 'The Matrix', character: 'Morpheus' },
+      { actor: 'Hugo Weaving', movie: 'The Matrix', character: 'Agent Smith' },
+      { actor: 'Keanu Reeves', movie: 'The Matrix Reloaded', character: 'Neo' },
+      { actor: 'Carrie-Anne Moss', movie: 'The Matrix Reloaded', character: 'Trinity' },
+      { actor: 'Laurence Fishburne', movie: 'The Matrix Reloaded', character: 'Morpheus' },
+      { actor: 'Keanu Reeves', movie: 'John Wick', character: 'John Wick' }
+    ];
+    for (const role of actedIn) {
+      const actor = await neo4jService.findNodeByProperty('Actor', 'name', role.actor);
+      const movie = await neo4jService.findNodeByProperty('Movie', 'title', role.movie);
+      if (actor && movie) {
+        await neo4jService.connectNodes(actor.id, movie.id, 'ACTED_IN', { character: role.character });
       }
-  
-      // Create Movie nodes
-      const movies = [
-        { title: 'The Matrix', releaseYear: 1999 },
-        { title: 'The Matrix Reloaded', releaseYear: 2003 },
-        { title: 'John Wick', releaseYear: 2014 },
-        { title: 'The Lord of the Rings: The Fellowship of the Ring', releaseYear: 2001 }
-      ];
-      for (const movie of movies) {
-        const embedding = await openAIService.createEmbedding(movie.title);
-        await neo4jService.addNode('Movie', { ...movie, embedding });
-      }
-  
-      // Create ACTED_IN relationships
-      const actedIn = [
-        { actor: 'Keanu Reeves', movie: 'The Matrix', character: 'Neo' },
-        { actor: 'Carrie-Anne Moss', movie: 'The Matrix', character: 'Trinity' },
-        { actor: 'Laurence Fishburne', movie: 'The Matrix', character: 'Morpheus' },
-        { actor: 'Hugo Weaving', movie: 'The Matrix', character: 'Agent Smith' },
-        { actor: 'Keanu Reeves', movie: 'The Matrix Reloaded', character: 'Neo' },
-        { actor: 'Carrie-Anne Moss', movie: 'The Matrix Reloaded', character: 'Trinity' },
-        { actor: 'Laurence Fishburne', movie: 'The Matrix Reloaded', character: 'Morpheus' },
-        { actor: 'Keanu Reeves', movie: 'John Wick', character: 'John Wick' }
-      ];
-      for (const role of actedIn) {
-        const actor = await neo4jService.findNodeByProperty('Actor', 'name', role.actor);
-        const movie = await neo4jService.findNodeByProperty('Movie', 'title', role.movie);
-        if (actor && movie) {
-          await neo4jService.connectNodes(actor.id, movie.id, 'ACTED_IN', { character: role.character });
+    }
+
+    // Create Director nodes and DIRECTED relationships
+    const directors = [
+      { name: 'The Wachowskis', movies: ['The Matrix', 'The Matrix Reloaded'] },
+      { name: 'Chad Stahelski', movies: ['John Wick'] }
+    ];
+    for (const director of directors) {
+      const directorNode = await neo4jService.addNode('Director', { name: director.name });
+      for (const movieTitle of director.movies) {
+        const movie = await neo4jService.findNodeByProperty('Movie', 'title', movieTitle);
+        if (movie) {
+          await neo4jService.connectNodes(directorNode.id, movie.id, 'DIRECTED');
         }
       }
-  
-      // Create Director nodes and DIRECTED relationships
-      const directors = [
-        { name: 'The Wachowskis', movies: ['The Matrix', 'The Matrix Reloaded'] },
-        { name: 'Chad Stahelski', movies: ['John Wick'] }
-      ];
-      for (const director of directors) {
-        const directorNode = await neo4jService.addNode('Director', { name: director.name });
-        for (const movieTitle of director.movies) {
-          const movie = await neo4jService.findNodeByProperty('Movie', 'title', movieTitle);
-          if (movie) {
-            await neo4jService.connectNodes(directorNode.id, movie.id, 'DIRECTED');
-          }
-        }
-      }
-  
+    }
+
     // Perform vector search
     console.log("\nVector search for 'Sauron':");
     const searchQuery = "Sauron";
@@ -162,12 +162,25 @@ async function main3() {
     result6.records.forEach(record => {
       console.log(`${record.get('movie.title')}: ${record.get('oldestActor.name')} (born ${record.get('oldestActor.birthYear')})`);
     });
-  
-    } catch (error) {
-      console.error('Error:', error);
-    } finally {
-      await neo4jService.close();
-    }
+
+    const query7 = `
+      MATCH (a:Actor)-[:ACTED_IN]->(m:Movie)<-[:ACTED_IN]-(co:Actor)
+      WHERE a <> co
+      WITH a, COUNT(DISTINCT co) AS coActorCount
+      ORDER BY coActorCount DESC
+      LIMIT 1
+      RETURN a.name AS actor, coActorCount
+    `;
+    const result7 = await neo4jService.executeQuery(query7);
+    result7.records.forEach(record => {
+      console.log(`${record.get('actor')} has worked with ${record.get('coActorCount')} other actors`);
+    });
+
+  } catch (error) {
+    console.error('Error:', error);
+  } finally {
+    await neo4jService.close();
   }
-  
-  main3();
+}
+
+main3();
