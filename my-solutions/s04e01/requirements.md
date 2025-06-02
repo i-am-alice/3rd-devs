@@ -39,3 +39,7 @@ The objective of this script will be to use cloud tool for image alteration to p
 
         In response you will receive a verbose LLM response. Extract the new filename using the previously defined regex pattern and repeat the process.
 </technical_details>
+
+<remarks>
+* Eventually, you will end up with a solution that consists of 2 prompts and a loop that will continue until the image is clear enough to be used for description.
+</remarks>
