@@ -5,6 +5,9 @@ The task is to create two scripts that strictly follow all of the requirements s
 * Use OpenApiService from ./OpenAIService.ts to create embeddings or prompt LLM.
 * Use Neo4jService from ./Neo4jService.ts to create nodes, relationships, vector indexes, etc.
 * Don't pay attention to `.env` file. It has already been added.
+* Don't run any scripts to test the functionality.
+* Don't write any tests.
+* Don't add any comments unless critical for the functionality.
 </rules>
 
 <technical_details>
