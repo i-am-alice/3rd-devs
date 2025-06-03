@@ -19,12 +19,14 @@ async function prepareFinetuningData() {
     const finetuningData = [
         ...correctLines.map(line => ({
             messages: [
+                { role: "system", content: "Return 0 or 1 depending on whether the user prompt follows the correct pattern." },
                 { role: "user", content: line },
                 { role: "assistant", content: "1" }
             ]
         })),
         ...incorrectLines.map(line => ({
             messages: [
+                { role: "system", content: "Return 0 or 1 depending on whether the user prompt follows the correct pattern." },
                 { role: "user", content: line },
                 { role: "assistant", content: "0" }
             ]
