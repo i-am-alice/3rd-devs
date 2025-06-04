@@ -8,6 +8,7 @@
     "start:lesson5": "ts-node my-solutions/lesson-5/lesson-5.ts"
   },
   "dependencies": {
+    "@mendable/firecrawl-js": "^1.25.3",
     "@qdrant/js-client-rest": "^1.14.1",
     "dotenv": "^16.5.0",
     "neo4j-driver": "^5.28.1",
