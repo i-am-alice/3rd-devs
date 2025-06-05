@@ -28,8 +28,12 @@ async function main() {
     app.post('/api/drone-agent', async (req, res) => {
         try {
             const { instruction } = req.body as DroneInstructionRequest;
+            
+            console.log(`\n🔔 ${new Date().toISOString()} - New API request received`);
+            console.log(`🗣️ User instruction: "${instruction}"`); 
 
             if (!instruction) {
+                console.log(`❌ Error: Missing instruction parameter`);
                 return res.status(400).json({ error: 'Missing instruction parameter' });
             }
 
@@ -43,10 +47,15 @@ async function main() {
             const response: DronePositionResponse = {
                 description
             };
+            
+            console.log(`🎯 Final drone position: (${position.x}, ${position.y})`);
+            console.log(`📜 Found description: "${description}"`);
 
+            console.log(`✅ Request completed successfully`);
             return res.json(response);
         } catch (error) {
-            console.error('Error processing drone instruction:', error);
+            console.error('❌ Error processing drone instruction:', error);
+            console.log(`❌ Request failed with error`);
             return res.status(500).json({ error: 'Failed to process instruction' });
         }
     });
@@ -79,12 +88,25 @@ interface Position {
 async function getPositionFromInstruction(instruction: string, map: MapGrid): Promise<Position> {
     // Start position is always at the top-left corner [0,0]
     const position: Position = { x: 0, y: 0 };
+    
+    // Log the received instruction
+    console.log(`📝 Received instruction: "${instruction}"`); 
 
     // Use OpenAI to decode the instruction into directional commands
     const directions = await decodeInstructions(instruction);
+    
+    // Log the decoded directions array
+    console.log(`🔄 Decoded to ${directions.length} directions:`);
+    directions.forEach((dir, index) => {
+        console.log(`  ${index}: "${dir.trim()}"`); 
+    });
+    
+    console.log(`🚁 Starting drone at position (${position.x}, ${position.y})`);
 
     // Process each direction
-    for (const direction of directions) {
+    for (let i = 0; i < directions.length; i++) {
+        const direction = directions[i];
+        const originalPosition = { ...position };
         switch (direction.trim().toUpperCase()) {
             case 'PRAWO':
                 // Move right if within bounds
@@ -111,12 +133,34 @@ async function getPositionFromInstruction(instruction: string, map: MapGrid): Pr
                 }
                 break;
             default:
-                console.warn(`Unknown direction: ${direction}`);
+                console.warn(`❓ Unknown direction: "${direction}"`);
                 break;
+        }
+        
+        // Log each movement
+        const directionEmoji = getDirectionEmoji(direction.trim().toUpperCase());
+        console.log(`  🔹 Step ${i+1}: ${directionEmoji} "${direction.trim()}" → Position (${position.x}, ${position.y})`);
+        
+        // Log position changes
+        if (originalPosition.x !== position.x || originalPosition.y !== position.y) {
+            console.log(`    📍 Moved from (${originalPosition.x}, ${originalPosition.y}) to (${position.x}, ${position.y})`);
+        } else {
+            console.log(`    ⛔ No movement - hit boundary`);
         }
     }
 
     return position;
+}
+
+// Helper function to get emoji for direction
+function getDirectionEmoji(direction: string): string {
+    switch (direction) {
+        case 'PRAWO': return '➡️';
+        case 'LEWO': return '⬅️';
+        case 'GÓRA': return '⬆️';
+        case 'DÓŁ': return '⬇️';
+        default: return '❓';
+    }
 }
 
 main();
