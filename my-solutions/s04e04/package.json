@@ -1,0 +1,21 @@
+{
+  "name": "drone-agent",
+  "version": "1.0.0",
+  "description": "Drone agent API for decoding instructions and providing location descriptions",
+  "main": "index.js",
+  "scripts": {
+    "start": "ts-node agent.ts",
+    "dev": "nodemon --exec ts-node agent.ts"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "openai": "^4.28.0",
+    "dotenv": "^16.3.1"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3",
+    "nodemon": "^3.0.2"
+  }
+}
